@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define global constants.
  *
- * @since 1.0.0.0.0.0
+ * @since 1.0
  */
 // Plugin version.
 if ( ! defined( 'XMOB_VERSION' ) ) {
