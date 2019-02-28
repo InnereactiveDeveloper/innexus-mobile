@@ -1,18 +1,16 @@
 <?php
 /**
  *
- * @link https://getinnexus.com
+ * @link https://www.getinnexus.com
  * @since 1.0.0
  * @package XMOB
  *
  * Plugin Name: Innexus Mobile
- * Plugin URI: https://getinnexus.com
+ * Plugin URI: https://www.getinnexus.com
  * Description: Innexus Mobile
  * Author: Innexus by Innereactive
- * Author URI: https://getinnexus.com
+ * Author URI: https://www.getinnexus.com
  * Version: 1.0
- * License: GPL2+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
 // Exit if accessed directly.
