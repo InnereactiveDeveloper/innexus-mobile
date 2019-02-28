@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define global constants.
  *
- * @since 1.0.0.0.0.0
+ * @since 1.0.0.0.0.0 62f97498839b261c6404862f759975434e9dd5e1
  */
 // Plugin version.
 if ( ! defined( 'XMOB_VERSION' ) ) {
