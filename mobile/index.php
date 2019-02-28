@@ -52,16 +52,6 @@ function XMOB_injection()
         $phone_clean = preg_replace('~[-._#,]~', '', $phone);
         $text_clean = preg_replace('~[-._#,]~', '', $text);
         
-        //pre($texti);
-        
-  /*
-        echo "<div class='location-container'>";
-          echo "<p class='location-name'><strong>" . $name . "</strong></p>";
-          echo "<a href='tel:+1" . $phone_clean . "' class='location-phone'>" . "$phonei$phone" . "</a>";
-          echo "<a href='sms:" . $text_clean . "' class='location-text'>" . "$texti$text" . "</a>";
-          echo "<a href='mailto:" . $email . "' class='location-email'>" . "$emaili$email" . "</a>";
-        echo "</div>";
-  */
         
         echo "<div class='location-container'>";
           echo "<p class='location-name'><strong>" . $name . "</strong></p>";
@@ -101,4 +91,6 @@ function XMOB_injection()
   	}
 	}
 }
+
+
 add_action( 'wp_footer', 'XMOB_injection' );
