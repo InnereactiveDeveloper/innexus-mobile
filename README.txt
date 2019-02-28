@@ -1,8 +1,8 @@
 === Innexus Promotions ===
-Contributors: joshglovak, chriscolvin, getinnexus
+Contributors: chriscolvin, joshglovak, getinnexus
 Donate link: https://getinnexus.com
 Tags: acf
-Stable tag: 1.1.1
+Stable tag: 1.0
 Requires at least: 4.8
 Tested up to: 4.9.1
 

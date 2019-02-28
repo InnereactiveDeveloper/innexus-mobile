@@ -47,9 +47,7 @@ if ( ! defined( 'XMOB_URL' ) ) {
  */
 require_once( XMOB_DIR . '/mobile/index.php' );
 require_once( XMOB_DIR . '/mobile/fields.php' );
-/*
 require_once( XMOB_DIR . '/distribute/BFIGitHubPluginUploader.php' );
 if ( is_admin() ) {
     new BFIGitHubPluginUpdater( __FILE__, 'InnereactiveDeveloper', "innexus-mobile" );
 }
-*/
