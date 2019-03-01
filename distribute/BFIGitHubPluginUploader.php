@@ -1,4 +1,6 @@
 <?php
+if (!class_exists('BFIGitHubPluginUpdater')) 
+{
 
 class BFIGitHubPluginUpdater {
 
@@ -177,4 +179,6 @@ class BFIGitHubPluginUpdater {
 
         return $result;
     }
+}
+
 }
