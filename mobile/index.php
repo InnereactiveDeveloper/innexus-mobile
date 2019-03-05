@@ -14,7 +14,6 @@ function XMOB_scripts()
   wp_enqueue_script( 'innexus-mobile-script', plugin_dir_url( __FILE__ ) . 'js/script.js' , array('jquery'), null, true );
 	wp_enqueue_style( 'innexus-mobile-style', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), null );
 }
-add_action('wp_enqueue_scripts', 'XMOB_scripts');
 
 function XMOB_injection()
 {
@@ -24,8 +23,8 @@ function XMOB_injection()
 	
 	$toggle = get_field('enabledisable', 'option');
 			
-	if( $toggle == 'toggle_on') {
-  	
+	if( $toggle == 'toggle_on' && (wp_is_mobile() )) {
+  	  	
   	if( have_rows('mobile_location')) {
     
       $location_repeater = get_field('mobile_location', 'option');
@@ -92,5 +91,8 @@ function XMOB_injection()
 	}
 }
 
-
-add_action( 'wp_footer', 'XMOB_injection' );
+if( function_exists('acf_add_options_page') )
+{
+  add_action('wp_enqueue_scripts', 'XMOB_scripts');
+  add_action( 'wp_footer', 'XMOB_injection' );
+}

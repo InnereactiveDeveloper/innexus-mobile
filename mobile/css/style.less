@@ -61,7 +61,7 @@ div.innexus-mobile {
   }
   
   &.shadow:after {
-    width: 220px;
+    width: 100%;
     height: 6px;
     background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0.3));
     display: block;
@@ -79,6 +79,19 @@ div.innexus-mobile {
     &.shadow:after {
       right: 0;
     }
+  }
+  
+  @media (min-width: 350px) {
+    width: 260px;
+    right: -260px;
+    
+    &.shadow:after {
+      right: -260px;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    display: none;
   }
 }
 
@@ -124,34 +137,22 @@ div.innexus-mobile {
       }
     }
   }
-}
-
-/*
-.containing-element
-{
-  &:before,
-  &:after
-  {
-    content: '';
-    background-color: inherit;
-    height: 10px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    display: block;
-    position: absolute;
+  
+  @media (min-width: 350px) {
+    width: 65px;
+    height: 65px;
+    
+    i {
+      font-size: 2.5em;
+      margin-top: 2px;
+    }
+    
+    &.active {
+      right: 260px;
+    }
   }
   
-  &:before
-  {
-    top:-10px;
-    border-radius: 10px 10px 0 0;
-  }
-  
-  &:after
-  {
-    bottom: -10px;
-    border-radius: 0 0 10px 10px;
+  @media (min-width: 769px) {
+    display: none;
   }
 }
-*/
