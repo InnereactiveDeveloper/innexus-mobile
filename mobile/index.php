@@ -21,21 +21,28 @@ function XMOB_injection()
 	//https://codex.wordpress.org/Plugin_API/Action_Reference/wp_footer
 	//https://www.advancedcustomfields.com/resources/get_field/
 	
+	//grab the on/off field
 	$toggle = get_field('enabledisable', 'option');
 			
+  //if the plugin is toggled on and device is mobile…
 	if( $toggle == 'toggle_on' && (wp_is_mobile() )) {
   	  	
+    //if a row (location) exists…
   	if( have_rows('mobile_location')) {
     
+      //grab the location field
       $location_repeater = get_field('mobile_location', 'option');
       
+      //add a toggle button
       echo "<div class='location-toggle'><i class='fas fa-mobile-alt'></i><i class='fas fa-times'></i></div>";
       
+      //outer container
       echo "<div class='innexus-mobile'>";
             
         //Loop thorough each location
         foreach($location_repeater as $location)
         {
+          //variables
           $name = $location['location_name'];
           $phone = $location['phone_number'];
           $phonei = $location['phone_icon'];
@@ -51,7 +58,7 @@ function XMOB_injection()
           $phone_clean = preg_replace('~[-._#,]~', '', $phone);
           $text_clean = preg_replace('~[-._#,]~', '', $text);
           
-          
+          //inner containers and location name
           echo "<div class='location-container'>";
             echo "<p class='location-name'><strong>" . $name . "</strong></p>";
             echo "<ul class='location-info'>";
@@ -59,7 +66,7 @@ function XMOB_injection()
             	//Controls visibility of Phone Number
               if( $phonetoggle == 'phone_number_on' ) {
                 echo "<a href='tel:+1" . $phone_clean . "' class='location-phone'>";
-                  echo "$phonei";
+                  echo $phonei;
                   echo "<p>Call</p>";
                 echo "</a>";
               }
@@ -67,7 +74,7 @@ function XMOB_injection()
               //Controls visibility of Texting Number
               if( $texttoggle == 'text_number_on') {
                 echo "<a href='sms:" . $text_clean . "' class='location-text'>";
-                  echo "$texti";
+                  echo $texti;
                   echo "<p>Text</p>";
                 echo "</a>";
               }
@@ -75,7 +82,7 @@ function XMOB_injection()
               //Controls visibility of Email
               if( $emailtoggle == 'email_on') {
                 echo "<a href='mailto:" . $email . "' class='location-email'>";
-                  echo "$emaili";
+                  echo $emaili;
                   echo "<p>Email</p>";
                 echo "</a>";
               }
@@ -91,6 +98,7 @@ function XMOB_injection()
 	}
 }
 
+//run
 if( function_exists('acf_add_options_page') )
 {
   add_action('wp_enqueue_scripts', 'XMOB_scripts');

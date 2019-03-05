@@ -1,45 +1,57 @@
+//Custom styles for Innexus Mobile plugin
+
+//outer container
 div.innexus-mobile {
   background-color: #eee;
-  width:220px;
-  height:auto;
-  display:block;
-  position:fixed;
+  width: 220px;
+  height: auto;
+  display: block;
+  position: fixed;
   padding-top: 14px;
-  bottom:40px;
+  bottom: 40px;
   border-radius: 10px 0 0 0;
-  right:-220px;
-  z-index:999;
+  right: -220px;
+  z-index: 99999;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   max-height: 425px;
   min-height: 55px;
   overflow-x: visible;
   overflow-y: scroll;
     
+  //inner container
   .location-container {
-    padding:0 20px 20px 20px;
+    padding: 0 20px 20px 20px;
     
+    //location name titles
     p.location-name {
-      text-align:left;
-      border-bottom:1px solid black;
-      margin-bottom:0.8em;
-    }
-    
-    p.location-name:last-child {
-      margin-bottom:0;
+      text-align: left;
+      border-bottom: 1px solid black;
+      margin-bottom: 0.8em;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
     
     ul.location-info {
-      margin-left:0;
-      padding-left:0;
+      margin-left: 0;
+      padding-left: 0;
       
+      //links
       a {
-        display:inline-block;
-        width:30%;
-        margin-right:5%;
-        border-radius:5px;
-        transition:all 0.2s ease;
+        display: inline-block;
+        width: 30%;
+        margin-right: 5%;
+        border-radius: 5px;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        text-decoration: none;
         padding: 2px 0 0 0;
         background-color: #f5f5f5;
+        -webkit-box-shadow: 1px 1px 1px #ddd;
         box-shadow: 1px 1px 1px #ddd;
         
         &:last-child {
@@ -53,16 +65,20 @@ div.innexus-mobile {
     }
     
     p, a {
-      display:block;
-      margin:0;
-      text-align:center;
-      text-decoration:none;
+      display: block;
+      margin: 0;
+      text-align: center;
+      text-decoration: none;
     }
   }
   
+  //shadow/scroll-indicator when necessary
   &.shadow:after {
     width: 100%;
     height: 6px;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), color-stop(rgba(0,0,0,0.1)), to(rgba(0,0,0,0.3)));
+    background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+    background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0.3));
     background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0.3));
     display: block;
     overflow: visible;
@@ -70,6 +86,8 @@ div.innexus-mobile {
     position: fixed;
     bottom: 40px;
     right: -220px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
   
@@ -95,6 +113,7 @@ div.innexus-mobile {
   }
 }
 
+//toggle button
 .location-toggle {
   background-color: #ddd;
   width: 55px;
@@ -106,6 +125,8 @@ div.innexus-mobile {
   right: 0;
   border-radius: 10px 0 0 10px;
   cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   z-index: 99999;
   
@@ -115,6 +136,8 @@ div.innexus-mobile {
     width: 100%;
     margin-top: 1px;
     display: block;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
     
     &:nth-child(2) {
