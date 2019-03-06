@@ -25,7 +25,7 @@ function XMOB_injection()
 	$toggle = get_field('enabledisable', 'option');
 			
   //if the plugin is toggled on and device is mobile…
-	if( $toggle == 'toggle_on' && (wp_is_mobile() )) {
+	if( $toggle == 'toggle_on' ) {
   	  	
     //if a row (location) exists…
   	if( have_rows('mobile_location')) {
