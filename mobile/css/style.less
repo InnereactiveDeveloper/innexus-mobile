@@ -109,8 +109,14 @@ div.innexus-mobile {
     }
   }
   
-  @media (min-width: 769px) {
+  &.display_off {
     display: none;
+  }
+  
+  &.display_mobile {
+    @media (min-width: 769px) {
+      display: none;
+    }
   }
 }
 
@@ -163,6 +169,16 @@ div.innexus-mobile {
     }
   }
   
+  &.display_off {
+    display: none;
+  }
+  
+  &.display_mobile {
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
+  
   @media (min-width: 350px) {
     width: 65px;
     height: 65px;
@@ -175,9 +191,5 @@ div.innexus-mobile {
     &.active {
       right: 260px;
     }
-  }
-  
-  @media (min-width: 769px) {
-    display: none;
   }
 }

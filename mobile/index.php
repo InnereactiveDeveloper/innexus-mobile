@@ -22,10 +22,10 @@ function XMOB_injection()
 	//https://www.advancedcustomfields.com/resources/get_field/
 	
 	//grab the on/off field
-	$toggle = get_field('enabledisable', 'option');
-			
-  //if the plugin is toggled on and device is mobile…
-	if( $toggle == 'toggle_on' ) {
+	$display = get_field('display_options', 'option');
+				
+  //if display option is set to mobile or all…
+	if( $display == 'display_mobile' || $display == 'display_all' ) {
   	  	
     //if a row (location) exists…
   	if( have_rows('mobile_location')) {
@@ -34,10 +34,10 @@ function XMOB_injection()
       $location_repeater = get_field('mobile_location', 'option');
       
       //add a toggle button
-      echo "<div class='location-toggle'><i class='fas fa-mobile-alt'></i><i class='fas fa-times'></i></div>";
+      echo "<div class='location-toggle $display'><i class='fas fa-mobile-alt'></i><i class='fas fa-times'></i></div>";
       
       //outer container
-      echo "<div class='innexus-mobile'>";
+      echo "<div class='innexus-mobile $display'>";
             
         //Loop thorough each location
         foreach($location_repeater as $location)

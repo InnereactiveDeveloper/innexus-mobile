@@ -25,14 +25,14 @@ if( function_exists('acf_add_options_page') )
 //Plugin Fields
 if( function_exists('acf_add_local_field_group') )
 {
-acf_add_local_field_group(array(
+  acf_add_local_field_group(array(
 	'key' => 'group_5c6d9982b2c6a',
 	'title' => 'Innexus Mobile',
 	'fields' => array(
 		array(
 			'key' => 'field_5c6da14070634',
-			'label' => 'Enable/Disable',
-			'name' => 'enabledisable',
+			'label' => 'Display Options',
+			'name' => 'display_options',
 			'type' => 'button_group',
 			'instructions' => '',
 			'required' => 0,
@@ -43,8 +43,9 @@ acf_add_local_field_group(array(
 				'id' => '',
 			),
 			'choices' => array(
-				'toggle_on' => 'On',
-				'toggle_off' => 'Off',
+				'display_off' => 'Off',
+				'display_mobile' => 'Mobile',
+				'display_all' => 'All Screens',
 			),
 			'allow_null' => 0,
 			'default_value' => 'Off',
@@ -63,7 +64,14 @@ acf_add_local_field_group(array(
 					array(
 						'field' => 'field_5c6da14070634',
 						'operator' => '==',
-						'value' => 'toggle_on',
+						'value' => 'display_mobile',
+					),
+				),
+				array(
+					array(
+						'field' => 'field_5c6da14070634',
+						'operator' => '==',
+						'value' => 'display_all',
 					),
 				),
 			),
