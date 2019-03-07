@@ -14,9 +14,11 @@ function XMOB_scripts()
 	wp_enqueue_script( 'innexus-mobile-script', plugin_dir_url( __FILE__ ) . 'js/script.js' , array('jquery'), null, true );
 	wp_enqueue_style( 'innexus-mobile-style', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), null );
 	
+	//Check if we're on a new layout
 	$layout_fa = wp_script_is('imc-fa');
 	$layout_fa2 = wp_script_is('imc-fa2');
 	
+	//If the layout FA enqueues aren't present, add a CDN version of fontawesome for retroactive sites
 	if($layout_fa == false and $layout_fa2 == false)
 	{
 		wp_enqueue_style( 'innexus-fa', 'https://use.fontawesome.com/releases/v5.7.2/css/all.css', array(), null );
