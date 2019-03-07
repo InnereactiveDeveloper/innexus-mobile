@@ -13,6 +13,14 @@ function XMOB_scripts()
 {  
 	wp_enqueue_script( 'innexus-mobile-script', plugin_dir_url( __FILE__ ) . 'js/script.js' , array('jquery'), null, true );
 	wp_enqueue_style( 'innexus-mobile-style', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), null );
+	
+	$layout_fa = wp_script_is('imc-fa');
+	
+	if($layout_fa == false)
+	{
+		wp_enqueue_style( 'innexus-fa', 'https://use.fontawesome.com/releases/v5.7.2/css/all.css', array(), null );
+	}
+	
 }
 
 function XMOB_injection()
