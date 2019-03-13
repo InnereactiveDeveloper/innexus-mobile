@@ -2,7 +2,7 @@
 /**
  *
  * @link https://www.getinnexus.com
- * @since 1.0.0
+ * @since 1.0.1
  * @package XMOB
  *
  * Plugin Name: Innexus Mobile
@@ -10,7 +10,7 @@
  * Description: Innexus Mobile
  * Author: Innexus by Innereactive
  * Author URI: https://www.getinnexus.com
- * Version: 1.0
+ * Version: 1.0.1
  */
 
 // Exit if accessed directly.
