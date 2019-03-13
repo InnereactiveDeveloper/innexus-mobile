@@ -17,6 +17,7 @@ if( function_exists('acf_add_options_page') )
         'page_title'     => 'Innexus Mobile',
         'menu_title'     => 'Innexus Mobile',
         'menu_slug'     => 'innexus-mobile',
+        'icon_url' 		=> 'dashicons-smartphone',
         'capability'     => 'edit_posts',
         'redirect'     => false
     ));
