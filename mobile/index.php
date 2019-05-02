@@ -56,50 +56,126 @@ function XMOB_injection()
 				{
 					//variables
 					$name = $location['location_name'];
-					$phone = $location['phone_number'];
-					$phonei = $location['phone_icon'];
-					$text = $location['text_number'];
-					$texti = $location['text_icon'];
-					$email = $location['email_address'];
-					$emaili = $location['email_icon'];
-					$phonetoggle = $location['toggle_phone_number'];
-					$texttoggle = $location['toggle_text_number'];
-					$emailtoggle = $location['toggle_email'];
+          $phone = $location['phone_number'];
+          $phonei = $location['phone_icon'];
+          $text = $location['text_number'];
+          $texti = $location['text_icon'];
+          $email = $location['email_address'];
+          $emaili = $location['email_icon'];
+          $appt = $location['appt_req'];
+          $appti = $location['appt_icon'];
+          $phonetoggle = $location['toggle_phone_number'];
+          $texttoggle = $location['toggle_text_number'];
+          $emailtoggle = $location['toggle_email'];
+          $appttoggle = $location['toggle_appt'];
+          $count = 0;
+          $classes = '';
+          
+          //check if phone toggle is on, count if it is
+          if( $phonetoggle == 'phone_number_on' ) 
+					{
+            $count++;
+					}
+					
+					//check if texting toggle is on, count if it is
+					if( $texttoggle == 'text_number_on') 
+					{
+            $count++;
+					}
+					
+					//check if email toggle is on, count if it is
+					if( $emailtoggle == 'email_on') 
+					{
+            $count++;
+					}
+					
+					//check if appt toggle is on, count if it is and apply classes based on count
+					if($appttoggle == 'appt_on') 
+					{
+            $count++;
+            
+            if ( $count == 1 ) 
+            {
+    					$classes = 'appt_one';
+  					}
+  					
+  					if ( $count == 2 ) 
+  					{
+    					$classes = 'appt_two';
+  					}
+  					
+  					if ( $count == 3 ) 
+  					{
+    					$classes = 'appt_three';
+  					}
+  					
+  					if ( $count == 4 ) 
+  					{
+    					$classes = 'appt_four';
+  					}
+					} 
+					else
+					//apply classes based on count
+					{
+  					if ( $count == 1 ) 
+  					{
+    					$classes = 'one';
+  					}
+  					
+  					if ( $count == 2 ) 
+  					{
+    					$classes = 'two';
+  					}
+  					
+  					if ( $count == 3 ) 
+  					{
+    					$classes = 'three';
+  					}
+					}
 					
 					//clean the numbers
 					$phone_clean = preg_replace('~[-._#,]~', '', $phone);
 					$text_clean = preg_replace('~[-._#,]~', '', $text);
 					
 					//inner containers and location name
-					echo "<div class='location-container'>";
+					echo "<div class='location-container " . $classes . "'>";
 						echo "<p class='location-name'><strong>" . $name . "</strong></p>";
 						echo "<ul class='location-info'>";
 							
 							//Controls visibility of Phone Number
 							if( $phonetoggle == 'phone_number_on' ) 
 							{
-								echo "<a href='tel:+1" . $phone_clean . "' class='location-phone'>";
+								echo "<li class='location-phone'><a href='tel:+1" . $phone_clean . "'>";
 									echo $phonei;
 									echo "<p>Call</p>";
-								echo "</a>";
+								echo "</a></li>";
 							}
 							
 							//Controls visibility of Texting Number
 							if( $texttoggle == 'text_number_on') 
 							{
-								echo "<a href='sms:" . $text_clean . "' class='location-text'>";
+								echo "<li class='location-text'><a href='sms:" . $text_clean . "'>";
 									echo $texti;
 									echo "<p>Text</p>";
-								echo "</a>";
+								echo "</a></li>";
 							}
 							
 							//Controls visibility of Email
 							if( $emailtoggle == 'email_on') 
 							{
-								echo "<a href='mailto:" . $email . "' class='location-email'>";
+								echo "<li class='location-email'><a href='mailto:" . $email . "'>";
 									echo $emaili;
 									echo "<p>Email</p>";
-								echo "</a>";
+								echo "</a></li>";
+							}
+							
+							//Controls visibility of Appointment Request
+							if( $appttoggle == 'appt_on') 
+							{
+								echo "<li class='location-appt'><a href='" . $appt . "'>";
+									echo $appti;
+									echo "<p>Appointments</p>";
+								echo "</a></li>";
 							}
 						  
 						echo "</ul>";

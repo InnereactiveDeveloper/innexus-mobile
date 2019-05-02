@@ -26,7 +26,8 @@ if( function_exists('acf_add_options_page') )
 //Plugin Fields
 if( function_exists('acf_add_local_field_group') )
 {
-  acf_add_local_field_group(array(
+/*
+acf_add_local_field_group(array(
 	'key' => 'group_5c6d9982b2c6a',
 	'title' => 'Innexus Mobile',
 	'fields' => array(
@@ -115,7 +116,7 @@ if( function_exists('acf_add_local_field_group') )
 					'required' => 0,
 					'conditional_logic' => 0,
 					'wrapper' => array(
-						'width' => '33',
+						'width' => '25',
 						'class' => '',
 						'id' => '',
 					),
@@ -137,7 +138,7 @@ if( function_exists('acf_add_local_field_group') )
 					'required' => 0,
 					'conditional_logic' => 0,
 					'wrapper' => array(
-						'width' => '33',
+						'width' => '25',
 						'class' => '',
 						'id' => '',
 					),
@@ -159,13 +160,35 @@ if( function_exists('acf_add_local_field_group') )
 					'required' => 0,
 					'conditional_logic' => 0,
 					'wrapper' => array(
-						'width' => '33',
+						'width' => '25',
 						'class' => '',
 						'id' => '',
 					),
 					'choices' => array(
 						'email_off' => 'Off',
 						'email_on' => 'On',
+					),
+					'allow_null' => 0,
+					'default_value' => 'Off',
+					'layout' => 'horizontal',
+					'return_format' => 'value',
+				),
+				array(
+					'key' => 'field_5cc9e61d5b0d9',
+					'label' => 'Enable/Disable Appointment Link',
+					'name' => 'toggle_appt',
+					'type' => 'button_group',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '25',
+						'class' => '',
+						'id' => '',
+					),
+					'choices' => array(
+						'appt_off' => 'Off',
+						'appt_on' => 'On',
 					),
 					'allow_null' => 0,
 					'default_value' => 'Off',
@@ -333,6 +356,56 @@ if( function_exists('acf_add_local_field_group') )
 					'append' => '',
 					'maxlength' => '',
 				),
+				array(
+					'key' => 'field_5cc9e6785b0db',
+					'label' => 'Appointment Request',
+					'name' => 'appt_req',
+					'type' => 'link',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => array(
+						array(
+							array(
+								'field' => 'field_5cc9e61d5b0d9',
+								'operator' => '==',
+								'value' => 'email_on',
+							),
+						),
+					),
+					'wrapper' => array(
+						'width' => '50',
+						'class' => '',
+						'id' => '',
+					),
+					'return_format' => 'array',
+				),
+				array(
+					'key' => 'field_5cc9e6b75b0dc',
+					'label' => 'Appointment Icon',
+					'name' => 'appt_icon',
+					'type' => 'text',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => array(
+						array(
+							array(
+								'field' => 'field_5cc9e61d5b0d9',
+								'operator' => '==',
+								'value' => 'email_on',
+							),
+						),
+					),
+					'wrapper' => array(
+						'width' => '50',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '<i class="fas fa-calendar"></i>',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+					'maxlength' => '',
+				),
 			),
 		),
 	),
@@ -359,4 +432,5 @@ if( function_exists('acf_add_local_field_group') )
 	'active' => true,
 	'description' => '',
 ));
+*/
 };
