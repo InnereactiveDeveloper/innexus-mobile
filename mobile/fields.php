@@ -26,7 +26,6 @@ if( function_exists('acf_add_options_page') )
 //Plugin Fields
 if( function_exists('acf_add_local_field_group') )
 {
-/*
 acf_add_local_field_group(array(
 	'key' => 'group_5c6d9982b2c6a',
 	'title' => 'Innexus Mobile',
@@ -368,7 +367,7 @@ acf_add_local_field_group(array(
 							array(
 								'field' => 'field_5cc9e61d5b0d9',
 								'operator' => '==',
-								'value' => 'email_on',
+								'value' => 'appt_on',
 							),
 						),
 					),
@@ -377,7 +376,7 @@ acf_add_local_field_group(array(
 						'class' => '',
 						'id' => '',
 					),
-					'return_format' => 'array',
+					'return_format' => 'url',
 				),
 				array(
 					'key' => 'field_5cc9e6b75b0dc',
@@ -391,7 +390,7 @@ acf_add_local_field_group(array(
 							array(
 								'field' => 'field_5cc9e61d5b0d9',
 								'operator' => '==',
-								'value' => 'email_on',
+								'value' => 'appt_on',
 							),
 						),
 					),
@@ -432,5 +431,4 @@ acf_add_local_field_group(array(
 	'active' => true,
 	'description' => '',
 ));
-*/
 };
