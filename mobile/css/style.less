@@ -129,7 +129,7 @@ div.innexus-mobile {
   
   //shadow/scroll-indicator when necessary
   &.shadow:after {
-    width: 100%;
+    width: 220px;
     height: 6px;
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), color-stop(rgba(0,0,0,0.1)), to(rgba(0,0,0,0.3)));
     background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0.3));
@@ -144,6 +144,7 @@ div.innexus-mobile {
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    content: '';
   }
   
   &.active {
@@ -160,6 +161,7 @@ div.innexus-mobile {
     
     &.shadow:after {
       right: -260px;
+      width: 260px;
     }
   }
   
