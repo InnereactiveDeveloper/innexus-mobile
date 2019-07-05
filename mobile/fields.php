@@ -54,6 +54,28 @@ acf_add_local_field_group(array(
 			'return_format' => 'value',
 		),
 		array(
+			'key' => 'field_5c6da14900675',
+			'label' => 'Left/Right',
+			'name' => 'left_right',
+			'type' => 'button_group',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array(
+				'place_left' => 'Left',
+				'place_right' => 'Right',
+			),
+			'allow_null' => 0,
+			'default_value' => 'Right',
+			'layout' => 'horizontal',
+			'return_format' => 'value',
+		),
+		array(
 			'key' => 'field_5c6da57d665fd',
 			'label' => 'Location',
 			'name' => 'mobile_location',
