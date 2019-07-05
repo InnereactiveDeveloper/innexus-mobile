@@ -34,6 +34,7 @@ function XMOB_injection()
 	
 	//grab the on/off field
 	$display = get_field('display_options', 'option');
+	$leftRight = get_field('left_right', 'option');
 				
 	//if display option is set to mobile or all…
 	if( $display == 'display_mobile' || $display == 'display_all' ) 
@@ -46,10 +47,10 @@ function XMOB_injection()
 		{
 		
 			//add a toggle button
-			echo "<div class='location-toggle $display'><i class='fas fa-mobile-alt'></i><i class='fas fa-times'></i></div>";
+			echo "<div class='location-toggle $display $leftRight'><i class='fas fa-mobile-alt'></i><i class='fas fa-times'></i></div>";
 			
 			//outer container
-			echo "<div class='innexus-mobile $display'>";
+			echo "<div class='innexus-mobile $display $leftRight'>";
 			    
 				//Loop thorough each location
 				foreach($location_repeater as $location)
