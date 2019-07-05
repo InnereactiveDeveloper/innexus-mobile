@@ -174,6 +174,38 @@ div.innexus-mobile {
       display: none;
     }
   }
+  
+  //styles for when displayed left
+  &.place_left {
+    right: auto;
+    left: -220px;
+    border-radius: 0 10px 0 0;
+    
+    &.shadow:after {
+      right: auto;
+      left: -220px;
+    }
+    
+    @media (min-width: 350px) {
+      width: 260px;
+      left: -260px;
+      
+      &.shadow:after {
+        left: -260px;
+        width: 260px;
+      }
+    }
+    
+    &.active {
+    right: auto;
+    left: 0;
+    
+      &.shadow:after {
+        right: auto;
+        left: 0;
+      }
+    }
+  }
 }
 
 //toggle button
@@ -246,6 +278,24 @@ div.innexus-mobile {
     
     &.active {
       right: 260px;
+    }
+  }
+  
+  //styles for when displayed left
+  &.place_left {
+    right: auto;
+    left: 0;
+    border-radius: 0 10px 10px 0;
+    
+    &.active {
+      right: auto;
+      left: 220px;
+      
+      @media (min-width: 350px) {
+        &.active {
+          left: 260px;
+        }
+      }
     }
   }
 }
