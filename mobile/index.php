@@ -15,13 +15,13 @@ function XMOB_scripts()
 	wp_enqueue_style( 'innexus-mobile-style', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), null );
 	
 	//Check if we're on a new layout
-	$layout_fa = wp_script_is('imc-fa');
-	$layout_fa2 = wp_script_is('imc-fa2');
+	$layout_fa = wp_style_is('imc-fa');
+	$layout_fa2 = wp_style_is('imc-fa2');
 	
 	//If the layout FA enqueues aren't present, add a CDN version of fontawesome for retroactive sites
-	if($layout_fa == false and $layout_fa2 == false)
+	if($layout_fa != 1 and $layout_fa2 != 1)
 	{
-		wp_enqueue_style( 'innexus-fa', 'https://use.fontawesome.com/releases/v5.7.2/css/all.css', array(), null );
+		wp_enqueue_style( 'innexus-fa', 'https://use.fontawesome.com/releases/v5.7.2/css/all.css', array('imc-style'), null );
 	}
 	
 }
@@ -190,9 +190,9 @@ function XMOB_injection()
 	}
 }
 
-//run
+//Run
 if( function_exists('acf_add_options_page') )
 {
-  add_action('wp_enqueue_scripts', 'XMOB_scripts');
-  add_action( 'wp_footer', 'XMOB_injection' );
+	add_action('wp_enqueue_scripts', 'XMOB_scripts', 9999);
+	add_action( 'wp_footer', 'XMOB_injection' );
 }
