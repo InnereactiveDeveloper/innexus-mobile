@@ -14,4 +14,4 @@ The Innexus Mobile Module is intended for use with the Innexus website program.
 * Initial plugin release
 
 = 2.0.0 =
-* Initial plugin release
+* Initial plug release version 2 start
