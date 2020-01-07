@@ -47,10 +47,11 @@ function XMOB_injection()
 		{
 		
 			//add a toggle button
-			echo "<div class='location-toggle $display $leftRight'><i class='fas fa-mobile-alt'></i><i class='fas fa-times'></i></div>";
+			echo "<div class='location-open $display $leftRight'><i class='fas fa-mobile-alt'></i></div>";
 			
 			//outer container
 			echo "<div class='innexus-mobile $display $leftRight'>";
+			  echo "<div class='location-close $display $leftRight'><i class='fas fa-times'></i></div>";
 			    
 				//Loop thorough each location
 				foreach($location_repeater as $location)
