@@ -24,6 +24,7 @@ if( function_exists('acf_add_options_page') )
 }
 
 //Plugin Fields
+/*
 if( function_exists('acf_add_local_field_group') )
 {
 acf_add_local_field_group(array(
@@ -453,4 +454,4 @@ acf_add_local_field_group(array(
 	'active' => true,
 	'description' => '',
 ));
-};
+}; */

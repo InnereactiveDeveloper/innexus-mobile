@@ -35,25 +35,81 @@ function XMOB_injection()
 	//grab the on/off field
 	$display = get_field('display_options', 'option');
 	$leftRight = get_field('left_right', 'option');
+	$version = get_field('mobile_version', 'option');
+	$level = get_field('free_or_premium', 'option');
+	$sync = get_field('sync_or_static', 'option');
+	$homeData = get_field('main_page_elements', 'option');
 				
 	//if display option is set to mobile or all…
 	if( $display == 'display_mobile' || $display == 'display_all' ) 
 	{
-		//grab the location field
+		//grab the location fields
 		$location_repeater = get_field('mobile_location', 'option');
+		$appointment_request_link_repeater = get_field('appointment_request_link_repeater', 'option');
 		  	
-		//if a row (location) exists…
-		if( !empty($location_repeater))
+		//if the plugin display option is *not* set to Off…
+		if($display != 'Off')
 		{
 		
-			//add a toggle button
-			echo "<div class='location-open $display $leftRight'><i class='fas fa-mobile-alt'></i></div>";
+			//add an open button
+			echo "<div class='location-open $display $leftRight'><img src='http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_f.png' alt='chatbot icon'></div>";
 			
-			//outer container
+			//card container
 			echo "<div class='innexus-mobile $display $leftRight'>";
+			  //add a close button
 			  echo "<div class='location-close $display $leftRight'><i class='fas fa-times'></i></div>";
+			  //add the image/icon
+			  echo "<div class='location-chatbot $display $leftRight'><img src='http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_f.png' alt='chatbot icon'></div>";
+			  
+			  //display the first question and options
+			  echo "<div class='chatbot-container $display $leftRight'>";
+			    echo "<p class='chatbot-response'>What can I help you do today?</p>";
 			    
-				//Loop thorough each location
+			    //if showing appointment requests…
+  			  if(in_array('request_appointment', $homeData)) {
+    			  
+    			  //show the appointment button
+    			  echo "<a href='#' class='chatbot-button'>Request an Appointment</a>";
+  			  }
+  			  
+  			  //if showing contact us…
+  			  if(in_array('contact_us', $homeData)) {
+    			  
+    			  //show the contact us button
+    			  echo "<a href='#' class='chatbot-button'>Contact Your Office</a>";
+  			  }
+  			  
+  			  //if showing online patient forms…
+  			  if(in_array('online_patient_forms', $homeData)) {
+    			  
+    			  //show the appointment button
+    			  echo "<a href='#' class='chatbot-button'>Find Patient Forms</a>";
+  			  }
+  			  
+  			  //if showing hours…
+  			  if(in_array('hours', $homeData)) {
+    			  
+    			  //show the appointment button
+    			  echo "<a href='#' class='chatbot-button'>View Your Hours</a>";
+  			  }
+  			  
+  			  //if showing Location…
+  			  if(in_array('practice_location', $homeData)) {
+    			  
+    			  //show the appointment button
+    			  echo "<a href='#' class='chatbot-button'>Find Your Location</a>";
+  			  }
+  			  
+  			  //if showing more options…
+  			  if(in_array('more_options', $homeData)) {
+    			  
+    			  //show the appointment button
+    			  echo "<a href='#' class='chatbot-button'>More Options</a>";
+  			  }
+			  echo "</div>";
+			    
+				//Loop through each location
+/*
 				foreach($location_repeater as $location)
 				{
 					//variables
@@ -183,7 +239,8 @@ function XMOB_injection()
 						echo "</ul>";
 					echo "</div>";
 				  
-				}    
+				}
+*/    
 			    
 			echo "</div>";
 		
