@@ -30,14 +30,50 @@ jQuery(document).ready(function($)
     $('.chatbot-button.hours').click(function() {
       
       //add the active class on the hours shortcode
-      $('.chatbot-hours').addClass('active');
+      $('.chatbot-page.hours').addClass('active');
     })
     
     //when the back button is clicked…
-    $('.chatbot-hours-back').click(function() {
+    $('.chatbot-page-back.hours').click(function() {
       
       //remove the active class on the hours shortcode
-      $('.chatbot-hours').removeClass('active');
+      $('.chatbot-page.hours').removeClass('active');
+    })
+  }
+  
+  //if the chatbot request_appointment button exists…
+  if ( $('.chatbot-button.request_appointment').length ) {
+    
+    //when the request_appointment button is clicked…
+    $('.chatbot-button.request_appointment').click(function() {
+      
+      //add the active class on the request_appointment container
+      $('.chatbot-page.request_appointment').addClass('active');
+    })
+    
+    //when the back button is clicked…
+    $('.chatbot-page-back.request_appointment').click(function() {
+      
+      //remove the active class on the request_appointment container
+      $('.chatbot-page.request_appointment').removeClass('active');
+    })
+  }
+  
+  //if the chatbot contact_us button exists…
+  if ( $('.chatbot-button.contact_us').length ) {
+    
+    //when the contact_us button is clicked…
+    $('.chatbot-button.contact_us').click(function() {
+      
+      //add the active class on the contact_us container
+      $('.chatbot-page.contact_us').addClass('active');
+    })
+    
+    //when the back button is clicked…
+    $('.chatbot-page-back.contact_us').click(function() {
+      
+      //remove the active class on the request_appointment container
+      $('.chatbot-page.contact_us').removeClass('active');
     })
   }
   

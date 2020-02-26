@@ -2,7 +2,7 @@
 
 //outer container
 div.innexus-chatbot {
-  background-color: rgba(248,248,248,0.97);
+  background-color: whitesmoke;
   width: 280px;
   height: auto;
   display: block;
@@ -26,6 +26,9 @@ div.innexus-chatbot {
   .chatbot-container {
     margin: 0 10px 6px 10px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-color: inherit;
     
     p.chatbot-response {
       text-align: center;
@@ -51,20 +54,62 @@ div.innexus-chatbot {
       }
     }
     
-    .chatbot-hours {
+    div.chatbot-button {
+      width: 100%;
+      font-size: 16px;
+      padding: 8px 12px;
+      background-color: #666;
+      color: white;
+      display: inline-block;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin: 0 0 5px 0;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: #555;
+      }
+    }
+    
+    .chatbot-page {
+      transform: translateX(110%);
+      transition: all 0.3s ease;
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
-      background-color: rgba(248,248,248,1);
+      background-color: inherit;
       border-radius: 10px;
-      padding: 0 10px 6px 10px;
+      padding: 10px 10px 6px 10px;
+      
+      .chatbot-response {
+        margin-top: 14px;
+        margin-bottom: 20px;
+      }
       
       .hours {
         ul.day {
           text-align: left;
         }
+      }
+      
+      .hours-additional-notes {
+        line-height: 1.3em;
+      }
+      
+      &.request_appointment.active {
+        transform: translateX(0);
+      }
+      
+      &.hours.active {
+        transform: translateX(0);
+      }
+      
+      .chatbot-page-back {
+        text-align: left;
+        cursor: pointer;
       }
     }
   }
@@ -81,7 +126,7 @@ div.innexus-chatbot {
     border-radius: 999px;
     transition: all 0.3s ease;
     box-shadow: 0 0 10px rgba(55,55,55,0.6);
-    z-index: 999999999999999999999;
+    z-index: 999;
     
     i.fa-times {
       font-size: 18px;
@@ -114,6 +159,7 @@ div.innexus-chatbot {
     border-radius: 999px;
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(55,55,55,0.6);
+    z-index: 999;
   }
     
   //inner container

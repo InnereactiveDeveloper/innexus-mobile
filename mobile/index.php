@@ -227,42 +227,66 @@ function XMOB_injection()
       			  if(in_array('request_appointment', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='#' class='chatbot-button'>$apptCopy</a>";
+        			  echo "<div class='chatbot-button request_appointment'>$apptCopy</div>";
+        			  //when clicked, show the request_appointment page
+        			  echo "<div class='chatbot-page request_appointment'>";
+        			    echo "<div class='chatbot-page-back request_appointment'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+          			  echo "<p class='chatbot-response'>Choose a Location</p>";
+          			  
+          			  foreach($location_repeater_chatbot as $location) {
+            			  $name = $location['location_name_chatbot'];
+          			    $apptLink = $location['appt_req_chatbot'];
+                    
+                    echo "<a href='$apptLink' class='chatbot-button'>$name</a>";
+        			    }
+        			  echo "</div>";
       			  }
       			  
       			  //if showing contact us…
       			  if(in_array('contact_us', $homeData)) {
         			  
         			  //show the contact us button
-        			  echo "<a href='#' class='chatbot-button'>$contactCopy</a>";
+        			  echo "<div class='chatbot-button'>$contactCopy</div>";
+        			  //when clicked, show the contact_us page
+        			  echo "<div class='chatbot-page contact_us'>";
+        			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+          			  echo "<p class='chatbot-response'>Choose a Location</p>";
+          			  
+          			  foreach($location_repeater_chatbot as $location) {
+            			  $name = $location['location_name_chatbot'];
+          			    $contactLink = $location['contact_us_chatbot'];
+                    
+                    echo "<a href='$contactLink' class='chatbot-button'>$name</a>";
+        			    }
+        			  echo "</div>";
       			  }
       			  
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='#' class='chatbot-button'>$formsCopy</a>";
+        			  echo "<div class='chatbot-button'>$formsCopy</div>";
       			  }
       			  
       			  //if showing hours…
       			  if(in_array('hours', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='#' class='chatbot-button hours' id='hours'>$hoursCopy</a>";
+        			  echo "<div class='chatbot-button hours' id='hours'>$hoursCopy</div>";
       			  }
       			  
       			  //if showing Location…
       			  if(in_array('practice_location', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='#' class='chatbot-button'>$locationCopy</a>";
+        			  echo "<div class='chatbot-button'>$locationCopy</div>";
       			  }
       			  
       			  //if showing more options…
       			  if(in_array('more_options', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='#' class='chatbot-button more-options' id='more-options'>More Options</a>";
+        			  echo "<div class='chatbot-button more-options' id='more-options'>More Options</div>";
       			  }
   			    }
   			    
@@ -305,9 +329,9 @@ function XMOB_injection()
       			  if(in_array('hours', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='#' class='chatbot-button hours' id='hours'>$hoursCopy</a>";
-        			  echo "<div class='chatbot-hours'>";
-        			    echo "<div class='chatbot-hours-back'><i class='fas fa-chevron-circle-left'></i></div>";
+        			  echo "<div class='chatbot-button hours' id='hours'>$hoursCopy</div>";
+        			  echo "<div class='chatbot-page hours'>";
+        			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Office Hours</p>";
           			  echo do_shortcode('[hours]');
         			  echo "</div>";
@@ -324,7 +348,7 @@ function XMOB_injection()
       			  if(in_array('more_options', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='#' class='chatbot-button more-options' id='more-options'>More Options</a>";
+        			  echo "<div href='#' class='chatbot-button more-options' id='more-options'>More Options</div>";
       			  }
   			    }
   			    
