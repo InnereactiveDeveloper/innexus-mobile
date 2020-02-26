@@ -246,7 +246,7 @@ function XMOB_injection()
       			  if(in_array('contact_us', $homeData)) {
         			  
         			  //show the contact us button
-        			  echo "<div class='chatbot-button'>$contactCopy</div>";
+        			  echo "<div class='chatbot-button contact_us'>$contactCopy</div>";
         			  //when clicked, show the contact_us page
         			  echo "<div class='chatbot-page contact_us'>";
         			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
@@ -264,8 +264,20 @@ function XMOB_injection()
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
         			  
-        			  //show the appointment button
-        			  echo "<div class='chatbot-button'>$formsCopy</div>";
+        			  //show the online_patient_forms button
+        			  echo "<div class='chatbot-button online_patient_forms'>$formsCopy</div>";
+        			  //when clicked, show the online_patient_forms page
+        			  echo "<div class='chatbot-page online_patient_forms'>";
+        			    echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+          			  echo "<p class='chatbot-response'>Choose a Location</p>";
+          			  
+          			  foreach($location_repeater_chatbot as $location) {
+            			  $name = $location['location_name_chatbot'];
+          			    $contactLink = $location['contact_us_chatbot'];
+                    
+                    echo "<a href='$contactLink' class='chatbot-button'>$name</a>";
+        			    }
+        			  echo "</div>";
       			  }
       			  
       			  //if showing hours…

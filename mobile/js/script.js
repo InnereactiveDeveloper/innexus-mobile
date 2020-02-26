@@ -72,8 +72,26 @@ jQuery(document).ready(function($)
     //when the back button is clicked…
     $('.chatbot-page-back.contact_us').click(function() {
       
-      //remove the active class on the request_appointment container
+      //remove the active class on the contact_us container
       $('.chatbot-page.contact_us').removeClass('active');
+    })
+  }
+  
+  //if the chatbot online_patient_forms button exists…
+  if ( $('.chatbot-button.online_patient_forms').length ) {
+    
+    //when the online_patient_forms button is clicked…
+    $('.chatbot-button.online_patient_forms').click(function() {
+      
+      //add the active class on the online_patient_forms container
+      $('.chatbot-page.online_patient_forms').addClass('active');
+    })
+    
+    //when the back button is clicked…
+    $('.chatbot-page-back.online_patient_forms').click(function() {
+      
+      //remove the active class on the online_patient_forms container
+      $('.chatbot-page.online_patient_forms').removeClass('active');
     })
   }
   
