@@ -50,6 +50,23 @@ div.innexus-chatbot {
         background-color: #555;
       }
     }
+    
+    .chatbot-hours {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(248,248,248,1);
+      border-radius: 10px;
+      padding: 0 10px 6px 10px;
+      
+      .hours {
+        ul.day {
+          text-align: left;
+        }
+      }
+    }
   }
   
   //close button
@@ -64,6 +81,7 @@ div.innexus-chatbot {
     border-radius: 999px;
     transition: all 0.3s ease;
     box-shadow: 0 0 10px rgba(55,55,55,0.6);
+    z-index: 999999999999999999999;
     
     i.fa-times {
       font-size: 18px;

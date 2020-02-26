@@ -1,7 +1,7 @@
 //Innexus Mobile Scripts
 jQuery(document).ready(function($)
 {
-  //if the mobile plugin exists…
+  //if the chatbot plugin exists…
   if ( $('.innexus-chatbot').length ) {
     
     //when the open button is clicked…
@@ -16,10 +16,28 @@ jQuery(document).ready(function($)
     //when the close button is clicked…
     $('.chatbot-close').click(function() {
       
-      //add the active class on the button and plugin container
+      //remove the active class on the button and plugin container
       $('.innexus-chatbot').removeClass('active');
       $('.chatbot-open').removeClass('active');
       $('.chatbot-close').removeClass('active');
+    })
+  }
+  
+  //if the chatbot hours button exists…
+  if ( $('.chatbot-button.hours').length ) {
+    
+    //when the hours button is clicked…
+    $('.chatbot-button.hours').click(function() {
+      
+      //add the active class on the hours shortcode
+      $('.chatbot-hours').addClass('active');
+    })
+    
+    //when the back button is clicked…
+    $('.chatbot-hours-back').click(function() {
+      
+      //remove the active class on the hours shortcode
+      $('.chatbot-hours').removeClass('active');
     })
   }
   
