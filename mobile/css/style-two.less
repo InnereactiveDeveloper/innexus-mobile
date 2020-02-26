@@ -1,105 +1,26 @@
 //Custom styles for Innexus Mobile plugin
 
 //outer container
-div.innexus-chatbot {
-  background-color: rgba(248,248,248,0.97);
-  width: 280px;
+div.innexus-mobile {
+  background-color: #eee;
+  width: 220px;
   height: auto;
   display: block;
   position: fixed;
-  padding-top: 25px;
-  bottom: 20px;
-  border-radius: 10px;
-  right: -300px;
+  padding-top: 14px;
+  bottom: 40px;
+  border-radius: 10px 0 0 0;
+  right: -220px;
   z-index: 99999;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   max-height: 425px;
   min-height: 55px;
-  box-shadow: 0 0 32px rgba(55,55,55,0.3);
-/*
   overflow-x: visible;
   overflow-y: scroll;
-*/
-
-  .chatbot-container {
-    margin: 0 10px 6px 10px;
-    text-align: center;
-    
-    p.chatbot-response {
-      text-align: center;
-      font-size: 21px;
-      font-weight: 600;
-      line-height: 26px;
-    }
-    
-    a.chatbot-button {
-      width: 100%;
-      font-size: 16px;
-      padding: 8px 12px;
-      background-color: #666;
-      color: white;
-      display: inline-block;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      margin: 0 0 5px 0;
-      
-      &:hover {
-        background-color: #555;
-      }
-    }
-  }
-  
-  //close button
-  .chatbot-close {
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    background-color: #eee;
-    width: 30px;
-    height: 30px;
-    transform: scale(0,0);
-    border-radius: 999px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(55,55,55,0.6);
-    
-    i.fa-times {
-      font-size: 18px;
-      position: relative;
-      top: 5.05px;
-      left: 8.6px;
-      cursor: pointer;
-    }
-    
-    &.active {
-      transform: scale(1,1);
-    }
-    
-    &.place_left {
-      left: auto;
-      right: -25px;
-    }
-  }
-  
-  //head icon
-  .chatbot-icon {
-    position: absolute;
-    top: -45px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 72px;
-    height: 72px;
-    background-color: #eee;
-    padding: 12px;
-    border-radius: 999px;
-    box-sizing: border-box;
-    box-shadow: 0 0 10px rgba(55,55,55,0.6);
-  }
     
   //inner container
-/*
   .location-container {
     padding: 0 20px 20px 20px;
     
@@ -130,7 +51,7 @@ div.innexus-chatbot {
         text-decoration: none;
         padding: 2px 0 0 0;
         background-color: #f5f5f5;
-        -webkit-box-shadow: 1px 1px 1px #eee;
+        -webkit-box-shadow: 1px 1px 1px #ddd;
         box-shadow: 1px 1px 1px #ddd;
         
         &:hover {
@@ -205,10 +126,8 @@ div.innexus-chatbot {
       }
     }
   }
-*/
   
   //shadow/scroll-indicator when necessary
-/*
   &.shadow:after {
     width: 220px;
     height: 6px;
@@ -220,35 +139,30 @@ div.innexus-chatbot {
     overflow: visible;
     visibility: visible;
     position: fixed;
-    bottom: 20px;
+    bottom: 40px;
     right: -220px;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     content: '';
   }
-*/
   
   &.active {
-    right: 20px;
+    right: 0;
     
-/*
     &.shadow:after {
-      right: 20px;
+      right: 0;
     }
-*/
   }
   
   @media (min-width: 350px) {
-    //width: 260px;
-    //right: -300px;
+    width: 260px;
+    right: -260px;
     
-/*
     &.shadow:after {
       right: -260px;
       width: 260px;
     }
-*/
   }
   
   &.display_off {
@@ -264,61 +178,52 @@ div.innexus-chatbot {
   //styles for when displayed left
   &.place_left {
     right: auto;
-    left: -300px;
-    //border-radius: 0 10px 0 0;
+    left: -220px;
+    border-radius: 0 10px 0 0;
     
-/*
     &.shadow:after {
       right: auto;
       left: -220px;
     }
-*/
     
     @media (min-width: 350px) {
-      //width: 260px;
-      //left: -300px;
+      width: 260px;
+      left: -260px;
       
-/*
       &.shadow:after {
         left: -260px;
         width: 260px;
       }
-*/
     }
     
     &.active {
     right: auto;
-    left: 20px;
+    left: 0;
     
-/*
       &.shadow:after {
         right: auto;
         left: 0;
       }
-*/
     }
   }
 }
 
 //toggle button
-.chatbot-open {
+.location-toggle {
   background-color: #ddd;
   width: 55px;
   height: 55px;
   padding: 10px;
   display: block;
   position: fixed;
-  //opacity: 0;
-  bottom: 20px;
-  right: 20px;
-  border-radius: 999px;
+  bottom: 40px;
+  right: 0;
+  border-radius: 10px 0 0 10px;
   cursor: pointer;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   z-index: 99999;
-  box-shadow: 0 0 48px rgba(0,0,0,0.66);
-  transform: scale(1,1);
   
   i {
     font-size: 2.1em;
@@ -337,31 +242,19 @@ div.innexus-chatbot {
   }
   
   &:hover {
-    background-color: #f2f2f2;
-    box-shadow: 0 0 64px rgba(0,0,0,1);
+    background-color: #ccc;
   }
   
   &.active {
-    opacity: 0;
-    transform: scale(0,0);
-/*
-    right: 240px;
-    width: 30px;
-    height: 30px;
+    right: 220px;
       
     i {
       display: none;
       
       &:nth-child(2) {
-        font-size: 20px;
         display: block;
-        margin-top: 0px;
-        position: relative;
-        top: -3.75px;
-        left: -1.5px;
       }
     }
-*/
   }
   
   &.display_off {
@@ -383,22 +276,18 @@ div.innexus-chatbot {
       margin-top: 2px;
     }
     
-/*
     &.active {
-      right: 280px;
+      right: 260px;
     }
-*/
   }
   
   //styles for when displayed left
   &.place_left {
     right: auto;
-    left: 20px;
+    left: 0;
+    border-radius: 0 10px 10px 0;
     
-    animation: wait-left 3.33s forwards;
-    
-    /*
-&.active {
+    &.active {
       right: auto;
       left: 220px;
       
@@ -408,48 +297,5 @@ div.innexus-chatbot {
         }
       }
     }
-*/
-  }
-  
-  //styles for when displayed right
-  &.place_right {
-    animation: wait-right 3.33s forwards;
   }
 }
-
-//keyframes
-@keyframes wait-left {
-  0% {
-    left: -100%;
-    transform: scale(0,0);
-  }
-  
-  80% {
-    left: -100%;
-    transform: scale(0,0);
-  }
-  
-  99% {
-    left: 20px;
-    transform: scale(1,1);
-  }
-}
-
-@keyframes wait-right {
-  0% {
-    right: -100%;
-    transform: scale(0,0);
-  }
-  
-  80% {
-    right: -100%;
-    transform: scale(0,0);
-  }
-  
-  99% {
-    right: 20px;
-    transform: scale(1,1);
-  }
-}
-
-@import "style-two.less";
