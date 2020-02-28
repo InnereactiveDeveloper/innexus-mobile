@@ -15,7 +15,7 @@ div.innexus-chatbot {
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  max-height: 425px;
+  max-height: 90vh;
   min-height: 55px;
   box-shadow: 0 0 32px rgba(55,55,55,0.3);
 /*
@@ -29,6 +29,15 @@ div.innexus-chatbot {
     position: relative;
     overflow: hidden;
     background-color: inherit;
+    transition: all 0.4s ease;
+    min-height: 40px;
+    
+    &.grow {
+      min-height: 350px;
+    }
+    
+    //keep this?
+    //min-height: 400px;
     
     p.chatbot-response {
       text-align: center;
@@ -49,6 +58,10 @@ div.innexus-chatbot {
       transition: all 0.2s ease;
       margin: 0 0 5px 0;
       
+      i {
+        font-size: 0.8em;
+      }
+      
       &:hover {
         background-color: #555;
       }
@@ -67,6 +80,10 @@ div.innexus-chatbot {
       margin: 0 0 5px 0;
       cursor: pointer;
       
+      i {
+        font-size: 0.8em;
+      }
+      
       &:hover {
         background-color: #555;
       }
@@ -82,7 +99,7 @@ div.innexus-chatbot {
       left: 0;
       background-color: inherit;
       border-radius: 10px;
-      padding: 10px 10px 6px 10px;
+      //padding: 10px 10px 6px 10px;
       
       .chatbot-response {
         margin-top: 14px;
@@ -100,6 +117,22 @@ div.innexus-chatbot {
       }
       
       &.request_appointment.active {
+        transform: translateX(0);
+      }
+      
+      &.multi_hours.active {
+        transform: translateX(0);
+      }
+      
+      &.contact_us.active {
+        transform: translateX(0);
+      }
+      
+      &.online_patient_forms.active {
+        transform: translateX(0);
+      }
+      
+      &.location.active {
         transform: translateX(0);
       }
       

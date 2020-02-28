@@ -39,6 +39,7 @@ function XMOB_injection()
 	$level = get_field('free_or_premium', 'option');
 	$sync = get_field('sync_or_static', 'option');
 	$homeData = get_field('main_page_elements', 'option');
+	$items = count($homeData);
 				
 	//if display option is set to mobile or all…
 	if( $display == 'display_mobile' || $display == 'display_all' ) 
@@ -191,6 +192,8 @@ function XMOB_injection()
   		//grab the location fields
   		$location_repeater_chatbot = get_field('mobile_location_chatbot', 'option');
   		$intro = get_field('intro', 'option');
+  		$linkIcon = '<i class="fas fa-link"></i>';
+  		$extLinkIcon = '<i class="fas fa-external-link-alt"></i>';
   		$locationCount = count($location_repeater_chatbot);
   		  	
   		//if the plugin display option is *not* set to Off…
@@ -233,11 +236,13 @@ function XMOB_injection()
         			    echo "<div class='chatbot-page-back request_appointment'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
+          			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
           			    $apptLink = $location['appt_req_chatbot'];
                     
-                    echo "<a href='$apptLink' class='chatbot-button'>$name</a>";
+                    //show the button for each location
+                    echo "<a href='$apptLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
         			    }
         			  echo "</div>";
       			  }
@@ -252,11 +257,13 @@ function XMOB_injection()
         			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
+          			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
           			    $contactLink = $location['contact_us_chatbot'];
                     
-                    echo "<a href='$contactLink' class='chatbot-button'>$name</a>";
+                    //show the button for each location
+                    echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
         			    }
         			  echo "</div>";
       			  }
@@ -271,11 +278,13 @@ function XMOB_injection()
         			    echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
+          			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
           			    $contactLink = $location['contact_us_chatbot'];
                     
-                    echo "<a href='$contactLink' class='chatbot-button'>$name</a>";
+                    //show the button for each location
+                    echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
         			    }
         			  echo "</div>";
       			  }
@@ -283,21 +292,57 @@ function XMOB_injection()
       			  //if showing hours…
       			  if(in_array('hours', $homeData)) {
         			  
-        			  //show the appointment button
-        			  echo "<div class='chatbot-button hours' id='hours'>$hoursCopy</div>";
+        			  //show the multi_hours button
+        			  echo "<div class='chatbot-button multi_hours' id='hours'>$hoursCopy</div>";
+        			  //when clicked, show the multi_hours page
+        			  echo "<div class='chatbot-page multi_hours'>";
+        			    echo "<div class='chatbot-page-back multi_hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+          			  echo "<p class='chatbot-response'>Choose a Location</p>";
+          			  
+          			  //loop through each location
+          			  $locationNumber = 0;
+          			  
+          			  foreach($location_repeater_chatbot as $location) {
+            			  $name = $location['location_name_chatbot'];
+          			    $locationNumber++;
+                    
+                    //show the button for each location
+                    echo "<div class='chatbot-button hours' id='hours' data-location='location-".$locationNumber."'>$name</div>";
+                    //when clicked, show the hours for that location
+                    echo "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
+            			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+              			  echo "<p class='chatbot-response'>$name Hours</p>";
+              			  echo do_shortcode('[hours location='.$locationNumber.']');
+            			  echo "</div>";
+        			    }
+        			  echo "</div>";
       			  }
       			  
       			  //if showing Location…
       			  if(in_array('practice_location', $homeData)) {
         			  
-        			  //show the appointment button
-        			  echo "<div class='chatbot-button'>$locationCopy</div>";
+        			  //show the location button
+        			  echo "<div class='chatbot-button location'>$locationCopy</div>";
+        			  //when clicked, show the location page
+        			  echo "<div class='chatbot-page location'>";
+        			    echo "<div class='chatbot-page-back location'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+          			  echo "<p class='chatbot-response'>Choose a Location</p>";
+          			  
+          			  //loop through each location
+          			  foreach($location_repeater_chatbot as $location) {
+            			  $name = $location['location_name_chatbot'];
+          			    $locationLink = $location['office_location_link'];
+                    
+                    //show the button for each location
+                    echo "<a href='$locationLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
+        			    }
+        			  echo "</div>";
       			  }
       			  
       			  //if showing more options…
       			  if(in_array('more_options', $homeData)) {
         			  
-        			  //show the appointment button
+        			  //show the more options button
         			  echo "<div class='chatbot-button more-options' id='more-options'>More Options</div>";
       			  }
   			    }
@@ -320,21 +365,21 @@ function XMOB_injection()
       			  if(in_array('request_appointment', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='$apptLink' class='chatbot-button'>$apptCopy</a>";
+        			  echo "<a href='$apptLink' class='chatbot-button'>$apptCopy&nbsp;$linkIcon</a>";
       			  }
       			  
       			  //if showing contact us…
       			  if(in_array('contact_us', $homeData)) {
         			  
         			  //show the contact us button
-        			  echo "<a href='$contactLink' class='chatbot-button'>$contactCopy</a>";
+        			  echo "<a href='$contactLink' class='chatbot-button'>$contactCopy&nbsp;$linkIcon</a>";
       			  }
       			  
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='$formsLink' class='chatbot-button'>$formsCopy</a>";
+        			  echo "<a href='$formsLink' class='chatbot-button'>$formsCopy&nbsp;$linkIcon</a>";
       			  }
       			  
       			  //if showing hours…
@@ -353,7 +398,7 @@ function XMOB_injection()
       			  if(in_array('practice_location', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='$locationLink' class='chatbot-button'>$locationCopy</a>";
+        			  echo "<a href='$locationLink' class='chatbot-button'>$locationCopy&nbsp;$linkIcon</a>";
       			  }
       			  
       			  //if showing more options…

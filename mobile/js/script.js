@@ -29,8 +29,21 @@ jQuery(document).ready(function($)
     //when the hours button is clicked…
     $('.chatbot-button.hours').click(function() {
       
-      //add the active class on the hours shortcode
-      $('.chatbot-page.hours').addClass('active');
+      if($('.chatbot-page.hours').length > 1)
+      {
+        var location_target = $(this).data('location');
+        console.log(location_target);
+        
+        //add the active class on the hours shortcode
+        $('.chatbot-page.hours[data-location="'+location_target+'"]').addClass('active');
+        $('.chatbot-container').addClass('grow');
+      }
+      else
+      {
+        //add the active class on the hours shortcode
+        $('.chatbot-page.hours').addClass('active');
+        $('.chatbot-container').addClass('grow');
+      }
     })
     
     //when the back button is clicked…
@@ -38,7 +51,26 @@ jQuery(document).ready(function($)
       
       //remove the active class on the hours shortcode
       $('.chatbot-page.hours').removeClass('active');
+      $('.chatbot-container').removeClass('grow');
     })
+  }
+  
+  //if the chatbot multi_hours button exists…
+  if ( $('.chatbot-button.multi_hours').length ) {
+    
+    //when the multi_hours button is clicked…
+    $('.chatbot-button.multi_hours').click(function() {
+      
+      //add the active class on the multi_hours container
+      $('.chatbot-page.multi_hours').addClass('active');
+    });
+    
+    //when the back button is clicked…
+    $('.chatbot-page-back.multi_hours').click(function() {
+      
+      //remove the active class on the multi_hours container
+      $('.chatbot-page.multi_hours').removeClass('active');
+    });
   }
   
   //if the chatbot request_appointment button exists…
@@ -92,6 +124,24 @@ jQuery(document).ready(function($)
       
       //remove the active class on the online_patient_forms container
       $('.chatbot-page.online_patient_forms').removeClass('active');
+    })
+  }
+  
+  //if the chatbot location button exists…
+  if ( $('.chatbot-button.location').length ) {
+    
+    //when the location button is clicked…
+    $('.chatbot-button.location').click(function() {
+      
+      //add the active class on the location container
+      $('.chatbot-page.location').addClass('active');
+    })
+    
+    //when the back button is clicked…
+    $('.chatbot-page-back.location').click(function() {
+      
+      //remove the active class on the location container
+      $('.chatbot-page.location').removeClass('active');
     })
   }
   
