@@ -26,6 +26,20 @@ function XMOB_scripts()
 	
 }
 
+function innexus_link_compare($target)
+{
+  $url = site_url();
+  $linkIcon = '<i class="fas fa-link"></i>';
+  //pre(strpos($target, $url));
+  
+  if(strpos($target, $url) === false) 
+  {
+    $linkIcon = '<i class="fas fa-external-link-alt"></i>';
+  }
+  
+  return $linkIcon;
+}
+
 function XMOB_injection()
 {
 	//Useful References
@@ -40,6 +54,7 @@ function XMOB_injection()
 	$sync = get_field('sync_or_static', 'option');
 	$homeData = get_field('main_page_elements', 'option');
 	$items = count($homeData);
+  
 				
 	//if display option is set to mobile or all…
 	if( $display == 'display_mobile' || $display == 'display_all' ) 
@@ -192,7 +207,7 @@ function XMOB_injection()
   		//grab the location fields
   		$location_repeater_chatbot = get_field('mobile_location_chatbot', 'option');
   		$intro = get_field('intro', 'option');
-  		$linkIcon = '<i class="fas fa-link"></i>';
+  		$linkIcon = '';
   		$extLinkIcon = '<i class="fas fa-external-link-alt"></i>';
   		$locationCount = count($location_repeater_chatbot);
   		  	
@@ -239,9 +254,14 @@ function XMOB_injection()
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
           			    $apptLink = $location['appt_req_chatbot'];
+          			    $linkIcon = innexus_link_compare($apptLink);
                     
                     //show the button for each location
-                    echo "<a href='$apptLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
+                    if(!empty($apptLink))
+                    {
+                      echo "<a href='$apptLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
+                    }
+                    
         			    }
         			  echo "</div>";
       			  }
@@ -260,9 +280,13 @@ function XMOB_injection()
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
           			    $contactLink = $location['contact_us_chatbot'];
+          			    $linkIcon = innexus_link_compare($contactLink);
                     
                     //show the button for each location
-                    echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
+                    if(!empty($contactLink))
+                    {
+                      echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
+                    }
         			    }
         			  echo "</div>";
       			  }
@@ -309,10 +333,13 @@ function XMOB_injection()
           			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
-          			    $contactLink = $location['contact_us_chatbot'];
+          			    $formsLink = $location['patient_forms'];
+          			    $linkIcon = innexus_link_compare($formsLink);
                     
                     //show the button for each location
-                    echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
+                    if(!empty($formsLink)) {
+                      echo "<a href='$formsLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
+                    }
         			    }
         			  echo "</div>";
       			  }
@@ -339,6 +366,7 @@ function XMOB_injection()
     			    
     			    //if showing appointment requests…
       			  if(in_array('request_appointment', $homeData)) {
+        			  $linkIcon = innexus_link_compare($apptLink);
         			  
         			  //show the appointment button
         			  echo "<a href='$apptLink' class='chatbot-button'>$apptCopy&nbsp;$linkIcon</a>";
@@ -346,6 +374,7 @@ function XMOB_injection()
       			  
       			  //if showing contact us…
       			  if(in_array('contact_us', $homeData)) {
+        			  $linkIcon = innexus_link_compare($contactLink);
         			  
         			  //show the contact us button
         			  echo "<a href='$contactLink' class='chatbot-button'>$contactCopy&nbsp;$linkIcon</a>";
@@ -365,6 +394,7 @@ function XMOB_injection()
       			  
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
+        			  $linkIcon = innexus_link_compare($formsLink);
         			  
         			  //show the appointment button
         			  echo "<a href='$formsLink' class='chatbot-button'>$formsCopy&nbsp;$linkIcon</a>";
