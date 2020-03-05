@@ -220,7 +220,6 @@ function XMOB_injection()
       			  $contactCopy = $location['contact_us_button_copy'];
       			  $formsCopy = $location['patient_forms_button_copy'];
       			  $hoursCopy = $location['office_hours_button_copy'];
-      			  $locationCopy = $location['office_location_button_copy'];
   			    }
   			    
   			    //if there is more than one location
@@ -268,27 +267,6 @@ function XMOB_injection()
         			  echo "</div>";
       			  }
       			  
-      			  //if showing online patient forms…
-      			  if(in_array('online_patient_forms', $homeData)) {
-        			  
-        			  //show the online_patient_forms button
-        			  echo "<div class='chatbot-button online_patient_forms'>$formsCopy</div>";
-        			  //when clicked, show the online_patient_forms page
-        			  echo "<div class='chatbot-page online_patient_forms'>";
-        			    echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
-          			  echo "<p class='chatbot-response'>Choose a Location</p>";
-          			  
-          			  //loop through each location
-          			  foreach($location_repeater_chatbot as $location) {
-            			  $name = $location['location_name_chatbot'];
-          			    $contactLink = $location['contact_us_chatbot'];
-                    
-                    //show the button for each location
-                    echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
-        			    }
-        			  echo "</div>";
-      			  }
-      			  
       			  //if showing hours…
       			  if(in_array('hours', $homeData)) {
         			  
@@ -318,23 +296,23 @@ function XMOB_injection()
         			  echo "</div>";
       			  }
       			  
-      			  //if showing Location…
-      			  if(in_array('practice_location', $homeData)) {
+      			  //if showing online patient forms…
+      			  if(in_array('online_patient_forms', $homeData)) {
         			  
-        			  //show the location button
-        			  echo "<div class='chatbot-button location'>$locationCopy</div>";
-        			  //when clicked, show the location page
-        			  echo "<div class='chatbot-page location'>";
-        			    echo "<div class='chatbot-page-back location'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+        			  //show the online_patient_forms button
+        			  echo "<div class='chatbot-button online_patient_forms'>$formsCopy</div>";
+        			  //when clicked, show the online_patient_forms page
+        			  echo "<div class='chatbot-page online_patient_forms'>";
+        			    echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
           			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
-          			    $locationLink = $location['office_location_link'];
+          			    $contactLink = $location['contact_us_chatbot'];
                     
                     //show the button for each location
-                    echo "<a href='$locationLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
+                    echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
         			    }
         			  echo "</div>";
       			  }
@@ -358,8 +336,6 @@ function XMOB_injection()
       			  $formsCopy = $location['patient_forms_button_copy'];
       			  //$hours = $location['patient_forms_chatbot'];
       			  $hoursCopy = $location['office_hours_button_copy'];
-      			  $locationLink = $location['office_location_link'];
-      			  $locationCopy = $location['office_location_button_copy'];
     			    
     			    //if showing appointment requests…
       			  if(in_array('request_appointment', $homeData)) {
@@ -375,13 +351,6 @@ function XMOB_injection()
         			  echo "<a href='$contactLink' class='chatbot-button'>$contactCopy&nbsp;$linkIcon</a>";
       			  }
       			  
-      			  //if showing online patient forms…
-      			  if(in_array('online_patient_forms', $homeData)) {
-        			  
-        			  //show the appointment button
-        			  echo "<a href='$formsLink' class='chatbot-button'>$formsCopy&nbsp;$linkIcon</a>";
-      			  }
-      			  
       			  //if showing hours…
       			  if(in_array('hours', $homeData)) {
         			  
@@ -394,11 +363,11 @@ function XMOB_injection()
         			  echo "</div>";
       			  }
       			  
-      			  //if showing Location…
-      			  if(in_array('practice_location', $homeData)) {
+      			  //if showing online patient forms…
+      			  if(in_array('online_patient_forms', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<a href='$locationLink' class='chatbot-button'>$locationCopy&nbsp;$linkIcon</a>";
+        			  echo "<a href='$formsLink' class='chatbot-button'>$formsCopy&nbsp;$linkIcon</a>";
       			  }
       			  
       			  //if showing more options…
