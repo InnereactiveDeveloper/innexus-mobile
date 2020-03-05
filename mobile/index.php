@@ -267,7 +267,8 @@ function XMOB_injection()
       			  }
       			  
       			  //if showing contact us…
-      			  if(in_array('contact_us', $homeData)) {
+      			  /*
+if(in_array('contact_us', $homeData)) {
         			  
         			  //show the contact us button
         			  echo "<div class='chatbot-button contact_us'>$contactCopy</div>";
@@ -287,6 +288,69 @@ function XMOB_injection()
                     {
                       echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
                     }
+        			    }
+        			  echo "</div>";
+      			  }
+*/
+      			  
+      			  if(in_array('contact_us', $homeData)) {
+        			  
+        			  //show the contact us button
+        			  echo "<div class='chatbot-button multi_contact_us'>$contactCopy</div>";
+        			  //when clicked, show the contact_us page
+        			  echo "<div class='chatbot-page multi_contact_us'>";
+        			    echo "<div class='chatbot-page-back multi_contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+          			  echo "<p class='chatbot-response'>Choose a Location</p>";
+          			  
+          			  //loop through each location
+          			  $locationNumber = 0;
+          			  
+          			  foreach($location_repeater_chatbot as $location) {
+            			  $name = $location['location_name_chatbot'];
+          			    $contactLink = $location['contact_us_chatbot'];
+          			    $contactCopy = $location['contact_us_button_copy'];
+          			    $apptLink = $location['appt_req_chatbot'];
+          			    $apptCopy = $location['appointment_request_button_copy'];
+          			    $locationNumber++;
+          			    $linkIcon = innexus_link_compare($contactLink);
+          			    
+          			    //show the button for each location
+                    echo "<div class='chatbot-button contact_us' id='contact_us' data-location='location-".$locationNumber."'>$name</div>";
+                    //when clicked, show the contact_us for that location
+                    echo "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
+            			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+              			  echo "<p class='chatbot-response'>$name</p>";
+              			  echo do_shortcode('[address location='.$locationNumber.']');
+              			  echo do_shortcode('[phone location='.$locationNumber.']');
+              			  echo '<br>';
+              			  echo do_shortcode('[email location='.$locationNumber.']');
+              			  
+              			  //show the contact us button
+              			  //if showing appointment requests…
+              			  $linkIcon = innexus_link_compare($apptLink);
+                			  
+              			  //show the appointment button
+              			  $linkIcon = innexus_link_compare($contactLink);
+              			  
+                      echo "<a href='$contactLink' class='chatbot-button'>Contact Page&nbsp;$linkIcon</a>";
+              			  
+              			  //if showing appointment requests…
+              			  if(in_array('request_appointment', $homeData)) {
+                			  
+                			  $linkIcon = innexus_link_compare($apptLink);
+                			  
+                			  //show the appointment button
+                        echo "<a href='$apptLink' class='chatbot-button two'>$apptCopy&nbsp;$linkIcon</a>";
+              			  }
+            			  echo "</div>";
+                    
+                    //show the button for each location
+                    /*
+if(!empty($contactLink))
+                    {
+                      echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
+                    }
+*/
         			    }
         			  echo "</div>";
       			  }
@@ -377,7 +441,16 @@ function XMOB_injection()
         			  $linkIcon = innexus_link_compare($contactLink);
         			  
         			  //show the contact us button
-        			  echo "<a href='$contactLink' class='chatbot-button'>$contactCopy&nbsp;$linkIcon</a>";
+        			  echo "<div class='chatbot-button contact_us' id='contact_us'>$contactCopy</div>";
+                //when clicked, show the contact_us for that location
+                echo "<div class='chatbot-page contact_us'>";
+        			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+          			  echo "<p class='chatbot-response'>$name</p>";
+          			  echo do_shortcode('[address]');
+          			  echo do_shortcode('[phone]');
+          			  echo '<br>';
+          			  echo do_shortcode('[email]');
+        			  echo "</div>";
       			  }
       			  
       			  //if showing hours…

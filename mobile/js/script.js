@@ -32,7 +32,6 @@ jQuery(document).ready(function($)
       if($('.chatbot-page.hours').length > 1)
       {
         var location_target = $(this).data('location');
-        console.log(location_target);
         
         //add the active class on the hours shortcode
         $('.chatbot-page.hours[data-location="'+location_target+'"]').addClass('active');
@@ -73,6 +72,53 @@ jQuery(document).ready(function($)
     });
   }
   
+  //if the chatbot multi_contact_us button exists…
+  if ( $('.chatbot-button.multi_contact_us').length ) {
+    
+    //when the multi_contact_us button is clicked…
+    $('.chatbot-button.multi_contact_us').click(function() {
+      
+      //add the active class on the multi_contact_us container
+      $('.chatbot-page.multi_contact_us').addClass('active');
+    });
+    
+    //when the back button is clicked…
+    $('.chatbot-page-back.multi_contact_us').click(function() {
+      
+      //remove the active class on the multi_contact_us container
+      $('.chatbot-page.multi_contact_us').removeClass('active');
+    });
+  }
+  
+  //if the chatbot contact_us button exists…
+  if ( $('.chatbot-button.contact_us').length ) {
+    
+    //when the contact_us button is clicked…
+    $('.chatbot-button.contact_us').click(function() {
+      
+      if($('.chatbot-page.contact_us').length > 1)
+      {
+        var location_target = $(this).data('location');
+        
+        //add the active class on the hours shortcode
+        $('.chatbot-page.contact_us[data-location="'+location_target+'"]').addClass('active');
+        $('.chatbot-container').addClass('grow');
+      } else {
+        //add the active class on the contact_us container
+        $('.chatbot-page.contact_us').addClass('active');
+        $('.chatbot-container').addClass('grow');
+      }
+    })
+    
+    //when the back button is clicked…
+    $('.chatbot-page-back.contact_us').click(function() {
+      
+      //remove the active class on the contact_us container
+      $('.chatbot-page.contact_us').removeClass('active');
+      $('.chatbot-container').removeClass('grow');
+    })
+  }
+  
   //if the chatbot request_appointment button exists…
   if ( $('.chatbot-button.request_appointment').length ) {
     
@@ -88,24 +134,6 @@ jQuery(document).ready(function($)
       
       //remove the active class on the request_appointment container
       $('.chatbot-page.request_appointment').removeClass('active');
-    })
-  }
-  
-  //if the chatbot contact_us button exists…
-  if ( $('.chatbot-button.contact_us').length ) {
-    
-    //when the contact_us button is clicked…
-    $('.chatbot-button.contact_us').click(function() {
-      
-      //add the active class on the contact_us container
-      $('.chatbot-page.contact_us').addClass('active');
-    })
-    
-    //when the back button is clicked…
-    $('.chatbot-page-back.contact_us').click(function() {
-      
-      //remove the active class on the contact_us container
-      $('.chatbot-page.contact_us').removeClass('active');
     })
   }
   
