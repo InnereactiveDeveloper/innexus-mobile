@@ -30,10 +30,11 @@ div.innexus-chatbot {
     overflow: hidden;
     background-color: inherit;
     transition: all 0.4s ease;
-    min-height: 40px;
+    min-height: 308px;
     
     &.grow {
-      min-height: 335px;
+      //min-height: 335px;
+      min-height: 375px;
     }
     
     //keep this?
@@ -44,6 +45,7 @@ div.innexus-chatbot {
       font-size: 21px;
       font-weight: 600;
       line-height: 26px;
+      margin-bottom: 55px;
     }
     
     a.chatbot-button {
@@ -108,7 +110,12 @@ div.innexus-chatbot {
         margin-bottom: 20px;
       }
       
-      &.hours {        
+      &.hours {     
+        p.chatbot-response {
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+           
         #hours.hours.snippet {
           font-size: 14px;
           
@@ -121,6 +128,13 @@ div.innexus-chatbot {
           font-size: 14px;
           line-height: 1.3em;
         }
+        
+        a.chatbot-button {
+          text-align: center;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
       }
       
       &.contact_us {
@@ -128,6 +142,11 @@ div.innexus-chatbot {
         
         > * {
           text-align: left;
+        }
+        
+        p.chatbot-response {
+          margin-top: 10px;
+          margin-bottom: 10px;
         }
         
         a.chatbot-button {

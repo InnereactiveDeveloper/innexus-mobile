@@ -203,6 +203,17 @@ function XMOB_injection()
   	
   	//but if the chatbot version is selected
   	if($version == 'innexus_chatbot') {
+    	
+    	//grab the image/icon
+    	$iconChoice = get_field('chatbot_icon', 'option');
+    	
+    	if($iconChoice = 'female') {
+      	$icon = "<img src='http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_f.png' alt='chatbot icon'>";
+    	} elseif($iconChoice = 'male') {
+      	$icon = "<img src='http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_m.png' alt='chatbot icon'>";
+    	} elseif($iconChoice = 'upload') {
+      	$icon = get_field('icon_upload', 'option');
+    	}
   	
   		//grab the location fields
   		$location_repeater_chatbot = get_field('mobile_location_chatbot', 'option');
@@ -210,6 +221,7 @@ function XMOB_injection()
   		$linkIcon = '';
   		$extLinkIcon = '<i class="fas fa-external-link-alt"></i>';
   		$locationCount = count($location_repeater_chatbot);
+  		$formsOverride = get_field('patient_forms_override', 'options');
   		  	
   		//if the plugin display option is *not* set to Off…
   		if($display != 'Off')
@@ -223,7 +235,7 @@ function XMOB_injection()
   			  //add a close button
   			  echo "<div class='chatbot-close $display $leftRight'><i class='fas fa-times'></i></div>";
   			  //add the image/icon
-  			  echo "<div class='chatbot-icon $display $leftRight'><img src='http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_f.png' alt='chatbot icon'></div>";
+  			  echo "<div class='chatbot-icon $display $leftRight'>$icon</div>";
   			  
   			  //display the first question and options
   			  echo "<div class='chatbot-container $display $leftRight'>";
@@ -315,7 +327,10 @@ if(in_array('contact_us', $homeData)) {
           			    $linkIcon = innexus_link_compare($contactLink);
           			    
           			    //show the button for each location
-                    echo "<div class='chatbot-button contact_us' id='contact_us' data-location='location-".$locationNumber."'>$name</div>";
+          			    if(!empty($name)) {
+            			    echo "<div class='chatbot-button contact_us' id='contact_us' data-location='location-".$locationNumber."'>$name</div>";
+          			    }
+          			    
                     //when clicked, show the contact_us for that location
                     echo "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
             			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
@@ -370,15 +385,31 @@ if(!empty($contactLink))
           			  
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
+            			  $apptLink = $location['appt_req_chatbot'];
           			    $locationNumber++;
                     
                     //show the button for each location
-                    echo "<div class='chatbot-button hours' id='hours' data-location='location-".$locationNumber."'>$name</div>";
+                    if(!empty($name)) {
+                      echo "<div class='chatbot-button hours' id='hours' data-location='location-".$locationNumber."'>$name</div>";
+                    }
+                    
                     //when clicked, show the hours for that location
                     echo "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
             			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
               			  echo "<p class='chatbot-response'>$name Hours</p>";
               			  echo do_shortcode('[hours location='.$locationNumber.']');
+              			  
+              			  //if showing appointment requests…
+              			  $linkIcon = innexus_link_compare($apptLink);
+                			                			                			  
+              			  //if showing appointment requests…
+              			  if(in_array('request_appointment', $homeData)) {
+                			  
+                			  $linkIcon = innexus_link_compare($apptLink);
+                			  
+                			  //show the appointment button
+                        echo "<a href='$apptLink' class='chatbot-button'>$apptCopy&nbsp;$linkIcon</a>";
+              			  }
             			  echo "</div>";
         			    }
         			  echo "</div>";
@@ -386,26 +417,43 @@ if(!empty($contactLink))
       			  
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
+        			  $formsCopy = $location['patient_forms_button_copy'];
+        			  //$linkIcon = innexus_link_compare($formsLink);
         			  
-        			  //show the online_patient_forms button
-        			  echo "<div class='chatbot-button online_patient_forms'>$formsCopy</div>";
-        			  //when clicked, show the online_patient_forms page
-        			  echo "<div class='chatbot-page online_patient_forms'>";
-        			    echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
-          			  echo "<p class='chatbot-response'>Choose a Location</p>";
-          			  
-          			  //loop through each location
-          			  foreach($location_repeater_chatbot as $location) {
-            			  $name = $location['location_name_chatbot'];
-          			    $formsLink = $location['patient_forms'];
-          			    $linkIcon = innexus_link_compare($formsLink);
-                    
-                    //show the button for each location
-                    if(!empty($formsLink)) {
-                      echo "<a href='$formsLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
-                    }
-        			    }
-        			  echo "</div>";
+        			  //show the multi_forms button
+        			  echo "<div class='chatbot-button online_patient_forms' id='online_patient_forms'>$formsCopy</div>";
+        			  //echo "<a href='$formsLink' class='chatbot-button'>$formsCopy&nbsp;$linkIcon</a>";
+        			  //when clicked, show the multi_forms page
+                echo "<div class='chatbot-page online_patient_forms'>";
+                  echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+                  echo "<p class='chatbot-response'>Patient Forms</p>";
+                  
+                  if($formsOverride == true) {
+                		$forms = get_field('override_links', 'options');
+                		
+                		//show patient forms
+            			  foreach($forms as $form) {
+              			  $formLink = $form['override_link']['url'];
+              			  $formCopy = $form['link_title'];          			  
+              			  $linkIcon = innexus_link_compare($formLink);
+              			  
+              			  //show the patient form button
+                      echo "<a href='$formLink' class='chatbot-button'>$formCopy&nbsp;$linkIcon</a>";
+            			  }
+              		} else {
+                		$forms = get_field('upload_patient_forms', 'option');
+                		
+                		//show patient forms
+            			  foreach($forms as $form) {
+              			  $formLink = $form['upload']['url'];
+              			  $formCopy = $form['form_title'];          			  
+              			  $linkIcon = innexus_link_compare($formLink);
+              			  
+              			  //show the patient form button
+                      echo "<a href='$formLink' class='chatbot-button'>$formCopy&nbsp;$linkIcon</a>";
+            			  }
+              		}
+                echo "</div>";
       			  }
       			  
       			  //if showing more options…
@@ -423,7 +471,7 @@ if(!empty($contactLink))
               $apptCopy = $location['appointment_request_button_copy'];
               $contactLink = $location['contact_us_chatbot'];
       			  $contactCopy = $location['contact_us_button_copy'];
-      			  $formsLink = $location['patient_forms'];
+      			  //$formsLink = $location['patient_forms'];
       			  $formsCopy = $location['patient_forms_button_copy'];
       			  //$hours = $location['patient_forms_chatbot'];
       			  $hoursCopy = $location['office_hours_button_copy'];
@@ -466,12 +514,30 @@ if(!empty($contactLink))
       			  }
       			  
       			  //if showing online patient forms…
-      			  if(in_array('online_patient_forms', $homeData)) {
-        			  $linkIcon = innexus_link_compare($formsLink);
+      			  /*
+if(in_array('online_patient_forms', $homeData)) {
+        			  //$linkIcon = innexus_link_compare($formsLink);
         			  
-        			  //show the appointment button
-        			  echo "<a href='$formsLink' class='chatbot-button'>$formsCopy&nbsp;$linkIcon</a>";
+        			  //echo "<a href='$formsLink' class='chatbot-button'>$formsCopy&nbsp;$linkIcon</a>";
+        			  //show patient forms
+        			  if($formsOverride == true) {
+              		$forms = get_field('override_links', 'options');
+            		} else {
+              		$forms = get_field('upload_patient_forms', 'option');
+            		}
+            		
+            		pre($forms);
+        			  
+        			  foreach($forms as $form) {
+          			  $formLink = $form['url'];
+          			  $formCopy = $form['form_title'];
+          			  $linkIcon = innexus_link_compare($formLink);
+          			  
+          			  //show the patient form button
+                  echo "<a href='$formLink' class='chatbot-button'>$formCopy&nbsp;$linkIcon</a>";
+        			  }
       			  }
+*/
       			  
       			  //if showing more options…
       			  if(in_array('more_options', $homeData)) {
