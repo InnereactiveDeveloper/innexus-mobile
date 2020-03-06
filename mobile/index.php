@@ -52,6 +52,7 @@ function XMOB_injection()
 	$version = get_field('mobile_version', 'option');
 	$level = get_field('free_or_premium', 'option');
 	$sync = get_field('sync_or_static', 'option');
+	$buttonColor = get_field('buttons_color', 'option');
 	$homeData = get_field('main_page_elements', 'option');
 	$items = count($homeData);
   
@@ -264,7 +265,7 @@ function XMOB_injection()
       			  if(in_array('request_appointment', $homeData)) {
         			  
         			  //show the appointment button
-        			  echo "<div class='chatbot-button request_appointment'>$apptCopy</div>";
+        			  echo "<div class='chatbot-button request_appointment' style='background-color: $buttonColor;'>$apptCopy</div>";
         			  //when clicked, show the request_appointment page
         			  echo "<div class='chatbot-page request_appointment'>";
         			    echo "<div class='chatbot-page-back request_appointment'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
