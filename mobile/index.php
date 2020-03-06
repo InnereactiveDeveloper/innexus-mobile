@@ -203,17 +203,6 @@ function XMOB_injection()
   	
   	//but if the chatbot version is selected
   	if($version == 'innexus_chatbot') {
-    	
-    	//grab the image/icon
-    	$iconChoice = get_field('chatbot_icon', 'option');
-    	
-    	if($iconChoice = 'female') {
-      	$icon = "<img src='http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_f.png' alt='chatbot icon'>";
-    	} elseif($iconChoice = 'male') {
-      	$icon = "<img src='http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_m.png' alt='chatbot icon'>";
-    	} elseif($iconChoice = 'upload') {
-      	$icon = get_field('icon_upload', 'option');
-    	}
   	
   		//grab the location fields
   		$location_repeater_chatbot = get_field('mobile_location_chatbot', 'option');
@@ -226,16 +215,28 @@ function XMOB_injection()
   		//if the plugin display option is *not* set to Off…
   		if($display != 'Off')
   		{
-  		
+    		
+    		//grab the image/icon
+      	$iconChoice = get_field('chatbot_icon', 'option');
+      	
+      	if ($iconChoice == 'female') {
+        	$icon = 'http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_f.png';
+      	} elseif ($iconChoice == 'male') {
+        	$icon = 'http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_m.png';
+      	} elseif ($iconChoice == 'upload') {
+        	$iconUpload = get_field('icon_upload', 'option');
+        	$icon = $iconUpload['url'];
+      	}
+      	  		
   			//add an open button
-  			echo "<div class='chatbot-open $display $leftRight'><img src='http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_f.png' alt='chatbot icon'></div>";
+  			echo "<div class='chatbot-open $display $leftRight'><img src='$icon' alt='chatbot icon'></div>";
   			
   			//card container
   			echo "<div class='innexus-chatbot $display $leftRight'>";
   			  //add a close button
   			  echo "<div class='chatbot-close $display $leftRight'><i class='fas fa-times'></i></div>";
   			  //add the image/icon
-  			  echo "<div class='chatbot-icon $display $leftRight'>$icon</div>";
+  			  echo "<div class='chatbot-icon $display $leftRight'><img src='$icon' alt='chatbot icon'></div>";
   			  
   			  //display the first question and options
   			  echo "<div class='chatbot-container $display $leftRight'>";
