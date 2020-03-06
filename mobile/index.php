@@ -206,12 +206,19 @@ function XMOB_injection()
   	
   		//grab the location fields
   		$location_repeater_chatbot = get_field('mobile_location_chatbot', 'option');
+  		$global_location_repeater = get_field('office_information', 'option');
   		$intro = get_field('intro', 'option');
   		$linkIcon = '';
   		$extLinkIcon = '<i class="fas fa-external-link-alt"></i>';
   		$locationCount = count($location_repeater_chatbot);
   		$formsOverride = get_field('patient_forms_override', 'options');
-  		  	
+  		
+  		$globalLocationNumber = 0;
+  		
+  		foreach($global_location_repeater as $global_location) {
+    		$globalLocationNumber++;
+  		}
+  		  		  	
   		//if the plugin display option is *not* set to Off…
   		if($display != 'Off')
   		{
@@ -252,7 +259,7 @@ function XMOB_injection()
   			    
   			    //if there is more than one location
   			    if ($locationCount > 1) {
-    			    //output buttons with no links
+    			    
     			    //if showing appointment requests…
       			  if(in_array('request_appointment', $homeData)) {
         			  
@@ -263,14 +270,17 @@ function XMOB_injection()
         			    echo "<div class='chatbot-page-back request_appointment'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
+          			  $locationNumber = 0;
+          			  
           			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
           			    $apptLink = $location['appt_req_chatbot'];
           			    $linkIcon = innexus_link_compare($apptLink);
+          			    $locationNumber++;
                     
                     //show the button for each location
-                    if(!empty($apptLink))
+                    if($locationNumber <= $globalLocationNumber && !empty($apptLink))
                     {
                       echo "<a href='$apptLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
                     }
@@ -280,32 +290,6 @@ function XMOB_injection()
       			  }
       			  
       			  //if showing contact us…
-      			  /*
-if(in_array('contact_us', $homeData)) {
-        			  
-        			  //show the contact us button
-        			  echo "<div class='chatbot-button contact_us'>$contactCopy</div>";
-        			  //when clicked, show the contact_us page
-        			  echo "<div class='chatbot-page contact_us'>";
-        			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
-          			  echo "<p class='chatbot-response'>Choose a Location</p>";
-          			  
-          			  //loop through each location
-          			  foreach($location_repeater_chatbot as $location) {
-            			  $name = $location['location_name_chatbot'];
-          			    $contactLink = $location['contact_us_chatbot'];
-          			    $linkIcon = innexus_link_compare($contactLink);
-                    
-                    //show the button for each location
-                    if(!empty($contactLink))
-                    {
-                      echo "<a href='$contactLink' class='chatbot-button'>$name&nbsp;$linkIcon</a>";
-                    }
-        			    }
-        			  echo "</div>";
-      			  }
-*/
-      			  
       			  if(in_array('contact_us', $homeData)) {
         			  
         			  //show the contact us button
@@ -328,7 +312,7 @@ if(in_array('contact_us', $homeData)) {
           			    $linkIcon = innexus_link_compare($contactLink);
           			    
           			    //show the button for each location
-          			    if(!empty($name)) {
+          			    if($locationNumber <= $globalLocationNumber && !empty($name)) {
             			    echo "<div class='chatbot-button contact_us' id='contact_us' data-location='location-".$locationNumber."'>$name</div>";
           			    }
           			    
@@ -390,7 +374,7 @@ if(!empty($contactLink))
           			    $locationNumber++;
                     
                     //show the button for each location
-                    if(!empty($name)) {
+                    if($locationNumber <= $globalLocationNumber && !empty($name)) {
                       echo "<div class='chatbot-button hours' id='hours' data-location='location-".$locationNumber."'>$name</div>";
                     }
                     
@@ -458,11 +442,13 @@ if(!empty($contactLink))
       			  }
       			  
       			  //if showing more options…
-      			  if(in_array('more_options', $homeData)) {
+      			  /*
+if(in_array('more_options', $homeData)) {
         			  
         			  //show the more options button
         			  echo "<div class='chatbot-button more-options' id='more-options'>More Options</div>";
       			  }
+*/
   			    }
   			    
   			    //otherwise, if there is only one location…
@@ -499,6 +485,24 @@ if(!empty($contactLink))
           			  echo do_shortcode('[phone]');
           			  echo '<br>';
           			  echo do_shortcode('[email]');
+          			  
+          			  //show the contact us button
+          			  //if showing appointment requests…
+          			  $linkIcon = innexus_link_compare($apptLink);
+            			  
+          			  //show the appointment button
+          			  $linkIcon = innexus_link_compare($contactLink);
+          			  
+                  echo "<a href='$contactLink' class='chatbot-button'>Contact Page&nbsp;$linkIcon</a>";
+          			  
+          			  //if showing appointment requests…
+          			  if(in_array('request_appointment', $homeData)) {
+            			  
+            			  $linkIcon = innexus_link_compare($apptLink);
+            			  
+            			  //show the appointment button
+                    echo "<a href='$apptLink' class='chatbot-button two'>$apptCopy&nbsp;$linkIcon</a>";
+          			  }
         			  echo "</div>";
       			  }
       			  
@@ -511,41 +515,70 @@ if(!empty($contactLink))
         			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Office Hours</p>";
           			  echo do_shortcode('[hours]');
+          			  
+          			  //if showing appointment requests…
+          			  $linkIcon = innexus_link_compare($apptLink);
+            			                			                			  
+          			  //if showing appointment requests…
+          			  if(in_array('request_appointment', $homeData)) {
+            			  
+            			  $linkIcon = innexus_link_compare($apptLink);
+            			  
+            			  //show the appointment button
+                    echo "<a href='$apptLink' class='chatbot-button'>$apptCopy&nbsp;$linkIcon</a>";
+          			  }
         			  echo "</div>";
       			  }
       			  
       			  //if showing online patient forms…
-      			  /*
-if(in_array('online_patient_forms', $homeData)) {
+      			  if(in_array('online_patient_forms', $homeData)) {
+        			  $formsCopy = $location['patient_forms_button_copy'];
         			  //$linkIcon = innexus_link_compare($formsLink);
         			  
+        			  //show the multi_forms button
+        			  echo "<div class='chatbot-button online_patient_forms' id='online_patient_forms'>$formsCopy</div>";
         			  //echo "<a href='$formsLink' class='chatbot-button'>$formsCopy&nbsp;$linkIcon</a>";
-        			  //show patient forms
-        			  if($formsOverride == true) {
-              		$forms = get_field('override_links', 'options');
-            		} else {
-              		$forms = get_field('upload_patient_forms', 'option');
-            		}
-            		
-            		pre($forms);
-        			  
-        			  foreach($forms as $form) {
-          			  $formLink = $form['url'];
-          			  $formCopy = $form['form_title'];
-          			  $linkIcon = innexus_link_compare($formLink);
-          			  
-          			  //show the patient form button
-                  echo "<a href='$formLink' class='chatbot-button'>$formCopy&nbsp;$linkIcon</a>";
-        			  }
+        			  //when clicked, show the multi_forms page
+                echo "<div class='chatbot-page online_patient_forms'>";
+                  echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+                  echo "<p class='chatbot-response'>Patient Forms</p>";
+                  
+                  if($formsOverride == true) {
+                		$forms = get_field('override_links', 'options');
+                		
+                		//show patient forms
+            			  foreach($forms as $form) {
+              			  $formLink = $form['override_link']['url'];
+              			  $formCopy = $form['link_title'];          			  
+              			  $linkIcon = innexus_link_compare($formLink);
+              			  
+              			  //show the patient form button
+                      echo "<a href='$formLink' class='chatbot-button'>$formCopy&nbsp;$linkIcon</a>";
+            			  }
+              		} else {
+                		$forms = get_field('upload_patient_forms', 'option');
+                		
+                		//show patient forms
+            			  foreach($forms as $form) {
+              			  $formLink = $form['upload']['url'];
+              			  $formCopy = $form['form_title'];          			  
+              			  $linkIcon = innexus_link_compare($formLink);
+              			  
+              			  //show the patient form button
+                      echo "<a href='$formLink' class='chatbot-button'>$formCopy&nbsp;$linkIcon</a>";
+            			  }
+              		}
+                echo "</div>";
       			  }
-*/
       			  
       			  //if showing more options…
-      			  if(in_array('more_options', $homeData)) {
+      			  /*
+if(in_array('more_options', $homeData)) {
         			  
         			  //show the appointment button
         			  echo "<div href='#' class='chatbot-button more-options' id='more-options'>More Options</div>";
       			  }
+*/
   			    }
   			    
   			  echo "</div>";			    
