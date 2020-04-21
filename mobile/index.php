@@ -55,19 +55,6 @@ function XMOB_injection()
 	//$buttonColor = get_field('buttons_color', 'option');
 	$homeData = get_field('main_page_elements', 'option');
 	$items = count($homeData);
-	  
-  //set the color classes
-  ?>
-  <style type="text/css">
-  .button-background {
-      background-color: <?php the_field('buttons_color', 'option'); ?>;
-  }
-  
-  .button-background:hover {
-      background-color: <?php the_field('buttons_hover-color', 'option'); ?>;
-  }
-  </style>
-  <?php
 				
 	//if display option is set to mobile or all…
 	if( $display == 'display_mobile' || $display == 'display_all' ) 
@@ -228,6 +215,19 @@ function XMOB_injection()
   		
   		$globalLocationNumber = 0;
   		
+  		//set the color classes
+      ?>
+      <style type="text/css">
+      .button-background {
+          background-color: <?php the_field('buttons_color', 'option'); ?>;
+      }
+      
+      .button-background:hover {
+          background-color: <?php the_field('buttons_hover-color', 'option'); ?>;
+      }
+      </style>
+      <?php
+  		
   		foreach($global_location_repeater as $global_location) {
     		$globalLocationNumber++;
   		}
@@ -236,14 +236,52 @@ function XMOB_injection()
   		if($display != 'Off')
   		{
     		
-    		//grab the image/icon
-      	$iconChoice = get_field('chatbot_icon', 'option');
-      	
-      	if ($iconChoice == 'female') {
-        	$icon = 'http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_f.png';
+    		//display the icon by…
+    		//if the free version is being used…		
+    		if ($level == 'free') {
+      		//grab the icon choice and/or grab a random choice.
+      		$iconChoice = get_field('chatbot_icon_free', 'option');
+      		$iconArray = get_field_object('chatbot_icon_free', 'option');
+      		$iconArray = $iconArray['choices'];
+      		$randIconIndex = array_rand($iconArray);
+      		//otherwise, if the premium version is being used…
+    		} elseif ($level == 'premium') {
+      		//grab the icon choice and/or grab a random choice.
+      		$iconChoice = get_field('chatbot_icon_premium', 'option');
+      		$iconArray = get_field_object('chatbot_icon_premium', 'option');
+      		$iconArray = $iconArray['choices'];
+      		$randIconIndex = array_rand($iconArray);
+    		}
+    		
+    		//if the icon choice is random…
+    		if ($iconChoice == 'random') {
+      		//and the array lands on random or male…
+      		if ($randIconIndex == 'random' || $randIconIndex == 'male') {
+        		//display the male icon.
+        		$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/m1.png';
+        		//otherwise, display the female icon.
+      		} elseif ($randIconIndex == 'custom' || $randIconIndex == 'female1') {
+        		$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f1.png';
+      		} elseif ($randIconIndex == 'female2') {
+        		$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f2.png';
+      		} else {
+        		$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f2.png';
+      		}
+      		//or, if the female1 choise is used…
+    		} elseif ($iconChoice == 'female1') {
+      		//display the female1 icon.
+        	$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f1.png';
+        	//or, if the female2 choice is used…
+        } elseif ($iconChoice == 'female2') {
+        	//display the female2 icon.
+          $icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f2.png';
+        	//or, if the male choise is used…
       	} elseif ($iconChoice == 'male') {
-        	$icon = 'http://staging.getinnexus.com/chrissandbox/wp-content/uploads/2020/01/chatbot_m.png';
+        	//display the male icon.
+        	$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/m1.png';
+        	//or, if the custom upload option is used…
       	} elseif ($iconChoice == 'upload') {
+        	//display the custom icon.
         	$iconUpload = get_field('icon_upload', 'option');
         	$icon = $iconUpload['url'];
       	}
