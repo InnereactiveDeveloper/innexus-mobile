@@ -290,7 +290,9 @@ function XMOB_injection()
   			echo "<div class='chatbot-open $display $leftRight'><img src='$icon' alt='chatbot icon'></div>";
   			
   			//card container
-  			echo "<div class='innexus-chatbot $display $leftRight'>";
+  			pre($globalLocationNumber);
+  			
+  			echo "<div class='innexus-chatbot $display $leftRight " .'locationCount'."$globalLocationNumber'>";
   			  //add a close button
   			  echo "<div class='chatbot-close $display $leftRight'><i class='fas fa-times'></i></div>";
   			  //add the image/icon
@@ -323,6 +325,8 @@ function XMOB_injection()
           			  
           			  $locationNumber = 0;
           			  
+          			  echo "<div class='buttonsContainer'>";
+          			  
           			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
@@ -337,6 +341,13 @@ function XMOB_injection()
                     }
                     
         			    }
+        			    
+        			    echo "</div>";
+        			    
+        			    if($globalLocationNumber > 5) {
+          			    echo "<div class='chatbot-button moreOptions button-background'>More Options</div>";
+        			    }
+        			    
         			  echo "</div>";
       			  }
       			  
@@ -352,6 +363,8 @@ function XMOB_injection()
           			  
           			  //loop through each location
           			  $locationNumber = 0;
+          			  
+          			  echo "<div class='buttonsContainer'>";
           			  
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
@@ -394,15 +407,14 @@ function XMOB_injection()
                         echo "<a href='$apptLink' class='chatbot-button button-background two'>$apptCopy&nbsp;$linkIcon</a>";
               			  }
             			  echo "</div>";
-                    
-                    //show the button for each location
-                    /*
-if(!empty($contactLink))
-                    {
-                      echo "<a href='$contactLink' class='chatbot-button button-background'>$name&nbsp;$linkIcon</a>";
-                    }
-*/
         			    }
+        			    
+        			    echo "</div>";
+        			    
+        			    if($globalLocationNumber > 5) {
+          			    echo "<div class='chatbot-button moreOptions button-background'>More Options</div>";
+        			    }
+        			    
         			  echo "</div>";
       			  }
       			  
@@ -418,6 +430,8 @@ if(!empty($contactLink))
           			  
           			  //loop through each location
           			  $locationNumber = 0;
+          			  
+          			  echo "<div class='buttonsContainer'>";
           			  
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
@@ -448,6 +462,13 @@ if(!empty($contactLink))
               			  }
             			  echo "</div>";
         			    }
+        			    
+        			    echo "</div>";
+        			    
+        			    if($globalLocationNumber > 5) {
+          			    echo "<div class='chatbot-button moreOptions button-background'>More Options</div>";
+        			    }
+        			    
         			  echo "</div>";
       			  }
       			  
@@ -491,15 +512,6 @@ if(!empty($contactLink))
               		}
                 echo "</div>";
       			  }
-      			  
-      			  //if showing more options…
-      			  /*
-if(in_array('more_options', $homeData)) {
-        			  
-        			  //show the more options button
-        			  echo "<div class='chatbot-button button-background more-options' id='more-options'>More Options</div>";
-      			  }
-*/
   			    }
   			    
   			    //otherwise, if there is only one location…

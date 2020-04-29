@@ -70,6 +70,18 @@ jQuery(document).ready(function($)
       //remove the active class on the multi_hours container
       $('.chatbot-page.multi_hours').removeClass('active');
     });
+    
+    if($('.chatbot-page.multi_hours .chatbot-button.moreOptions').length) {
+      $('.chatbot-page.multi_hours .chatbot-button.moreOptions').click(function() {
+        $('.chatbot-page.multi_hours .buttonsContainer').toggleClass('showMore');
+      })
+      
+      $('.chatbot-page.multi_hours .chatbot-button.moreOptions').toggle(function() {
+        $(this).text('Previous Options');
+      }, function() {
+        $(this).text('More Options');
+      })
+    }
   }
   
   //if the chatbot multi_contact_us button exists…
@@ -88,6 +100,18 @@ jQuery(document).ready(function($)
       //remove the active class on the multi_contact_us container
       $('.chatbot-page.multi_contact_us').removeClass('active');
     });
+    
+    if($('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').length) {
+      $('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').click(function() {
+        $('.chatbot-page.multi_contact_us .buttonsContainer').toggleClass('showMore');
+      })
+      
+      $('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').toggle(function() {
+        $(this).text('Previous Options');
+      }, function() {
+        $(this).text('More Options');
+      })
+    }
   }
   
   //if the chatbot contact_us button exists…
@@ -128,6 +152,18 @@ jQuery(document).ready(function($)
       //add the active class on the request_appointment container
       $('.chatbot-page.request_appointment').addClass('active');
     })
+    
+    if($('.chatbot-page.request_appointment .chatbot-button.moreOptions').length) {
+      $('.chatbot-page.request_appointment .chatbot-button.moreOptions').click(function() {
+        $('.chatbot-page.request_appointment .buttonsContainer').toggleClass('showMore');
+      })
+      
+      $('.chatbot-page.request_appointment .chatbot-button.moreOptions').toggle(function() {
+        $(this).text('Previous Options');
+      }, function() {
+        $(this).text('More Options');
+      })
+    }
     
     //when the back button is clicked…
     $('.chatbot-page-back.request_appointment').click(function() {

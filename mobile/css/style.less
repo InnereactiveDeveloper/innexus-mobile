@@ -46,7 +46,11 @@ div.innexus-chatbot {
       font-weight: 600;
       line-height: 26px;
       margin-bottom: 55px;
-      min-height: 50px;
+      //min-height: 50px;
+      
+      &:nth-child(1) {
+        min-height: 50px;
+      }
     }
     
     a.chatbot-button {
@@ -106,12 +110,35 @@ div.innexus-chatbot {
       border-radius: 10px;
       //padding: 10px 10px 6px 10px;
       
+      .buttonsContainer {
+        overflow: hidden;
+        max-height: 176px;
+        
+        > div.chatbot-button,
+        > a.chatbot-button {
+          transition: all 0.3s ease;
+          position: relative;
+          transform: translateY(0px);
+        }
+        
+        &.showMore {
+          > div.chatbot-button,
+          > a.chatbot-button {
+            position: relative;
+            transform: translateY(-180px);
+          }
+        }
+      }
+      
       .chatbot-response {
         margin-top: 14px;
         margin-bottom: 20px;
       }
       
       &.hours {     
+        background-color: whitesmoke;
+        z-index: 1;
+        
         p.chatbot-response {
           margin-top: 10px;
           margin-bottom: 10px;
@@ -140,6 +167,8 @@ div.innexus-chatbot {
       
       &.contact_us {
         text-align: left;
+        background-color: whitesmoke;
+        z-index: 1;
         
         > * {
           text-align: left;
@@ -164,32 +193,50 @@ div.innexus-chatbot {
       
       &.request_appointment.active {
         transform: translateX(0);
+        background-color: whitesmoke;
+        z-index: 1;
       }
       
       &.multi_hours.active {
         transform: translateX(0);
+        background-color: whitesmoke;
+        z-index: 1;
       }
       
       &.contact_us.active {
         transform: translateX(0);
+        background-color: whitesmoke;
+        z-index: 1;
       }
       
       &.online_patient_forms.active {
         transform: translateX(0);
+        background-color: whitesmoke;
+        z-index: 1;
       }
       
       &.multi_contact_us.active {
         transform: translateX(0);
+        background-color: whitesmoke;
+        z-index: 1;
       }
       
       &.hours.active {
         transform: translateX(0);
+        background-color: whitesmoke;
+        z-index: 1;
       }
       
       .chatbot-page-back {
         text-align: left;
         cursor: pointer;
       }
+    }
+    
+    .chatbot-button.moreOptions {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
     }
   }
   
@@ -379,6 +426,12 @@ div.innexus-chatbot {
   
   &.active {
     right: 20px;
+    
+    &.locationCount6 {
+      .chatbot-container {
+        //min-height: 378px;
+      }
+    }
     
 /*
     &.shadow:after {
