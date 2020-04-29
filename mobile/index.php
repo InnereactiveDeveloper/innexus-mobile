@@ -290,7 +290,6 @@ function XMOB_injection()
   			echo "<div class='chatbot-open $display $leftRight'><img src='$icon' alt='chatbot icon'></div>";
   			
   			//card container
-  			pre($globalLocationNumber);
   			
   			echo "<div class='innexus-chatbot $display $leftRight " .'locationCount'."$globalLocationNumber'>";
   			  //add a close button
