@@ -374,6 +374,14 @@ function XMOB_injection()
           			    $locationNumber++;
           			    $linkIcon = innexus_link_compare($contactLink);
           			    
+          			    if($sync == 'static') {
+            			    $address = $location['location_address'];
+              			  $phone = $location['location_phone'];
+              			  $email = $location['location_email'];
+              			  
+              			  $phone_clean = preg_replace('~[-._#,]~', '', $phone);
+          			    }
+          			    
           			    //show the button for each location
           			    if($locationNumber <= $globalLocationNumber && !empty($name)) {
             			    echo "<div class='chatbot-button button-background contact_us' id='contact_us' data-location='location-".$locationNumber."'>$name</div>";
@@ -383,10 +391,25 @@ function XMOB_injection()
                     echo "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
             			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
               			  echo "<p class='chatbot-response'>$name</p>";
-              			  echo do_shortcode('[address location='.$locationNumber.']');
-              			  echo do_shortcode('[phone location='.$locationNumber.']');
-              			  echo '<br>';
-              			  echo do_shortcode('[email location='.$locationNumber.']');
+              			  if($sync == 'static') {
+                			  echo $address;
+                			  echo "<br>";
+                			  echo "<br>";
+              			  } else {
+                			  echo do_shortcode('[address location='.$locationNumber.']');
+              			  }
+              			  if($sync == 'static') {
+                			  echo "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
+                			  echo "<br>";
+              			  } else {
+                			  echo do_shortcode('[phone location='.$locationNumber.']');
+                      }
+                      if($sync == 'static') {
+                        echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+              			  } else {
+                			  echo "<br>";
+                        echo do_shortcode('[email location='.$locationNumber.']');
+              			  }
               			  
               			  //show the contact us button
               			  //if showing appointment requests…
@@ -395,7 +418,11 @@ function XMOB_injection()
               			  //show the appointment button
               			  $linkIcon = innexus_link_compare($contactLink);
               			  
-                      echo "<a href='$contactLink' class='chatbot-button button-background'>Contact Page&nbsp;$linkIcon</a>";
+              			  if(!empty($contactLink)) {
+                			  echo "<a href='$contactLink' class='chatbot-button button-background'>$contactCopy&nbsp;$linkIcon</a>";
+              			  } else {
+                			  //do nothing
+              			  }
               			  
               			  //if showing appointment requests…
               			  if(in_array('request_appointment', $homeData)) {
@@ -403,7 +430,11 @@ function XMOB_injection()
                 			  $linkIcon = innexus_link_compare($apptLink);
                 			  
                 			  //show the appointment button
-                        echo "<a href='$apptLink' class='chatbot-button button-background two'>$apptCopy&nbsp;$linkIcon</a>";
+                			  if(!empty($apptLink)) {
+                  			  echo "<a href='$apptLink' class='chatbot-button button-background two'>$apptCopy&nbsp;$linkIcon</a>";
+                			  } else {
+                  			  //do nothing
+                			  }
               			  }
             			  echo "</div>";
         			    }
@@ -457,7 +488,11 @@ function XMOB_injection()
                 			  $linkIcon = innexus_link_compare($apptLink);
                 			  
                 			  //show the appointment button
-                        echo "<a href='$apptLink' class='chatbot-button button-background'>$apptCopy&nbsp;$linkIcon</a>";
+                        if(!empty($apptLink)) {
+                  			  echo "<a href='$apptLink' class='chatbot-button button-background two'>$apptCopy&nbsp;$linkIcon</a>";
+                			  } else {
+                  			  //do nothing
+                			  }
               			  }
             			  echo "</div>";
         			    }
@@ -632,15 +667,6 @@ function XMOB_injection()
               		}
                 echo "</div>";
       			  }
-      			  
-      			  //if showing more options…
-      			  /*
-if(in_array('more_options', $homeData)) {
-        			  
-        			  //show the appointment button
-        			  echo "<div href='#' class='chatbot-button button-background more-options' id='more-options'>More Options</div>";
-      			  }
-*/
   			    }
   			    
   			  echo "</div>";			    
