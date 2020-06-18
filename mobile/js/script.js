@@ -20,6 +20,13 @@ jQuery(document).ready(function($)
       $('.innexus-chatbot').removeClass('active');
       $('.chatbot-open').removeClass('active');
       $('.chatbot-close').removeClass('active');
+      $('.chatbot-container').removeClass('grow');
+      $('.chatbot-page.contact_us').removeClass('active');
+      $('.chatbot-page.multi_contact_us').removeClass('active');
+      $('.chatbot-page.request_appointment').removeClass('active');
+      $('.chatbot-page.hours').removeClass('active');
+      $('.chatbot-page.multi_hours').removeClass('active');
+      $('.chatbot-page.online_patient_forms').removeClass('active');
     })
   }
   
@@ -189,10 +196,23 @@ jQuery(document).ready(function($)
       //remove the active class on the online_patient_forms container
       $('.chatbot-page.online_patient_forms').removeClass('active');
     })
+    
+    if($('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').length) {
+      $('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').click(function() {
+        $('.chatbot-page.online_patient_forms .buttonsContainer').toggleClass('showMore');
+      })
+      
+      $('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').toggle(function() {
+        $(this).text('Previous Options');
+      }, function() {
+        $(this).text('More Options');
+      })
+    }
   }
   
-  //if the chatbot location button exists…
-  if ( $('.chatbot-button.location').length ) {
+  //if the chatbot location button exists… REMOVE?
+  /*
+if ( $('.chatbot-button.location').length ) {
     
     //when the location button is clicked…
     $('.chatbot-button.location').click(function() {
@@ -208,6 +228,7 @@ jQuery(document).ready(function($)
       $('.chatbot-page.location').removeClass('active');
     })
   }
+*/
   
   //if the mobile plugin exists…
   if ( $('.innexus-mobile').length ) {

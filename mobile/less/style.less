@@ -119,6 +119,7 @@ div.innexus-chatbot {
           transition: all 0.3s ease;
           position: relative;
           transform: translateY(0px);
+          white-space: nowrap;
         }
         
         &.showMore {
@@ -126,6 +127,12 @@ div.innexus-chatbot {
           > a.chatbot-button {
             position: relative;
             transform: translateY(-180px);
+          }
+          
+          div.chatbot-button.moreOptions,
+          div.chatbot-button.moreOptions {
+            position: absolute;
+            transform: translate(0,0);
           }
         }
       }
@@ -237,7 +244,8 @@ div.innexus-chatbot {
       }
     }
     
-    .chatbot-button.moreOptions {
+    div.chatbot-button.moreOptions,
+    .chatbot-page div.chatbot-button.moreOptions {
       position: absolute;
       bottom: -1px;
       left: 0;

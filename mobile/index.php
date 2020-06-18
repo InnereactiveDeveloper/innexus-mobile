@@ -326,12 +326,15 @@ function XMOB_injection()
           			  
           			  echo "<div class='buttonsContainer'>";
           			  
+          			  $buttonNumber = 0;
+          			  
           			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
           			    $apptLink = $location['appt_req_chatbot'];
           			    $linkIcon = innexus_link_compare($apptLink);
           			    $locationNumber++;
+          			    $buttonNumber++;
                     
                     //show the button for each location
                     if($locationNumber <= $globalLocationNumber && !empty($apptLink))
@@ -343,7 +346,7 @@ function XMOB_injection()
         			    
         			    echo "</div>";
         			    
-        			    if($globalLocationNumber > 5) {
+        			    if($buttonNumber > 5) {
           			    echo "<div class='chatbot-button moreOptions button-background'>More Options</div>";
         			    }
         			    
@@ -519,8 +522,11 @@ function XMOB_injection()
                   echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
                   echo "<p class='chatbot-response'>Patient Forms</p>";
                   
+                  echo "<div class='buttonsContainer'>";
+                  
                   if($formsOverride == true) {
                 		$forms = get_field('override_links', 'options');
+                		$formsCount = 0;
                 		
                 		//show patient forms
             			  foreach($forms as $form) {
@@ -530,20 +536,63 @@ function XMOB_injection()
               			  
               			  //show the patient form button
                       echo "<a href='$formLink' class='chatbot-button button-background'>$formCopy&nbsp;$linkIcon</a>";
+                      $formsCount++;
+                      
+                      //if more than 5 forms exist…
+              			  if($formsCount > 5) {
+                			  //show the more options button
+                			  echo "<div class='chatbot-button moreOptions button-background'>More Options</div>";
+              			  }
             			  }
-              		} else {
-                		$forms = get_field('upload_patient_forms', 'option');
+            			  //if pulling forms from site settings…
+              		} elseif($formsOverride == false) {
+                		//grab the categories
+                		$categories = get_field('upload_patient_forms', 'option');
+                		$formsCount = 0;
                 		
+                		//create an empty array for all forms
+                		$formsAll = array();
+                		
+                		//in each category…
+                		foreach($categories as $category) {
+                  		//add any forms to the array
+                  		$formsAll[] = $category['forms'];
+                		}
+                		
+                		//merge the forms arrays into one
+                		$forms = call_user_func_array('array_merge', $formsAll);
+                		                		
                 		//show patient forms
+                		//for each form…
             			  foreach($forms as $form) {
-              			  $formLink = $form['upload']['url'];
-              			  $formCopy = $form['form_title'];          			  
-              			  $linkIcon = innexus_link_compare($formLink);
+              			  $formLink = $form['form_upload'];
+                      $onlineFormLink = $form['online_form_link'];
+                      $formCopy = $form['form_title'];
+                      
+                      //if an online form link exists…
+                      if($onlineFormLink != false) {
+                        //check the url and add the button
+                        $linkIcon = innexus_link_compare($onlineFormLink);
+                        echo "<a href='$onlineFormLink' class='chatbot-button button-background'>$formCopy&nbsp;(Online)&nbsp;$linkIcon</a>";
+                        $formsCount++;
+                      }
               			  
-              			  //show the patient form button
-                      echo "<a href='$formLink' class='chatbot-button button-background'>$formCopy&nbsp;$linkIcon</a>";
+              			  //if a pdf form link exists…
+              			  if($formLink != false) {
+                			  //check the url and add the button
+                			  $linkIcon = innexus_link_compare($formLink);
+                			  echo "<a href='$formLink' class='chatbot-button button-background'>$formCopy&nbsp;(PDF)&nbsp;$linkIcon</a>";
+                			  $formsCount++;
+              			  }
+              			                			  
+              			  //if more than 5 forms exist…
+              			  if($formsCount > 5) {
+                			  //show the more options button
+                			  echo "<div class='chatbot-button moreOptions button-background'>More Options</div>";
+              			  }
             			  }
               		}
+              		echo "</div>";
                 echo "</div>";
       			  }
   			    }
