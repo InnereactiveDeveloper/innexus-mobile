@@ -468,24 +468,6 @@ div.innexus-chatbot.place_left.active {
 .chatbot-open.active {
   opacity: 0;
   transform: scale(0, 0);
-  /*
-    right: 240px;
-    width: 30px;
-    height: 30px;
-      
-    i {
-      display: none;
-      
-      &:nth-child(2) {
-        font-size: 20px;
-        display: block;
-        margin-top: 0px;
-        position: relative;
-        top: -3.75px;
-        left: -1.5px;
-      }
-    }
-*/
 }
 .chatbot-open.display_off {
   display: none;
@@ -499,40 +481,25 @@ div.innexus-chatbot.place_left.active {
   .chatbot-open {
     width: 72px;
     height: 72px;
-    /*
-    &.active {
-      right: 280px;
-    }
-*/
   }
   .chatbot-open i {
     font-size: 2.5em;
     margin-top: 2px;
   }
 }
-.chatbot-open.place_left.bounce {
+.chatbot-open.place_left {
   right: auto;
   left: 20px;
+}
+.chatbot-open.place_left.bounce {
   animation: wait-left 3.33s forwards, bounce 15s infinite;
-  /*
-&.active {
-      right: auto;
-      left: 220px;
-      
-      @media (min-width: 350px) {
-        &.active {
-          left: 260px;
-        }
-      }
-    }
-*/
+}
+.chatbot-open.place_right {
+  left: auto;
+  right: 20px;
 }
 .chatbot-open.place_right.bounce {
   animation: wait-right 3.33s forwards, bounce 15s infinite;
-  /*
-animation: bounce 8s infinite;
-    animation-delay: 10s;
-*/
 }
 @keyframes wait-left {
   0% {
