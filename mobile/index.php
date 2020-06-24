@@ -388,58 +388,58 @@ function XMOB_injection()
           			    //show the button for each location
           			    if($locationNumber <= $globalLocationNumber && !empty($name)) {
             			    echo "<div class='chatbot-button button-background contact_us' id='contact_us' data-location='location-".$locationNumber."'>$name</div>";
-          			    }
-          			    
-                    //when clicked, show the contact_us for that location
-                    echo "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
-            			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
-              			  echo "<p class='chatbot-response'>$name</p>";
-              			  if($sync == 'static') {
-                			  echo $address;
-                			  echo "<br>";
-                			  echo "<br>";
-              			  } else {
-                			  echo do_shortcode('[address location='.$locationNumber.']');
-              			  }
-              			  if($sync == 'static') {
-                			  echo "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
-                			  echo "<br>";
-              			  } else {
-                			  echo do_shortcode('[phone location='.$locationNumber.']');
-                      }
-                      if($sync == 'static') {
-                        echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
-              			  } else {
-                			  echo "<br>";
-                        echo do_shortcode('[email location='.$locationNumber.']');
-              			  }
-              			  
-              			  //show the contact us button
-              			  //if showing appointment requests…
-              			  $linkIcon = innexus_link_compare($apptLink);
+            			    
+            			    //when clicked, show the contact_us for that location
+                      echo "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
+              			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+                			  echo "<p class='chatbot-response'>$name</p>";
+                			  if($sync == 'static') {
+                  			  echo $address;
+                  			  echo "<br>";
+                  			  echo "<br>";
+                			  } else {
+                  			  echo do_shortcode('[address location='.$locationNumber.']');
+                			  }
+                			  if($sync == 'static') {
+                  			  echo "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
+                  			  echo "<br>";
+                			  } else {
+                  			  echo do_shortcode('[phone location='.$locationNumber.']');
+                        }
+                        if($sync == 'static') {
+                          echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                			  } else {
+                  			  echo "<br>";
+                          echo do_shortcode('[email location='.$locationNumber.']');
+                			  }
                 			  
-              			  //show the appointment button
-              			  $linkIcon = innexus_link_compare($contactLink);
-              			  
-              			  if(!empty($contactLink)) {
-                			  echo "<a href='$contactLink' class='chatbot-button button-background'>$contactCopy&nbsp;$linkIcon</a>";
-              			  } else {
-                			  //do nothing
-              			  }
-              			  
-              			  //if showing appointment requests…
-              			  if(in_array('request_appointment', $homeData)) {
-                			  
+                			  //show the contact us button
+                			  //if showing appointment requests…
                 			  $linkIcon = innexus_link_compare($apptLink);
-                			  
+                  			  
                 			  //show the appointment button
-                			  if(!empty($apptLink)) {
-                  			  echo "<a href='$apptLink' class='chatbot-button button-background two'>$apptCopy&nbsp;$linkIcon</a>";
+                			  $linkIcon = innexus_link_compare($contactLink);
+                			  
+                			  if(!empty($contactLink)) {
+                  			  echo "<a href='$contactLink' class='chatbot-button button-background'>$contactCopy&nbsp;$linkIcon</a>";
                 			  } else {
                   			  //do nothing
                 			  }
-              			  }
-            			  echo "</div>";
+                			  
+                			  //if showing appointment requests…
+                			  if(in_array('request_appointment', $homeData)) {
+                  			  
+                  			  $linkIcon = innexus_link_compare($apptLink);
+                  			  
+                  			  //show the appointment button
+                  			  if(!empty($apptLink)) {
+                    			  echo "<a href='$apptLink' class='chatbot-button button-background two'>$apptCopy&nbsp;$linkIcon</a>";
+                  			  } else {
+                    			  //do nothing
+                  			  }
+                			  }
+              			  echo "</div>";
+          			    }
         			    }
         			    
         			    echo "</div>";
@@ -474,30 +474,30 @@ function XMOB_injection()
                     //show the button for each location
                     if($locationNumber <= $globalLocationNumber && !empty($name)) {
                       echo "<div class='chatbot-button button-background hours' id='hours' data-location='location-".$locationNumber."'>$name</div>";
-                    }
-                    
-                    //when clicked, show the hours for that location
-                    echo "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
-            			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
-              			  echo "<p class='chatbot-response'>$name Hours</p>";
-              			  echo do_shortcode('[hours location='.$locationNumber.']');
-              			  
-              			  //if showing appointment requests…
-              			  $linkIcon = innexus_link_compare($apptLink);
-                			                			                			  
-              			  //if showing appointment requests…
-              			  if(in_array('request_appointment', $homeData)) {
+                      
+                      //when clicked, show the hours for that location
+                      echo "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
+              			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+                			  echo "<p class='chatbot-response'>$name Hours</p>";
+                			  echo do_shortcode('[hours location='.$locationNumber.']');
                 			  
+                			  //if showing appointment requests…
                 			  $linkIcon = innexus_link_compare($apptLink);
-                			  
-                			  //show the appointment button
-                        if(!empty($apptLink)) {
-                  			  echo "<a href='$apptLink' class='chatbot-button button-background two'>$apptCopy&nbsp;$linkIcon</a>";
-                			  } else {
-                  			  //do nothing
+                  			                			                			  
+                			  //if showing appointment requests…
+                			  if(in_array('request_appointment', $homeData)) {
+                  			  
+                  			  $linkIcon = innexus_link_compare($apptLink);
+                  			  
+                  			  //show the appointment button
+                          if(!empty($apptLink)) {
+                    			  echo "<a href='$apptLink' class='chatbot-button button-background two'>$apptCopy&nbsp;$linkIcon</a>";
+                  			  } else {
+                    			  //do nothing
+                  			  }
                 			  }
-              			  }
-            			  echo "</div>";
+              			  echo "</div>";
+                    }
         			    }
         			    
         			    echo "</div>";
@@ -658,7 +658,7 @@ function XMOB_injection()
       			  //if showing hours…
       			  if(in_array('hours', $homeData)) {
         			  
-        			  //show the appointment button
+        			  //show the hours button
         			  echo "<div class='chatbot-button button-background hours' id='hours'>$hoursCopy</div>";
         			  echo "<div class='chatbot-page hours'>";
         			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
