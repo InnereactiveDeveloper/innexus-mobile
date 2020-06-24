@@ -17,23 +17,14 @@ jQuery(document).ready(function($)
     //when the close button is clicked…
     $('.chatbot-close').click(function() {
       
-      //remove the active class on the button and plugin container
-      $('.innexus-chatbot').removeClass('active');
-      $('.chatbot-open').removeClass('active');
-      $('.chatbot-close').removeClass('active');
+      //reset on close - remove if choosing to disable reset
+      $('.innexus-chatbot, .chatbot-open, .chatbot-close, .chatbot-page.contact_us, .chatbot-page.multi_contact_us, .chatbot-page.request_appointment, .chatbot-page.hours, .chatbot-page.multi_hours, .chatbot-page.online_patient_forms').removeClass('active');
+      
+      //and remove grow class
       $('.chatbot-container').removeClass('grow');
-      $('.chatbot-page.contact_us').removeClass('active');
-      $('.chatbot-page.multi_contact_us').removeClass('active');
-      $('.chatbot-page.request_appointment').removeClass('active');
-      $('.chatbot-page.hours').removeClass('active');
-      $('.chatbot-page.multi_hours').removeClass('active');
-      $('.chatbot-page.online_patient_forms').removeClass('active');
     })
-  }
-  
-  //if the chatbot hours button exists…
-  if ( $('.chatbot-button.hours').length ) {
     
+    /* HOURS START */
     //when the hours button is clicked…
     $('.chatbot-button.hours').click(function() {
       
@@ -60,10 +51,6 @@ jQuery(document).ready(function($)
       $('.chatbot-page.hours').removeClass('active');
       $('.chatbot-container').removeClass('grow');
     })
-  }
-  
-  //if the chatbot multi_hours button exists…
-  if ( $('.chatbot-button.multi_hours').length ) {
     
     //when the multi_hours button is clicked…
     $('.chatbot-button.multi_hours').click(function() {
@@ -90,10 +77,33 @@ jQuery(document).ready(function($)
         $(this).text('More Options');
       })
     }
-  }
-  
-  //if the chatbot multi_contact_us button exists…
-  if ( $('.chatbot-button.multi_contact_us').length ) {
+    /* HOURS END */
+    
+    /* CONTACT START */
+    //when the contact_us button is clicked…
+    $('.chatbot-button.contact_us').click(function() {
+      
+      if($('.chatbot-page.contact_us').length > 1)
+      {
+        var location_target = $(this).data('location');
+        
+        //add the active class on the hours shortcode
+        $('.chatbot-page.contact_us[data-location="'+location_target+'"]').addClass('active');
+        $('.chatbot-container').addClass('grow');
+      } else {
+        //add the active class on the contact_us container
+        $('.chatbot-page.contact_us').addClass('active');
+        $('.chatbot-container').addClass('grow');
+      }
+    })
+    
+    //when the back button is clicked…
+    $('.chatbot-page-back.contact_us').click(function() {
+      
+      //remove the active class on the contact_us container
+      $('.chatbot-page.contact_us').removeClass('active');
+      $('.chatbot-container').removeClass('grow');
+    })
     
     //when the multi_contact_us button is clicked…
     $('.chatbot-button.multi_contact_us').click(function() {
@@ -120,40 +130,9 @@ jQuery(document).ready(function($)
         $(this).text('More Options');
       })
     }
-  }
-  
-  //if the chatbot contact_us button exists…
-  if ( $('.chatbot-button.contact_us').length ) {
+    /* CONTACT END */
     
-    //when the contact_us button is clicked…
-    $('.chatbot-button.contact_us').click(function() {
-      
-      if($('.chatbot-page.contact_us').length > 1)
-      {
-        var location_target = $(this).data('location');
-        
-        //add the active class on the hours shortcode
-        $('.chatbot-page.contact_us[data-location="'+location_target+'"]').addClass('active');
-        $('.chatbot-container').addClass('grow');
-      } else {
-        //add the active class on the contact_us container
-        $('.chatbot-page.contact_us').addClass('active');
-        $('.chatbot-container').addClass('grow');
-      }
-    })
-    
-    //when the back button is clicked…
-    $('.chatbot-page-back.contact_us').click(function() {
-      
-      //remove the active class on the contact_us container
-      $('.chatbot-page.contact_us').removeClass('active');
-      $('.chatbot-container').removeClass('grow');
-    })
-  }
-  
-  //if the chatbot request_appointment button exists…
-  if ( $('.chatbot-button.request_appointment').length ) {
-    
+    /* APPOINTMENTS START */
     //when the request_appointment button is clicked…
     $('.chatbot-button.request_appointment').click(function() {
       
@@ -179,11 +158,9 @@ jQuery(document).ready(function($)
       //remove the active class on the request_appointment container
       $('.chatbot-page.request_appointment').removeClass('active');
     })
-  }
-  
-  //if the chatbot online_patient_forms button exists…
-  if ( $('.chatbot-button.online_patient_forms').length ) {
+    /* APPOINTMENTS END */
     
+    /* PATIENT FORMS START */
     //when the online_patient_forms button is clicked…
     $('.chatbot-button.online_patient_forms').click(function() {
       
@@ -209,28 +186,17 @@ jQuery(document).ready(function($)
         $(this).text('More Options');
       })
     }
+    /* PATIENT FORMS END */
+    
+    //if the height of the container is equal to or greater than 420px…
+    if ( $('.innexus-mobile').outerHeight() >= 420 ) {
+      
+      //add the shadow class to the container
+      $('.innexus-mobile').addClass('shadow');
+    }
   }
   
-  //if the chatbot location button exists… REMOVE?
-  /*
-if ( $('.chatbot-button.location').length ) {
-    
-    //when the location button is clicked…
-    $('.chatbot-button.location').click(function() {
-      
-      //add the active class on the location container
-      $('.chatbot-page.location').addClass('active');
-    })
-    
-    //when the back button is clicked…
-    $('.chatbot-page-back.location').click(function() {
-      
-      //remove the active class on the location container
-      $('.chatbot-page.location').removeClass('active');
-    })
-  }
-*/
-  
+  /* FOR LEGACY MOBILE VERSION */
   //if the mobile plugin exists…
   if ( $('.innexus-mobile').length ) {
     
@@ -241,12 +207,5 @@ if ( $('.chatbot-button.location').length ) {
       $('.innexus-mobile').toggleClass('active');
       $('.location-toggle').toggleClass('active');
     })
-  }
-  
-  //if the height of the container is equal to or greater than 420px…
-  if ( $('.innexus-mobile').outerHeight() >= 420 ) {
-    
-    //add the shadow class to the container
-    $('.innexus-mobile').addClass('shadow');
   }
 });
