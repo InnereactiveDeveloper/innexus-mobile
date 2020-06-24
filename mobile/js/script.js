@@ -1,27 +1,59 @@
 //Innexus Mobile Scripts
 jQuery(document).ready(function($)
-{
+{  
   //if the chatbot plugin exists…
   if ( $('.innexus-chatbot').length ) {
+    
+    //class functions
+    //function to add active class
+    function addActive(a) {
+      $(a).addClass('active');
+    }
+    
+    //function to remove active class
+    function removeActive(a) {
+      $(a).removeClass('active');
+    }
+    
+    //function to add grow class
+    function addGrow(a) {
+      $(a).addClass('grow');
+    }
+    
+    //function to remove grow class
+    function removeGrow(a) {
+      $(a).removeClass('grow');
+    }
+    
+    //function to add bounce class
+    function addBounce(a) {
+      $(a).addClass('bounce');
+    }
+    
+    //function to remove bounce class
+    function removeBounce(a) {
+      $(a).removeClass('bounce');
+    }
     
     //when the open button is clicked…
     $('.chatbot-open').click(function() {
       
       //add the active class on the button and plugin container
-      $('.innexus-chatbot').addClass('active');
-      $('.chatbot-open').addClass('active');
-      $('.chatbot-open').removeClass('bounce');
-      $('.chatbot-close').addClass('active');
+      addActive('.innexus-chatbot, .chatbot-open, .chatbot-close');
+      
+      //remove the bounce effect
+      removeBounce('.chatbot-open');
     })
     
     //when the close button is clicked…
     $('.chatbot-close').click(function() {
       
-      //reset on close - remove if choosing to disable reset
-      $('.innexus-chatbot, .chatbot-open, .chatbot-close, .chatbot-page.contact_us, .chatbot-page.multi_contact_us, .chatbot-page.request_appointment, .chatbot-page.hours, .chatbot-page.multi_hours, .chatbot-page.online_patient_forms').removeClass('active');
+      //close the chatbot
+      removeActive('.innexus-chatbot, .chatbot-open, .chatbot-close');
       
-      //and remove grow class
-      $('.chatbot-container').removeClass('grow');
+      //reset all pages - comment out next two lines if not desired
+      removeActive('.chatbot-page.contact_us, .chatbot-page.multi_contact_us, .chatbot-page.request_appointment, .chatbot-page.hours, .chatbot-page.multi_hours, .chatbot-page.online_patient_forms');
+      removeGrow('.chatbot-container');
     })
     
     /* HOURS START */
@@ -33,44 +65,48 @@ jQuery(document).ready(function($)
         var location_target = $(this).data('location');
         
         //add the active class on the hours shortcode
-        $('.chatbot-page.hours[data-location="'+location_target+'"]').addClass('active');
-        $('.chatbot-container').addClass('grow');
+        addActive('.chatbot-page.hours[data-location="'+location_target+'"]');
+        addGrow('.chatbot-container');
       }
       else
       {
         //add the active class on the hours shortcode
-        $('.chatbot-page.hours').addClass('active');
-        $('.chatbot-container').addClass('grow');
+        addActive('.chatbot-page.hours');
+        addGrow('.chatbot-container');
       }
     })
     
-    //when the back button is clicked…
+    //when the hours back button is clicked…
     $('.chatbot-page-back.hours').click(function() {
       
       //remove the active class on the hours shortcode
-      $('.chatbot-page.hours').removeClass('active');
-      $('.chatbot-container').removeClass('grow');
+      removeActive('.chatbot-page.hours');
+      removeGrow('.chatbot-container');
     })
     
     //when the multi_hours button is clicked…
     $('.chatbot-button.multi_hours').click(function() {
       
       //add the active class on the multi_hours container
-      $('.chatbot-page.multi_hours').addClass('active');
+      addActive('.chatbot-page.multi_hours');
     });
     
-    //when the back button is clicked…
+    //when the multi_hours back button is clicked…
     $('.chatbot-page-back.multi_hours').click(function() {
       
       //remove the active class on the multi_hours container
-      $('.chatbot-page.multi_hours').removeClass('active');
+      removeActive('.chatbot-page.multi_hours');
     });
     
+    //if the multi_hours more options button is present
     if($('.chatbot-page.multi_hours .chatbot-button.moreOptions').length) {
+      //and it is clicked
       $('.chatbot-page.multi_hours .chatbot-button.moreOptions').click(function() {
+        //toggle the showMore class
         $('.chatbot-page.multi_hours .buttonsContainer').toggleClass('showMore');
       })
       
+      //when toggled, change the text of the button
       $('.chatbot-page.multi_hours .chatbot-button.moreOptions').toggle(function() {
         $(this).text('Previous Options');
       }, function() {
@@ -88,42 +124,46 @@ jQuery(document).ready(function($)
         var location_target = $(this).data('location');
         
         //add the active class on the hours shortcode
-        $('.chatbot-page.contact_us[data-location="'+location_target+'"]').addClass('active');
-        $('.chatbot-container').addClass('grow');
+        addActive('.chatbot-page.contact_us[data-location="'+location_target+'"]');
+        addGrow('.chatbot-container');
       } else {
         //add the active class on the contact_us container
-        $('.chatbot-page.contact_us').addClass('active');
-        $('.chatbot-container').addClass('grow');
+        addActive('.chatbot-page.contact_us');
+        addGrow('.chatbot-container');
       }
     })
     
-    //when the back button is clicked…
+    //when the contact_us back button is clicked…
     $('.chatbot-page-back.contact_us').click(function() {
       
       //remove the active class on the contact_us container
-      $('.chatbot-page.contact_us').removeClass('active');
-      $('.chatbot-container').removeClass('grow');
+      removeActive('.chatbot-page.contact_us');
+      removeGrow('.chatbot-container');
     })
     
     //when the multi_contact_us button is clicked…
     $('.chatbot-button.multi_contact_us').click(function() {
       
       //add the active class on the multi_contact_us container
-      $('.chatbot-page.multi_contact_us').addClass('active');
+      addActive('.chatbot-page.multi_contact_us');
     });
     
-    //when the back button is clicked…
+    //when the multi_contact_us back button is clicked…
     $('.chatbot-page-back.multi_contact_us').click(function() {
       
       //remove the active class on the multi_contact_us container
-      $('.chatbot-page.multi_contact_us').removeClass('active');
+      removeActive('.chatbot-page.multi_contact_us');
     });
     
+    //if the multi_contact_us more options button is present
     if($('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').length) {
+      //and it is clicked
       $('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').click(function() {
+        //toggle the showMore class
         $('.chatbot-page.multi_contact_us .buttonsContainer').toggleClass('showMore');
       })
       
+      //and toggle the text of the button
       $('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').toggle(function() {
         $(this).text('Previous Options');
       }, function() {
@@ -137,14 +177,18 @@ jQuery(document).ready(function($)
     $('.chatbot-button.request_appointment').click(function() {
       
       //add the active class on the request_appointment container
-      $('.chatbot-page.request_appointment').addClass('active');
+      addActive('.chatbot-page.request_appointment');
     })
     
+    //if the request_appointment more options button is present
     if($('.chatbot-page.request_appointment .chatbot-button.moreOptions').length) {
+      //and it is clicked
       $('.chatbot-page.request_appointment .chatbot-button.moreOptions').click(function() {
+        //toggle the showMore class
         $('.chatbot-page.request_appointment .buttonsContainer').toggleClass('showMore');
       })
       
+      //and toggle the button text
       $('.chatbot-page.request_appointment .chatbot-button.moreOptions').toggle(function() {
         $(this).text('Previous Options');
       }, function() {
@@ -152,11 +196,11 @@ jQuery(document).ready(function($)
       })
     }
     
-    //when the back button is clicked…
+    //when the request_appointment back button is clicked…
     $('.chatbot-page-back.request_appointment').click(function() {
       
       //remove the active class on the request_appointment container
-      $('.chatbot-page.request_appointment').removeClass('active');
+      removeActive('.chatbot-page.request_appointment');
     })
     /* APPOINTMENTS END */
     
@@ -165,21 +209,25 @@ jQuery(document).ready(function($)
     $('.chatbot-button.online_patient_forms').click(function() {
       
       //add the active class on the online_patient_forms container
-      $('.chatbot-page.online_patient_forms').addClass('active');
+      addActive('.chatbot-page.online_patient_forms');
     })
     
-    //when the back button is clicked…
+    //when the online_patient_forms back button is clicked…
     $('.chatbot-page-back.online_patient_forms').click(function() {
       
       //remove the active class on the online_patient_forms container
-      $('.chatbot-page.online_patient_forms').removeClass('active');
+      removeActive('.chatbot-page.online_patient_forms');
     })
     
+    //if the online_patient_forms more options button is present
     if($('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').length) {
+      //and is clicked
       $('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').click(function() {
+        //toggle the showMore class
         $('.chatbot-page.online_patient_forms .buttonsContainer').toggleClass('showMore');
       })
       
+      //and toggle the button text
       $('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').toggle(function() {
         $(this).text('Previous Options');
       }, function() {
