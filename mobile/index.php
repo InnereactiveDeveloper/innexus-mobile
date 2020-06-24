@@ -258,27 +258,27 @@ function XMOB_injection()
       		//and the array lands on random or male…
       		if ($randIconIndex == 'random' || $randIconIndex == 'male') {
         		//display the male icon.
-        		$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/m1.png';
+        		$icon =  XMOB_URL . '/mobile/img/m1.png';
         		//otherwise, display the female icon.
       		} elseif ($randIconIndex == 'custom' || $randIconIndex == 'female1') {
-        		$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f1.png';
+        		$icon =  XMOB_URL . '/mobile/img/f1.png';
       		} elseif ($randIconIndex == 'female2') {
-        		$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f2.png';
+        		$icon =  XMOB_URL . '/mobile/img/f2.png';
       		} else {
-        		$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f2.png';
+        		$icon =  XMOB_URL . '/mobile/img/f2.png';
       		}
       		//or, if the female1 choise is used…
     		} elseif ($iconChoice == 'female1') {
       		//display the female1 icon.
-        	$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f1.png';
+        	$icon =  XMOB_URL . '/mobile/img/f1.png';
         	//or, if the female2 choice is used…
         } elseif ($iconChoice == 'female2') {
         	//display the female2 icon.
-          $icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f2.png';
+          $icon =  XMOB_URL . '/mobile/img/f2.png';
         	//or, if the male choise is used…
       	} elseif ($iconChoice == 'male') {
         	//display the male icon.
-        	$icon = '/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/m1.png';
+        	$icon =  XMOB_URL . '/mobile/img/m1.png';
         	//or, if the custom upload option is used…
       	} elseif ($iconChoice == 'upload') {
         	//display the custom icon.
@@ -287,7 +287,7 @@ function XMOB_injection()
       	}
       	  		
   			//add an open button
-  			echo "<div class='chatbot-open $display $leftRight'><img src='$icon' alt='chatbot icon'></div>";
+  			echo "<div class='chatbot-open $display $leftRight bounce'><img src='$icon' alt='chatbot icon'></div>";
   			
   			//card container
   			
@@ -545,7 +545,7 @@ function XMOB_injection()
               			  }
             			  }
             			  //if pulling forms from site settings…
-              		} elseif($formsOverride == false) {
+              		} elseif($formsOverride == false && !empty(get_field('upload_patient_forms', 'option'))) {
                 		//grab the categories
                 		$categories = get_field('upload_patient_forms', 'option');
                 		$formsCount = 0;
@@ -573,7 +573,7 @@ function XMOB_injection()
                       if($onlineFormLink != false) {
                         //check the url and add the button
                         $linkIcon = innexus_link_compare($onlineFormLink);
-                        echo "<a href='$onlineFormLink' class='chatbot-button button-background'>$formCopy&nbsp;(Online)&nbsp;$linkIcon</a>";
+                        echo "<a href='$onlineFormLink' class='chatbot-button button-background'>$formCopy&nbsp;(Online)</a>";
                         $formsCount++;
                       }
               			  
@@ -581,7 +581,7 @@ function XMOB_injection()
               			  if($formLink != false) {
                 			  //check the url and add the button
                 			  $linkIcon = innexus_link_compare($formLink);
-                			  echo "<a href='$formLink' class='chatbot-button button-background'>$formCopy&nbsp;(PDF)&nbsp;$linkIcon</a>";
+                			  echo "<a href='$formLink' class='chatbot-button button-background'>$formCopy&nbsp;(PDF)</a>";
                 			  $formsCount++;
               			  }
               			                			  
@@ -591,6 +591,9 @@ function XMOB_injection()
                 			  echo "<div class='chatbot-button moreOptions button-background'>More Options</div>";
               			  }
             			  }
+              		} else {
+	              		//@TODO
+	              		//Output patient center link?
               		}
               		echo "</div>";
                 echo "</div>";

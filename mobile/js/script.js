@@ -10,6 +10,7 @@ jQuery(document).ready(function($)
       //add the active class on the button and plugin container
       $('.innexus-chatbot').addClass('active');
       $('.chatbot-open').addClass('active');
+      $('.chatbot-open').removeClass('bounce');
       $('.chatbot-close').addClass('active');
     })
     

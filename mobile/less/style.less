@@ -609,11 +609,12 @@ div.innexus-chatbot {
   }
   
   //styles for when displayed left
-  &.place_left {
+  &.place_left.bounce {
     right: auto;
     left: 20px;
     
-    animation: wait-left 3.33s forwards;
+    animation: wait-left 3.33s forwards,
+    bounce 15s infinite;;
     
     /*
 &.active {
@@ -630,8 +631,9 @@ div.innexus-chatbot {
   }
   
   //styles for when displayed right
-  &.place_right {
-    animation: wait-right 3.33s forwards;
+  &.place_right.bounce {
+    animation: wait-right 3.33s forwards,
+    bounce 15s infinite;
     /*
 animation: bounce 8s infinite;
     animation-delay: 10s;
@@ -680,22 +682,22 @@ animation: bounce 8s infinite;
     right: 20px;
   }
   
-  4% {
+  2% {
     bottom: 30px;
     right: 20px;
   }
   
-  7% {
+  3% {
     bottom: 20px;
     right: 20px;
   }
   
-  10% {
+  5% {
     bottom: 23px;
     right: 20px;
   }
   
-  12% {
+  6% {
     bottom: 20px;
     right: 20px;
   }

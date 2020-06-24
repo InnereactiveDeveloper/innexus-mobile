@@ -510,10 +510,10 @@ div.innexus-chatbot.place_left.active {
     margin-top: 2px;
   }
 }
-.chatbot-open.place_left {
+.chatbot-open.place_left.bounce {
   right: auto;
   left: 20px;
-  animation: wait-left 3.33s forwards;
+  animation: wait-left 3.33s forwards, bounce 15s infinite;
   /*
 &.active {
       right: auto;
@@ -527,8 +527,8 @@ div.innexus-chatbot.place_left.active {
     }
 */
 }
-.chatbot-open.place_right {
-  animation: wait-right 3.33s forwards;
+.chatbot-open.place_right.bounce {
+  animation: wait-right 3.33s forwards, bounce 15s infinite;
   /*
 animation: bounce 8s infinite;
     animation-delay: 10s;
@@ -567,19 +567,19 @@ animation: bounce 8s infinite;
     bottom: 20px;
     right: 20px;
   }
-  4% {
+  2% {
     bottom: 30px;
     right: 20px;
   }
-  7% {
+  3% {
     bottom: 20px;
     right: 20px;
   }
-  10% {
+  5% {
     bottom: 23px;
     right: 20px;
   }
-  12% {
+  6% {
     bottom: 20px;
     right: 20px;
   }
