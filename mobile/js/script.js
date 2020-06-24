@@ -35,6 +35,7 @@ jQuery(document).ready(function($)
       $(a).removeClass('bounce');
     }
     
+    /* OPEN CLOSE START */
     //when the open button is clicked…
     $('.chatbot-open').click(function() {
       
@@ -55,6 +56,7 @@ jQuery(document).ready(function($)
       removeActive('.chatbot-page.contact_us, .chatbot-page.multi_contact_us, .chatbot-page.request_appointment, .chatbot-page.hours, .chatbot-page.multi_hours, .chatbot-page.online_patient_forms');
       removeGrow('.chatbot-container');
     })
+    /* OPEN CLOSE END */
     
     /* HOURS START */
     //when the hours button is clicked…
@@ -235,16 +237,9 @@ jQuery(document).ready(function($)
       })
     }
     /* PATIENT FORMS END */
-    
-    //if the height of the container is equal to or greater than 420px…
-    if ( $('.innexus-mobile').outerHeight() >= 420 ) {
-      
-      //add the shadow class to the container
-      $('.innexus-mobile').addClass('shadow');
-    }
   }
   
-  /* FOR LEGACY MOBILE VERSION */
+  /* FOR LEGACY MOBILE VERSION */    
   //if the mobile plugin exists…
   if ( $('.innexus-mobile').length ) {
     
@@ -255,5 +250,12 @@ jQuery(document).ready(function($)
       $('.innexus-mobile').toggleClass('active');
       $('.location-toggle').toggleClass('active');
     })
+    
+    //if the height of the container is equal to or greater than 420px…
+    if ( $('.innexus-mobile').outerHeight() >= 420 ) {
+      
+      //add the shadow class to the container
+      $('.innexus-mobile').addClass('shadow');
+    }
   }
 });
