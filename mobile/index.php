@@ -334,12 +334,12 @@ function XMOB_injection()
           			    $apptLink = $location['appt_req_chatbot'];
           			    $linkIcon = innexus_link_compare($apptLink);
           			    $locationNumber++;
-          			    $buttonNumber++;
                     
                     //show the button for each location
                     if($locationNumber <= $globalLocationNumber && !empty($apptLink))
                     {
                       echo "<a href='$apptLink' class='chatbot-button button-background'>$name&nbsp;$linkIcon</a>";
+                      $buttonNumber++;
                     }
                     
         			    }
