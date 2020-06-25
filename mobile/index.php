@@ -568,7 +568,7 @@ function XMOB_injection()
         			  $formsCopy = $location['patient_forms_button_copy'];        			  
         			  
         			  //if forms link override is not checked and site settings forms don't exist
-                if($formsOverride == false && empty(get_field('upload_patient_forms', 'option'))) {
+                if(empty($formsOverride) && empty(get_field('upload_patient_forms', 'option'))) {
                   //do nothing
                 } else {
                   //otherwise show the multi_forms button
@@ -583,7 +583,7 @@ function XMOB_injection()
                   echo "<div class='buttonsContainer'>";
                   
                   //if forms link override is checked
-                  if($formsOverride == true) {
+                  if(!empty($formsOverride)) {
                     //use those fields
                 		$forms = get_field('override_links', 'options');
                 		$formsCount = 0;
@@ -605,7 +605,7 @@ function XMOB_injection()
               			  }
             			  }
             			  //if pulling forms from site settings…
-              		} elseif($formsOverride == false && !empty(get_field('upload_patient_forms', 'option'))) {
+              		} elseif(empty($formsOverride) && !empty(get_field('upload_patient_forms', 'option'))) {
                 		//grab the categories
                 		$categories = get_field('upload_patient_forms', 'option');
                 		$formsCount = 0;
@@ -630,7 +630,7 @@ function XMOB_injection()
                       $formCopy = $form['form_title'];
                       
                       //if an online form link exists…
-                      if($onlineFormLink != false) {
+                      if(!empty($onlineFormLink)) {
                         //check the url and add the button
                         $linkIcon = innexus_link_compare($onlineFormLink);
                         echo "<a href='$onlineFormLink' class='chatbot-button chatbot-button-background'>$formCopy&nbsp;(Online)</a>";
@@ -638,7 +638,7 @@ function XMOB_injection()
                       }
               			  
               			  //if a pdf form link exists…
-              			  if($formLink != false) {
+              			  if(!empty($formLink)) {
                 			  //check the url and add the button
                 			  $linkIcon = innexus_link_compare($formLink);
                 			  echo "<a href='$formLink' class='chatbot-button chatbot-button-background'>$formCopy&nbsp;(PDF)</a>";
@@ -658,17 +658,7 @@ function XMOB_injection()
   			    }
   			    
   			    //otherwise, if there is only one location…
-  			    if ($locationCount == 1) {
-    			    $hours = $location['location_hours'];
-    			    $monday = $hours['monday'];
-    			    $tuesday = $hours['tuesday'];
-    			    $wednesday = $hours['wednesday'];
-    			    $thursday = $hours['thursday'];
-    			    $friday = $hours['friday'];
-    			    $saturday = $hours['saturday'];
-    			    $sunday = $hours['sunday'];
-    			    $additionalInfo = $hours['additional_info'];
-    			    
+  			    if ($locationCount == 1) {    			    
     			    $name = $location['location_name_chatbot'];
     			    $apptLink = $location['appt_req_chatbot'];
               $apptCopy = $location['appointment_request_button_copy'];
@@ -739,6 +729,15 @@ function XMOB_injection()
       			  
       			  //if showing hours…
       			  if(in_array('hours', $homeData)) {
+        			  $hours = $location['location_hours'];
+      			    $monday = $hours['monday'];
+      			    $tuesday = $hours['tuesday'];
+      			    $wednesday = $hours['wednesday'];
+      			    $thursday = $hours['thursday'];
+      			    $friday = $hours['friday'];
+      			    $saturday = $hours['saturday'];
+      			    $sunday = $hours['sunday'];
+      			    $additionalInfo = $hours['additional_info'];
         			  
         			  //show the hours button
         			  echo "<div class='chatbot-button chatbot-button-background hours' id='hours'>$hoursCopy</div>";
