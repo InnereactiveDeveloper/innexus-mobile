@@ -9,8 +9,7 @@
  */
 
 //Enqueue scripts and styles.
-function XMOB_scripts() 
-{  
+function XMOB_scripts() {  
 	wp_enqueue_script( 'innexus-mobile-script', plugin_dir_url( __FILE__ ) . 'js/script.js' , array('jquery'), null, true );
 	wp_enqueue_style( 'innexus-mobile-style', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), null );
 	
@@ -19,24 +18,18 @@ function XMOB_scripts()
 	$layout_fa2 = wp_style_is('imc-fa2');
 	
 	//If the layout FA enqueues aren't present, add a CDN version of fontawesome for retroactive sites
-	if($layout_fa != 1 and $layout_fa2 != 1)
-	{
+	if($layout_fa != 1 and $layout_fa2 != 1) {
 		wp_enqueue_style( 'innexus-fa', 'https://use.fontawesome.com/releases/v5.7.2/css/all.css', array('imc-style'), null );
 	}
-	
 }
 
-function innexus_link_compare($target)
-{
+function innexus_link_compare($target) {
   $url = site_url();
   $linkIcon = '<i class="fas fa-link"></i>';
-  //pre(strpos($target, $url));
   
-  if(strpos($target, $url) === false) 
-  {
+  if(strpos($target, $url) === false) {
     $linkIcon = '<i class="fas fa-external-link-alt"></i>';
   }
-  
   return $linkIcon;
 }
 
@@ -46,7 +39,7 @@ function XMOB_injection()
 	//https://codex.wordpress.org/Plugin_API/Action_Reference/wp_footer
 	//https://www.advancedcustomfields.com/resources/get_field/
 	
-	//grab the on/off field
+	//grab basic settings
 	$display = get_field('display_options', 'option');
 	$leftRight = get_field('left_right', 'option');
 	$version = get_field('mobile_version', 'option');
@@ -56,18 +49,16 @@ function XMOB_injection()
 	$items = count($homeData);
 				
 	//if display option is set to mobile or all…
-	if( $display == 'display_mobile' || $display == 'display_all' ) 
-	{
-  	//and the basic version is selected
+	if( $display == 'display_mobile' || $display == 'display_all' ) {
+  	//and the legacy version is selected
   	if($version == 'innexus_mobile') {
     	
     	//grab the location fields
     	$location_repeater = get_field('mobile_location', 'option');
     	
     	//Loop through each location
-			foreach($location_repeater as $location)
-			{
-				//variables
+			foreach($location_repeater as $location) {
+				//create variables
 				$name = $location['location_name'];
         $phone = $location['phone_number'];
         $phonei = $location['phone_icon'];
@@ -85,63 +76,50 @@ function XMOB_injection()
         $classes = '';
         
         //check if phone toggle is on, count if it is
-        if( $phonetoggle == 'phone_number_on' ) 
-				{
+        if( $phonetoggle == 'phone_number_on' ) {
           $count++;
 				}
 				
 				//check if texting toggle is on, count if it is
-				if( $texttoggle == 'text_number_on') 
-				{
+				if( $texttoggle == 'text_number_on') {
           $count++;
 				}
 				
 				//check if email toggle is on, count if it is
-				if( $emailtoggle == 'email_on') 
-				{
+				if( $emailtoggle == 'email_on') {
           $count++;
 				}
 				
 				//check if appt toggle is on, count if it is and apply classes based on count
-				if($appttoggle == 'appt_on') 
-				{
+				if($appttoggle == 'appt_on') {
           $count++;
           
-          if ( $count == 1 ) 
-          {
+          if ( $count == 1 ) {
   					$classes = 'appt_one';
 					}
 					
-					if ( $count == 2 ) 
-					{
+					if ( $count == 2 ) {
   					$classes = 'appt_two';
 					}
 					
-					if ( $count == 3 ) 
-					{
+					if ( $count == 3 ) {
   					$classes = 'appt_three';
 					}
 					
-					if ( $count == 4 ) 
-					{
+					if ( $count == 4 ) {
   					$classes = 'appt_four';
 					}
-				} 
-				else
-				//apply classes based on count
-				{
-					if ( $count == 1 ) 
-					{
+				} else {
+  				//apply classes based on count
+					if ( $count == 1 ) {
   					$classes = 'one';
 					}
 					
-					if ( $count == 2 ) 
-					{
+					if ( $count == 2 ) {
   					$classes = 'two';
 					}
 					
-					if ( $count == 3 ) 
-					{
+					if ( $count == 3 ) {
   					$classes = 'three';
 					}
 				}
@@ -159,8 +137,7 @@ function XMOB_injection()
   					echo "<ul class='location-info'>";
   						
   						//Controls visibility of Phone Number
-  						if( $phonetoggle == 'phone_number_on' ) 
-  						{
+  						if( $phonetoggle == 'phone_number_on' ) {
   							echo "<li class='location-phone'><a href='tel:+1" . $phone_clean . "'>";
   								echo $phonei;
   								echo "<p>Call</p>";
@@ -168,8 +145,7 @@ function XMOB_injection()
   						}
   						
   						//Controls visibility of Texting Number
-  						if( $texttoggle == 'text_number_on') 
-  						{
+  						if( $texttoggle == 'text_number_on') {
   							echo "<li class='location-text'><a href='sms:" . $text_clean . "'>";
   								echo $texti;
   								echo "<p>Text</p>";
@@ -177,8 +153,7 @@ function XMOB_injection()
   						}
   						
   						//Controls visibility of Email
-  						if( $emailtoggle == 'email_on') 
-  						{
+  						if( $emailtoggle == 'email_on') {
   							echo "<li class='location-email'><a href='mailto:" . $email . "'>";
   								echo $emaili;
   								echo "<p>Email</p>";
@@ -186,8 +161,7 @@ function XMOB_injection()
   						}
   						
   						//Controls visibility of Appointment Request
-  						if( $appttoggle == 'appt_on') 
-  						{
+  						if( $appttoggle == 'appt_on') {
   							echo "<li class='location-appt'><a href='" . $appt . "'>";
   								echo $appti;
   								echo "<p>Appointments</p>";
@@ -210,9 +184,8 @@ function XMOB_injection()
   		$linkIcon = '';
   		$extLinkIcon = '<i class="fas fa-external-link-alt"></i>';
   		$locationCount = count($location_repeater_chatbot);
+  		$globalLocationNumber = count($global_location_repeater);
   		$formsOverride = get_field('patient_forms_override', 'options');
-  		
-  		$globalLocationNumber = 0;
   		
   		//set the color classes
       ?>
@@ -230,14 +203,9 @@ function XMOB_injection()
       }
       </style>
       <?php
-  		
-  		foreach($global_location_repeater as $global_location) {
-    		$globalLocationNumber++;
-  		}
   		  		  	
   		//if the plugin display option is *not* set to Off…
-  		if($display != 'Off')
-  		{
+  		if($display != 'Off') {
     		
     		//display the icon by…
     		//if the free version is being used…		
@@ -261,27 +229,27 @@ function XMOB_injection()
       		//and the array lands on random or male…
       		if ($randIconIndex == 'random' || $randIconIndex == 'male') {
         		//display the male icon.
-        		$icon =  XMOB_URL . '/mobile/img/m1.png';
+        		$icon = XMOB_URL . '/mobile/img/m1.png';
         		//otherwise, display the female icon.
       		} elseif ($randIconIndex == 'custom' || $randIconIndex == 'female1') {
-        		$icon =  XMOB_URL . '/mobile/img/f1.png';
+        		$icon = XMOB_URL . '/mobile/img/f1.png';
       		} elseif ($randIconIndex == 'female2') {
-        		$icon =  XMOB_URL . '/mobile/img/f2.png';
+        		$icon = XMOB_URL . '/mobile/img/f2.png';
       		} else {
-        		$icon =  XMOB_URL . '/mobile/img/f2.png';
+        		$icon = XMOB_URL . '/mobile/img/f2.png';
       		}
       		//or, if the female1 choise is used…
     		} elseif ($iconChoice == 'female1') {
       		//display the female1 icon.
-        	$icon =  XMOB_URL . '/mobile/img/f1.png';
+        	$icon = XMOB_URL . '/mobile/img/f1.png';
         	//or, if the female2 choice is used…
         } elseif ($iconChoice == 'female2') {
         	//display the female2 icon.
-          $icon =  XMOB_URL . '/mobile/img/f2.png';
+          $icon = XMOB_URL . '/mobile/img/f2.png';
         	//or, if the male choise is used…
       	} elseif ($iconChoice == 'male') {
         	//display the male icon.
-        	$icon =  XMOB_URL . '/mobile/img/m1.png';
+        	$icon = XMOB_URL . '/mobile/img/m1.png';
         	//or, if the custom upload option is used…
       	} elseif ($iconChoice == 'upload') {
         	//display the custom icon.
@@ -293,14 +261,13 @@ function XMOB_injection()
   			echo "<div class='chatbot-open $display $leftRight bounce'><img src='$icon' alt='chatbot icon'></div>";
   			
   			//card container
-  			
   			echo "<div class='innexus-chatbot $display $leftRight " .'locationCount'."$globalLocationNumber'>";
   			  //add a close button
   			  echo "<div class='chatbot-close $display $leftRight'><i class='fas fa-times'></i></div>";
   			  //add the image/icon
   			  echo "<div class='chatbot-icon $display $leftRight'><img src='$icon' alt='chatbot icon'></div>";
   			  
-  			  //display the first question and options
+  			  //display the intro message and options
   			  echo "<div class='chatbot-container $display $leftRight'>";
   			    echo "<p class='chatbot-response'>$intro</p>";
   			    
@@ -322,13 +289,16 @@ function XMOB_injection()
         			  echo "<div class='chatbot-button request_appointment chatbot-button-background'>$apptCopy</div>";
         			  //when clicked, show the request_appointment page
         			  echo "<div class='chatbot-page request_appointment'>";
+        			    //add a back button
         			    echo "<div class='chatbot-page-back request_appointment'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
+          			  //set a location counter
           			  $locationNumber = 0;
           			  
           			  echo "<div class='buttonsContainer'>";
           			  
+          			  //set a button counter
           			  $buttonNumber = 0;
           			  
           			  //loop through each location
@@ -338,18 +308,26 @@ function XMOB_injection()
           			    $linkIcon = innexus_link_compare($apptLink);
           			    $locationNumber++;
                     
-                    //show the button for each location
-                    if($locationNumber <= $globalLocationNumber && !empty($apptLink))
-                    {
+                    //if on the new layouts
+                    if($global_location_repeater) {
+                      //and there are locations left
+                      if($locationNumber <= $globalLocationNumber && !empty($apptLink)) {
+                        //add the button
+                        echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$name&nbsp;$linkIcon</a>";
+                        $buttonNumber++;
+                      }
+                    } else {
+                      //otherwise, add the button
                       echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$name&nbsp;$linkIcon</a>";
                       $buttonNumber++;
                     }
-                    
         			    }
         			    
         			    echo "</div>";
         			    
+        			    //if more than five buttons have been added
         			    if($buttonNumber > 5) {
+          			    //add the more options button
           			    echo "<div class='chatbot-button moreOptions chatbot-button-background'>More Options</div>";
         			    }
         			    
@@ -358,6 +336,8 @@ function XMOB_injection()
       			  
       			  //if showing contact us…
       			  if(in_array('contact_us', $homeData)) {
+        			  $buttonCount = 0;
+        			  $locationNumber = 0;
         			  
         			  //show the contact us button
         			  echo "<div class='chatbot-button chatbot-button-background multi_contact_us'>$contactCopy</div>";
@@ -366,12 +346,11 @@ function XMOB_injection()
         			    echo "<div class='chatbot-page-back multi_contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
-          			  //loop through each location
-          			  $locationNumber = 0;
-          			  
           			  echo "<div class='buttonsContainer'>";
           			  
+          			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
+            			  //grab necessary fields
             			  $name = $location['location_name_chatbot'];
           			    $contactLink = $location['contact_us_chatbot'];
           			    $contactCopy = $location['contact_us_button_copy'];
@@ -379,7 +358,9 @@ function XMOB_injection()
           			    $apptCopy = $location['appointment_request_button_copy'];
           			    $locationNumber++;
           			    $linkIcon = innexus_link_compare($contactLink);
+          			    $output = '';
           			    
+          			    //grab additional fields when using static option
           			    if($sync == 'static') {
             			    $address = $location['location_address'];
               			  $phone = $location['location_phone'];
@@ -388,66 +369,64 @@ function XMOB_injection()
               			  $phone_clean = preg_replace('~[-._#,]~', '', $phone);
           			    }
           			    
-          			    //show the button for each location
-          			    if($locationNumber <= $globalLocationNumber && !empty($name)) {
-            			    echo "<div class='chatbot-button chatbot-button-background contact_us' id='contact_us' data-location='location-".$locationNumber."'>$name</div>";
-            			    
-            			    //when clicked, show the contact_us for that location
-                      echo "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
-              			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
-                			  echo "<p class='chatbot-response'>$name</p>";
-                			  if($sync == 'static') {
-                  			  echo $address;
-                  			  echo "<br>";
-                  			  echo "<br>";
-                			  } else {
-                  			  echo do_shortcode('[address location='.$locationNumber.']');
-                			  }
-                			  if($sync == 'static') {
-                  			  echo "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
-                  			  echo "<br>";
-                			  } else {
-                  			  echo do_shortcode('[phone location='.$locationNumber.']');
-                        }
-                        if($sync == 'static') {
-                          echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
-                			  } else {
-                  			  echo "<br>";
-                          echo do_shortcode('[email location='.$locationNumber.']');
-                			  }
-                			  
-                			  //show the contact us button
-                			  //if showing appointment requests…
-                			  $linkIcon = innexus_link_compare($apptLink);
-                  			  
-                			  //show the appointment button
+          			    $output .= "<div class='chatbot-button chatbot-button-background contact_us' id='contact_us' data-location='location-".$locationNumber."'>$name</div>";
+          			    $buttonCount++;
+          			    
+          			    //when clicked, show the contact_us info for that location
+                    $output .= "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
+            			    $output .= "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+              			  $output .= "<p class='chatbot-response'>$name</p>";
+              			  if($sync == 'static') {
+                			  $output .= $address;
+                			  $output .= "<br>";
+                			  $output .= "<br>";
+              			  } else {
+                			  $output .= do_shortcode('[address location='.$locationNumber.']');
+              			  }
+              			  if($sync == 'static') {
+                			  $output .= "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
+                			  $output .= "<br>";
+              			  } else {
+                			  $output .= do_shortcode('[phone location='.$locationNumber.']');
+                      }
+                      if($sync == 'static') {
+                        $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+              			  } else {
+                			  $output .= "<br>";
+                        $output .= do_shortcode('[email location='.$locationNumber.']');
+              			  }
+              			  
+              			  //if showing contact us link
+              			  if(!empty($contactLink)) {
                 			  $linkIcon = innexus_link_compare($contactLink);
-                			  
-                			  if(!empty($contactLink)) {
-                  			  echo "<a href='$contactLink' class='chatbot-button chatbot-button-background'>$contactCopy&nbsp;$linkIcon</a>";
-                			  } else {
-                  			  //do nothing
+                			  //show the contact us button
+                			  $output .= "<a href='$contactLink' class='chatbot-button chatbot-button-background'>$contactCopy&nbsp;$linkIcon</a>";
+              			  }
+              			  
+              			  //if showing appointment requests…
+              			  if(in_array('request_appointment', $homeData)) {
+                			  $linkIcon = innexus_link_compare($apptLink);
+                			  //show the appointment button
+                			  if(!empty($apptLink)) {
+                  			  $output .= "<a href='$apptLink' class='chatbot-button chatbot-button-background two'>$apptCopy&nbsp;$linkIcon</a>";
                 			  }
-                			  
-                			  //if showing appointment requests…
-                			  if(in_array('request_appointment', $homeData)) {
-                  			  
-                  			  $linkIcon = innexus_link_compare($apptLink);
-                  			  
-                  			  //show the appointment button
-                  			  if(!empty($apptLink)) {
-                    			  echo "<a href='$apptLink' class='chatbot-button chatbot-button-background two'>$apptCopy&nbsp;$linkIcon</a>";
-                  			  } else {
-                    			  //do nothing
-                  			  }
-                			  }
-              			  echo "</div>";
-          			    }
+              			  }
+              			  $output .= "</div>";
+          			    
+          			    //if on the new layouts
+                    if($global_location_repeater) {              			  
+            			    if($locationNumber <= $globalLocationNumber && !empty($name)) {
+                			  echo $output;
+            			    }
+            			    //or if not on a new layout
+                    } else {
+                      echo $output;
+                    }
         			    }
         			    
         			    echo "</div>";
         			    
-        			    if($globalLocationNumber > 5) {
+        			    if($buttonCount > 5) {
           			    echo "<div class='chatbot-button moreOptions chatbot-button-background'>More Options</div>";
         			    }
         			    
@@ -456,6 +435,8 @@ function XMOB_injection()
       			  
       			  //if showing hours…
       			  if(in_array('hours', $homeData)) {
+        			  $buttonCount = 0;
+        			  $locationNumber = 0;
         			  
         			  //show the multi_hours button
         			  echo "<div class='chatbot-button chatbot-button-background multi_hours' id='hours'>$hoursCopy</div>";
@@ -464,48 +445,118 @@ function XMOB_injection()
         			    echo "<div class='chatbot-page-back multi_hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
-          			  //loop through each location
-          			  $locationNumber = 0;
-          			  
           			  echo "<div class='buttonsContainer'>";
           			  
+          			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
             			  $name = $location['location_name_chatbot'];
             			  $apptLink = $location['appt_req_chatbot'];
+            			  $hours = $location['location_hours'];
+          			    $monday = $hours['monday'];
+          			    $tuesday = $hours['tuesday'];
+          			    $wednesday = $hours['wednesday'];
+          			    $thursday = $hours['thursday'];
+          			    $friday = $hours['friday'];
+          			    $saturday = $hours['saturday'];
+          			    $sunday = $hours['sunday'];
+          			    $additionalInfo = $hours['additional_info'];
+          			    
           			    $locationNumber++;
+          			    $output = '';
+          			    
+          			    //show the button for each location
+          			    $output .= "<div class='chatbot-button chatbot-button-background hours' id='hours' data-location='location-".$locationNumber."'>$name</div>";
+          			    $buttonCount++;
                     
-                    //show the button for each location
-                    if($locationNumber <= $globalLocationNumber && !empty($name)) {
-                      echo "<div class='chatbot-button chatbot-button-background hours' id='hours' data-location='location-".$locationNumber."'>$name</div>";
-                      
-                      //when clicked, show the hours for that location
-                      echo "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
-              			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
-                			  echo "<p class='chatbot-response'>$name Hours</p>";
-                			  echo do_shortcode('[hours location='.$locationNumber.']');
-                			  
-                			  //if showing appointment requests…
+                    //when clicked, show the hours for that location
+                    $output .= "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
+            			    $output .= "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+              			  $output .= "<p class='chatbot-response'>$name Hours</p>";
+              			  
+              			  if($sync == 'static') {
+                			  $output .= "<div id='hours' class='hours snippet'>";
+            			  
+                  			  //Monday
+                      		$output .= "<ul class='day'>";
+                      			$output .= "<li class='day'>Monday</li>";
+                      			$output .= "<li class='hour'>". $monday ."</li>";
+                      		$output .= "</ul>";
+                      		
+                      		//tuesday
+                      		$output .= "<ul class='day'>";
+                      			$output .= "<li class='day'>Tuesday</li>";
+                      			$output .= "<li class='hour'>". $tuesday ."</li>";
+                      		$output .= "</ul>";
+                      		
+                      		//wednesday
+                      		$output .= "<ul class='day'>";
+                      			$output .= "<li class='day'>Wednesday</li>";
+                      			$output .= "<li class='hour'>". $wednesday ."</li>";
+                      		$output .= "</ul>";
+                      		
+                      		//thursday
+                      		$output .= "<ul class='day'>";
+                      			$output .= "<li class='day'>Thursday</li>";
+                      			$output .= "<li class='hour'>". $thursday ."</li>";
+                      		$output .= "</ul>";
+                      		
+                      		//Friday
+                      		$output .= "<ul class='day'>";
+                      			$output .= "<li class='day'>Friday</li>";
+                      			$output .= "<li class='hour'>". $friday ."</li>";
+                      		$output .= "</ul>";
+                      		
+                      		//Saturday
+                      		$output .= "<ul class='day'>";
+                      			$output .= "<li class='day'>Saturday</li>";
+                      			$output .= "<li class='hour'>". $saturday ."</li>";
+                      		$output .= "</ul>";
+                      		
+                      		//Sunday
+                      		$output .= "<ul class='day'>";
+                      			$output .= "<li class='day'>Monday</li>";
+                      			$output .= "<li class='hour'>". $sunday ."</li>";
+                      		$output .= "</ul>";
+                    		
+                    		$output .= "</div>";
+                    		
+                    		//Additional Notes below wrapper
+                      	if(!empty($additionalInfo))
+                      	{
+                      		$output .= "<div class='hours-additional-notes'>";
+                      			$output .= $additionalInfo;	
+                      		$output .= "</div>";	
+                      	}
+              			  } else {
+                			  $output .= do_shortcode('[hours location='.$locationNumber.']');
+              			  }
+                			                			                			  
+              			  //if showing appointment requests…
+              			  if(in_array('request_appointment', $homeData)) {
                 			  $linkIcon = innexus_link_compare($apptLink);
-                  			                			                			  
-                			  //if showing appointment requests…
-                			  if(in_array('request_appointment', $homeData)) {
-                  			  
-                  			  $linkIcon = innexus_link_compare($apptLink);
-                  			  
-                  			  //show the appointment button
-                          if(!empty($apptLink)) {
-                    			  echo "<a href='$apptLink' class='chatbot-button chatbot-button-background two'>$apptCopy&nbsp;$linkIcon</a>";
-                  			  } else {
-                    			  //do nothing
-                  			  }
+                			  //show the appointment button
+                        if(!empty($apptLink)) {
+                  			  $output .= "<a href='$apptLink' class='chatbot-button chatbot-button-background two'>$apptCopy&nbsp;$linkIcon</a>";
                 			  }
-              			  echo "</div>";
+              			  }
+              			  
+            			  $output .= "</div>";
+                    
+                    //if on a new layout
+                    if($global_location_repeater) {
+                      //show the button for each location
+                      if($locationNumber <= $globalLocationNumber && !empty($name)) {
+                        echo $output;
+                      }
+                      //if not on a new layout
+                    } else {
+                      echo $output;
                     }
         			    }
         			    
         			    echo "</div>";
         			    
-        			    if($globalLocationNumber > 5) {
+        			    if($buttonCount > 5) {
           			    echo "<div class='chatbot-button moreOptions chatbot-button-background'>More Options</div>";
         			    }
         			    
@@ -514,12 +565,16 @@ function XMOB_injection()
       			  
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
-        			  $formsCopy = $location['patient_forms_button_copy'];
-        			  //$linkIcon = innexus_link_compare($formsLink);
+        			  $formsCopy = $location['patient_forms_button_copy'];        			  
         			  
-        			  //show the multi_forms button
-        			  echo "<div class='chatbot-button chatbot-button-background online_patient_forms' id='online_patient_forms'>$formsCopy</div>";
-        			  //echo "<a href='$formsLink' class='chatbot-button chatbot-button-background'>$formsCopy&nbsp;$linkIcon</a>";
+        			  //if forms link override is not checked and site settings forms don't exist
+                if($formsOverride == false && empty(get_field('upload_patient_forms', 'option'))) {
+                  //do nothing
+                } else {
+                  //otherwise show the multi_forms button
+                  echo "<div class='chatbot-button chatbot-button-background online_patient_forms' id='online_patient_forms'>$formsCopy</div>";
+                }
+        			  
         			  //when clicked, show the multi_forms page
                 echo "<div class='chatbot-page online_patient_forms'>";
                   echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
@@ -527,7 +582,9 @@ function XMOB_injection()
                   
                   echo "<div class='buttonsContainer'>";
                   
+                  //if forms link override is checked
                   if($formsOverride == true) {
+                    //use those fields
                 		$forms = get_field('override_links', 'options');
                 		$formsCount = 0;
                 		
@@ -594,9 +651,6 @@ function XMOB_injection()
                 			  echo "<div class='chatbot-button moreOptions chatbot-button-background'>More Options</div>";
               			  }
             			  }
-              		} else {
-	              		//@TODO
-	              		//Output patient center link?
               		}
               		echo "</div>";
                 echo "</div>";
@@ -605,14 +659,22 @@ function XMOB_injection()
   			    
   			    //otherwise, if there is only one location…
   			    if ($locationCount == 1) {
+    			    $hours = $location['location_hours'];
+    			    $monday = $hours['monday'];
+    			    $tuesday = $hours['tuesday'];
+    			    $wednesday = $hours['wednesday'];
+    			    $thursday = $hours['thursday'];
+    			    $friday = $hours['friday'];
+    			    $saturday = $hours['saturday'];
+    			    $sunday = $hours['sunday'];
+    			    $additionalInfo = $hours['additional_info'];
+    			    
     			    $name = $location['location_name_chatbot'];
     			    $apptLink = $location['appt_req_chatbot'];
               $apptCopy = $location['appointment_request_button_copy'];
               $contactLink = $location['contact_us_chatbot'];
       			  $contactCopy = $location['contact_us_button_copy'];
-      			  //$formsLink = $location['patient_forms'];
       			  $formsCopy = $location['patient_forms_button_copy'];
-      			  //$hours = $location['patient_forms_chatbot'];
       			  $hoursCopy = $location['office_hours_button_copy'];
     			    
     			    //if showing appointment requests…
@@ -627,31 +689,48 @@ function XMOB_injection()
       			  if(in_array('contact_us', $homeData)) {
         			  $linkIcon = innexus_link_compare($contactLink);
         			  
+        			  //grab additional fields when using static option
+      			    if($sync == 'static') {
+        			    $address = $location['location_address'];
+          			  $phone = $location['location_phone'];
+          			  $email = $location['location_email'];
+          			  
+          			  $phone_clean = preg_replace('~[-._#,]~', '', $phone);
+      			    }
+        			  
         			  //show the contact us button
         			  echo "<div class='chatbot-button chatbot-button-background contact_us' id='contact_us'>$contactCopy</div>";
                 //when clicked, show the contact_us for that location
                 echo "<div class='chatbot-page contact_us'>";
         			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>$name</p>";
-          			  echo do_shortcode('[address]');
-          			  echo do_shortcode('[phone]');
-          			  echo '<br>';
-          			  echo do_shortcode('[email]');
+          			  if($sync == 'static') {
+            			  echo $address;
+            			  echo "<br>";
+            			  echo "<br>";
+          			  } else {
+            			  echo do_shortcode('[address]');
+          			  }
+          			  if($sync == 'static') {
+            			  echo "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
+            			  echo "<br>";
+          			  } else {
+            			  echo do_shortcode('[phone]');
+                  }
+                  if($sync == 'static') {
+                    echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+          			  } else {
+            			  echo "<br>";
+                    echo do_shortcode('[email]');
+          			  }
           			  
-          			  //show the contact us button
-          			  //if showing appointment requests…
-          			  $linkIcon = innexus_link_compare($apptLink);
-            			  
-          			  //show the appointment button
+          			  //show the contact us button            			  
           			  $linkIcon = innexus_link_compare($contactLink);
-          			  
                   echo "<a href='$contactLink' class='chatbot-button chatbot-button-background'>Contact Page&nbsp;$linkIcon</a>";
           			  
           			  //if showing appointment requests…
           			  if(in_array('request_appointment', $homeData)) {
-            			  
             			  $linkIcon = innexus_link_compare($apptLink);
-            			  
             			  //show the appointment button
                     echo "<a href='$apptLink' class='chatbot-button chatbot-button-background two'>$apptCopy&nbsp;$linkIcon</a>";
           			  }
@@ -666,7 +745,64 @@ function XMOB_injection()
         			  echo "<div class='chatbot-page hours'>";
         			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Office Hours</p>";
-          			  echo do_shortcode('[hours]');
+          			  
+          			  if($sync == 'static') {
+            			  echo "<div id='hours' class='hours snippet'>";
+            			  
+            			  //Monday
+                		echo "<ul class='day'>";
+                			echo "<li class='day'>Monday</li>";
+                			echo "<li class='hour'>". $monday ."</li>";
+                		echo "</ul>";
+                		
+                		//tuesday
+                		echo "<ul class='day'>";
+                			echo "<li class='day'>Tuesday</li>";
+                			echo "<li class='hour'>". $tuesday ."</li>";
+                		echo "</ul>";
+                		
+                		//wednesday
+                		echo "<ul class='day'>";
+                			echo "<li class='day'>Wednesday</li>";
+                			echo "<li class='hour'>". $wednesday ."</li>";
+                		echo "</ul>";
+                		
+                		//thursday
+                		echo "<ul class='day'>";
+                			echo "<li class='day'>Thursday</li>";
+                			echo "<li class='hour'>". $thursday ."</li>";
+                		echo "</ul>";
+                		
+                		//Friday
+                		echo "<ul class='day'>";
+                			echo "<li class='day'>Friday</li>";
+                			echo "<li class='hour'>". $friday ."</li>";
+                		echo "</ul>";
+                		
+                		//Saturday
+                		echo "<ul class='day'>";
+                			echo "<li class='day'>Saturday</li>";
+                			echo "<li class='hour'>". $saturday ."</li>";
+                		echo "</ul>";
+                		
+                		//Sunday
+                		echo "<ul class='day'>";
+                			echo "<li class='day'>Monday</li>";
+                			echo "<li class='hour'>". $sunday ."</li>";
+                		echo "</ul>";
+                		
+                		echo "</div>";
+                		
+                		//Additional Notes below wrapper
+                  	if(!empty($additionalInfo))
+                  	{
+                  		echo "<div class='hours-additional-notes'>";
+                  			echo $additionalInfo;	
+                  		echo "</div>";	
+                  	}
+          			  } else {
+            			  echo do_shortcode('[hours]');
+          			  }
           			  
           			  //if showing appointment requests…
           			  $linkIcon = innexus_link_compare($apptLink);

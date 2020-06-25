@@ -239,6 +239,7 @@ div.innexus-chatbot .chatbot-container .chatbot-page .chatbot-response {
 div.innexus-chatbot .chatbot-container .chatbot-page.hours {
   background-color: whitesmoke;
   z-index: 1;
+  text-align: left;
 }
 div.innexus-chatbot .chatbot-container .chatbot-page.hours p.chatbot-response {
   margin-top: 10px;
