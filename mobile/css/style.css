@@ -16,6 +16,12 @@ div.innexus-chatbot {
   min-height: 55px;
   box-shadow: 0 0 32px rgba(55, 55, 55, 0.3);
 }
+div.innexus-chatbot i,
+div.innexus-chatbot * i {
+  font-weight: 900;
+  font-family: 'FontAwesome';
+  font-style: normal;
+}
 div.innexus-chatbot .chatbot-container {
   margin: 0 13px 8px 13px;
   text-align: center;
