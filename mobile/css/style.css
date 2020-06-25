@@ -15,137 +15,6 @@ div.innexus-chatbot {
   max-height: 90vh;
   min-height: 55px;
   box-shadow: 0 0 32px rgba(55, 55, 55, 0.3);
-  /*
-  overflow-x: visible;
-  overflow-y: scroll;
-*/
-  /*
-  .location-container {
-    padding: 0 20px 20px 20px;
-    
-    //location name titles
-    p.location-name {
-      text-align: left;
-      border-bottom: 1px solid #333;
-      margin-bottom: 0.8em;
-      color: #333;
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-    
-    ul.location-info {
-      margin-left: 0;
-      padding-left: 0;
-      list-style-type: none;
-      
-      li {
-        display: inline-block;
-        margin: 0 5% 0 0;
-        border-radius: 5px;
-        -webkit-transition: all 0.2s ease;
-        -o-transition: all 0.2s ease;
-        transition: all 0.2s ease;
-        text-decoration: none;
-        padding: 2px 0 0 0;
-        background-color: #f5f5f5;
-        -webkit-box-shadow: 1px 1px 1px #eee;
-        box-shadow: 1px 1px 1px #ddd;
-        
-        &:hover {
-          background-color: #f8f8f8;
-        }
-      }
-    }
-    
-    p, a {
-      display: block;
-      margin: 0;
-      text-align: center;
-      text-decoration: none;
-    }
-    
-    //changes for specific number of items with/without appt    
-    &.two, &.three, &.appt_three {
-      ul.location-info li {
-        width: 47%;
-      }
-    }
-    
-    &.three, &.appt_two, &.appt_four {
-      ul.location-info li {
-        width: 30%;
-      }
-    }
-    
-    &.appt_two {
-      ul.location-info li {
-        margin: 0 5% 0 0;
-        
-        &:last-child {
-          width: 60%;
-        }
-      }
-    }
-    
-    &.appt_three {
-      ul.location-info li {        
-        &:nth-child(2) {
-          margin-right: 0;
-        }
-      }
-    }
-    
-    &.appt_four {
-      ul.location-info li {        
-        &:nth-child(3) {
-          margin-right: 0;
-        }
-      }
-    }
-    
-    ul.location-info li {
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-    
-    &.one, &.appt_one, &.appt_three, &.appt_four {
-      ul.location-info li {
-        &:last-child {
-          width: 100%;
-        }
-      }
-    }
-    
-    &.appt_three, &.appt_four {
-      ul.location-info li {
-        margin-bottom: 5%;
-      }
-    }
-  }
-*/
-  /*
-  &.shadow:after {
-    width: 220px;
-    height: 6px;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), color-stop(rgba(0,0,0,0.1)), to(rgba(0,0,0,0.3)));
-    background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0.3));
-    background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0.3));
-    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0.3));
-    display: block;
-    overflow: visible;
-    visibility: visible;
-    position: fixed;
-    bottom: 20px;
-    right: -220px;
-    -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    content: '';
-  }
-*/
 }
 div.innexus-chatbot .chatbot-container {
   margin: 0 13px 8px 13px;
@@ -372,21 +241,6 @@ div.innexus-chatbot .chatbot-icon img {
 }
 div.innexus-chatbot.active {
   right: 20px;
-  /*
-    &.shadow:after {
-      right: 20px;
-    }
-*/
-}
-@media (min-width: 350px) {
-  div.innexus-chatbot {
-    /*
-    &.shadow:after {
-      right: -260px;
-      width: 260px;
-    }
-*/
-  }
 }
 div.innexus-chatbot.display_off {
   display: none;
@@ -399,32 +253,10 @@ div.innexus-chatbot.display_off {
 div.innexus-chatbot.place_left {
   right: auto;
   left: -300px;
-  /*
-    &.shadow:after {
-      right: auto;
-      left: -220px;
-    }
-*/
-}
-@media (min-width: 350px) {
-  div.innexus-chatbot.place_left {
-    /*
-      &.shadow:after {
-        left: -260px;
-        width: 260px;
-      }
-*/
-  }
 }
 div.innexus-chatbot.place_left.active {
   right: auto;
   left: 20px;
-  /*
-      &.shadow:after {
-        right: auto;
-        left: 0;
-      }
-*/
 }
 .chatbot-open {
   background-color: #ddd;

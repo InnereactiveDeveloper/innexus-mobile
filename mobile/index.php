@@ -377,20 +377,26 @@ function XMOB_injection()
             			    $output .= "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
               			  $output .= "<p class='chatbot-response'>$name</p>";
               			  if($sync == 'static') {
-                			  $output .= $address;
-                			  $output .= "<br>";
-                			  $output .= "<br>";
+                			  if(!empty($address)) {
+                  			  $output .= $address;
+                  			  $output .= "<br>";
+                          $output .= "<br>";
+                			  }
               			  } else {
                 			  $output .= do_shortcode('[address location='.$locationNumber.']');
               			  }
               			  if($sync == 'static') {
-                			  $output .= "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
-                			  $output .= "<br>";
+                			  if(!empty($phone_clean)) {
+                  			  $output .= "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
+                          $output .= "<br>";
+                			  }
               			  } else {
                 			  $output .= do_shortcode('[phone location='.$locationNumber.']');
                       }
                       if($sync == 'static') {
-                        $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                        if(!empty($email)) {
+                          $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                        }
               			  } else {
                 			  $output .= "<br>";
                         $output .= do_shortcode('[email location='.$locationNumber.']');
@@ -695,20 +701,26 @@ function XMOB_injection()
         			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>$name</p>";
           			  if($sync == 'static') {
-            			  echo $address;
-            			  echo "<br>";
-            			  echo "<br>";
+            			  if(!empty($address)) {
+              			  echo $address;
+              			  echo "<br>";
+              			  echo "<br>";
+            			  }
           			  } else {
             			  echo do_shortcode('[address]');
           			  }
           			  if($sync == 'static') {
-            			  echo "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
-            			  echo "<br>";
+            			  if(!empty($phone_clean)) {
+              			  echo "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
+                      echo "<br>";
+            			  }
           			  } else {
             			  echo do_shortcode('[phone]');
                   }
                   if($sync == 'static') {
-                    echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                    if(!empty($email)) {
+                      echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                    }
           			  } else {
             			  echo "<br>";
                     echo do_shortcode('[email]');
