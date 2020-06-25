@@ -442,6 +442,12 @@ div.innexus-mobile {
   overflow-x: visible;
   overflow-y: scroll;
 }
+div.innexus-mobile i,
+div.innexus-mobile * i {
+  font-weight: 900;
+  font-family: 'FontAwesome';
+  font-style: normal;
+}
 div.innexus-mobile .location-container {
   padding: 0 20px 20px 20px;
 }
