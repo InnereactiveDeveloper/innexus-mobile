@@ -34,9 +34,14 @@ div.innexus-chatbot .chatbot-container p.chatbot-response {
   font-weight: 600;
   line-height: 26px;
   margin-bottom: 55px;
+  margin-top: 21px;
 }
 div.innexus-chatbot .chatbot-container p.chatbot-response:nth-child(1) {
   min-height: 50px;
+}
+div.innexus-chatbot .chatbot-container .main_buttons-container {
+  position: absolute;
+  bottom: 0;
 }
 div.innexus-chatbot .chatbot-container a.chatbot-button {
   width: 100%;
@@ -109,6 +114,34 @@ div.innexus-chatbot .chatbot-container .chatbot-page.hours {
   background-color: whitesmoke;
   z-index: 1;
   text-align: left;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.hours #hours.hours {
+  display: block;
+  margin: 10px 0;
+  width: 100%;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.hours #hours.hours ul.day {
+  list-style-type: none;
+  margin: 0;
+  padding: 2px 0;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  float: left;
+  display: block;
+  border-bottom: thin solid rgba(0, 0, 0, 0.1);
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.hours #hours.hours ul.day .day,
+div.innexus-chatbot .chatbot-container .chatbot-page.hours #hours.hours ul.day .hour {
+  display: inline-block;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.hours #hours.hours ul.day .day {
+  min-width: 90px;
+  font-weight: bold;
+  float: left;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.hours #hours.hours ul.day .hour {
+  min-width: 100px;
+  float: right;
 }
 div.innexus-chatbot .chatbot-container .chatbot-page.hours p.chatbot-response {
   margin-top: 10px;

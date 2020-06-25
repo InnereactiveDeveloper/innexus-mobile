@@ -282,11 +282,31 @@ function XMOB_injection()
   			    //if there is more than one location
   			    if ($locationCount > 1) {
     			    
+    			    echo "<div class='main_buttons-container'>";
+      			    //show the buttons
+      			    if(in_array('request_appointment', $homeData)) {
+        			    echo "<div class='chatbot-button request_appointment chatbot-button-background'>$apptCopy</div>";
+        			  }
+        			  if(in_array('contact_us', $homeData)) {
+          			  echo "<div class='chatbot-button chatbot-button-background multi_contact_us'>$contactCopy</div>";
+        			  }
+        			  if(in_array('hours', $homeData)) {
+          			  echo "<div class='chatbot-button chatbot-button-background multi_hours' id='hours'>$hoursCopy</div>";
+        			  }
+        			  if(in_array('online_patient_forms', $homeData)) {
+          			  //if forms link override is not checked and site settings forms don't exist
+                  if(empty($formsOverride) && empty(get_field('upload_patient_forms', 'option'))) {
+                    //do nothing
+                  } else {
+                    //otherwise show the multi_forms button
+                    echo "<div class='chatbot-button chatbot-button-background online_patient_forms' id='online_patient_forms'>$formsCopy</div>";
+                  }
+        			  }
+              echo "</div>";
+    			    
     			    //if showing appointment requests…
       			  if(in_array('request_appointment', $homeData)) {
-        			  
-        			  //show the appointment button
-        			  echo "<div class='chatbot-button request_appointment chatbot-button-background'>$apptCopy</div>";
+                
         			  //when clicked, show the request_appointment page
         			  echo "<div class='chatbot-page request_appointment'>";
         			    //add a back button
@@ -339,8 +359,6 @@ function XMOB_injection()
         			  $buttonCount = 0;
         			  $locationNumber = 0;
         			  
-        			  //show the contact us button
-        			  echo "<div class='chatbot-button chatbot-button-background multi_contact_us'>$contactCopy</div>";
         			  //when clicked, show the contact_us page
         			  echo "<div class='chatbot-page multi_contact_us'>";
         			    echo "<div class='chatbot-page-back multi_contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
@@ -444,8 +462,6 @@ function XMOB_injection()
         			  $buttonCount = 0;
         			  $locationNumber = 0;
         			  
-        			  //show the multi_hours button
-        			  echo "<div class='chatbot-button chatbot-button-background multi_hours' id='hours'>$hoursCopy</div>";
         			  //when clicked, show the multi_hours page
         			  echo "<div class='chatbot-page multi_hours'>";
         			    echo "<div class='chatbot-page-back multi_hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
@@ -573,14 +589,6 @@ function XMOB_injection()
       			  if(in_array('online_patient_forms', $homeData)) {
         			  $formsCopy = $location['patient_forms_button_copy'];        			  
         			  
-        			  //if forms link override is not checked and site settings forms don't exist
-                if(empty($formsOverride) && empty(get_field('upload_patient_forms', 'option'))) {
-                  //do nothing
-                } else {
-                  //otherwise show the multi_forms button
-                  echo "<div class='chatbot-button chatbot-button-background online_patient_forms' id='online_patient_forms'>$formsCopy</div>";
-                }
-        			  
         			  //when clicked, show the multi_forms page
                 echo "<div class='chatbot-page online_patient_forms'>";
                   echo "<div class='chatbot-page-back online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
@@ -672,14 +680,32 @@ function XMOB_injection()
       			  $contactCopy = $location['contact_us_button_copy'];
       			  $formsCopy = $location['patient_forms_button_copy'];
       			  $hoursCopy = $location['office_hours_button_copy'];
-    			    
-    			    //if showing appointment requests…
-      			  if(in_array('request_appointment', $homeData)) {
-        			  $linkIcon = innexus_link_compare($apptLink);
-        			  
-        			  //show the appointment button
-        			  echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$apptCopy&nbsp;$linkIcon</a>";
-      			  }
+      			  
+      			  echo "<div class='main_buttons-container'>";
+      			    //show the buttons
+      			    //if showing appointment requests…
+        			  if(in_array('request_appointment', $homeData)) {
+          			  $linkIcon = innexus_link_compare($apptLink);
+          			  
+          			  //show the appointment button
+          			  echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$apptCopy&nbsp;$linkIcon</a>";
+        			  }
+        			  if(in_array('contact_us', $homeData)) {
+          			  echo "<div class='chatbot-button chatbot-button-background contact_us' id='contact_us'>$contactCopy</div>";
+        			  }
+        			  if(in_array('hours', $homeData)) {
+          			  echo "<div class='chatbot-button chatbot-button-background hours' id='hours'>$hoursCopy</div>";
+        			  }
+        			  if(in_array('online_patient_forms', $homeData)) {
+          			  //if forms link override is not checked and site settings forms don't exist
+                  if(empty($formsOverride) && empty(get_field('upload_patient_forms', 'option'))) {
+                    //do nothing
+                  } else {
+                    //otherwise show the multi_forms button
+                    echo "<div class='chatbot-button chatbot-button-background online_patient_forms' id='online_patient_forms'>$formsCopy</div>";
+                  }
+        			  }
+              echo "</div>";
       			  
       			  //if showing contact us…
       			  if(in_array('contact_us', $homeData)) {
@@ -694,8 +720,6 @@ function XMOB_injection()
           			  $phone_clean = preg_replace('~[-._#,]~', '', $phone);
       			    }
         			  
-        			  //show the contact us button
-        			  echo "<div class='chatbot-button chatbot-button-background contact_us' id='contact_us'>$contactCopy</div>";
                 //when clicked, show the contact_us for that location
                 echo "<div class='chatbot-page contact_us'>";
         			    echo "<div class='chatbot-page-back contact_us'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
@@ -751,8 +775,6 @@ function XMOB_injection()
       			    $sunday = $hours['sunday'];
       			    $additionalInfo = $hours['additional_info'];
         			  
-        			  //show the hours button
-        			  echo "<div class='chatbot-button chatbot-button-background hours' id='hours'>$hoursCopy</div>";
         			  echo "<div class='chatbot-page hours'>";
         			    echo "<div class='chatbot-page-back hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Office Hours</p>";
@@ -833,14 +855,6 @@ function XMOB_injection()
       			  if(in_array('online_patient_forms', $homeData)) {
         			  $formsCopy = $location['patient_forms_button_copy'];
         			  $formsCount = 0;
-        			  
-        			  //if forms link override is not checked and site settings forms don't exist
-                if(empty($formsOverride) && empty(get_field('upload_patient_forms', 'option'))) {
-                  //do nothing
-                } else {
-                  //otherwise show the multi_forms button
-                  echo "<div class='chatbot-button chatbot-button-background online_patient_forms' id='online_patient_forms'>$formsCopy</div>";
-                }
 
         			  //when clicked, show the multi_forms page
                 echo "<div class='chatbot-page online_patient_forms'>";

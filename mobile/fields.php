@@ -385,10 +385,10 @@ acf_add_local_field_group(array(
 				'id' => '',
 			),
 			'choices' => array(
-				'random' => '<img src="/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/random.png" style="width: 72px;height: auto;" />',
-				'female1' => '<img src="/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f1.png" style="width: 72px;height: auto;" />',
-				'female2' => '<img src="/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f2.png" style="width: 72px;height: auto;" />',
-				'male' => '<img src="/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/m1.png" style="width: 72px;height: auto;" />',
+				'random' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/random.png" style="width: 72px;height: auto;" />',
+				'female1' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/f1.png" style="width: 72px;height: auto;" />',
+				'female2' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/f2.png" style="width: 72px;height: auto;" />',
+				'male' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/m1.png" style="width: 72px;height: auto;" />',
 			),
 			'allow_null' => 0,
 			'default_value' => 'random',
@@ -422,10 +422,10 @@ acf_add_local_field_group(array(
 				'id' => '',
 			),
 			'choices' => array(
-				'random' => '<img src="/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/random.png" style="width: 72px;height: auto;" />',
-				'female1' => '<img src="/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f1.png" style="width: 72px;height: auto;" />',
-				'female2' => '<img src="/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/f2.png" style="width: 72px;height: auto;" />',
-				'male' => '<img src="/chrissandbox/wp-content/plugins/innexus-mobile/mobile/img/m1.png" style="width: 72px;height: auto;" />',
+				'random' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/random.png" style="width: 72px;height: auto;" />',
+				'female1' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/f1.png" style="width: 72px;height: auto;" />',
+				'female2' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/f2.png" style="width: 72px;height: auto;" />',
+				'male' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/m1.png" style="width: 72px;height: auto;" />',
 				'upload' => '<span style="position:relative;top:21px;">Custom Icon<br>Upload</span>',
 			),
 			'allow_null' => 0,
@@ -1581,4 +1581,3 @@ acf_add_local_field_group(array(
 ));
 
 endif;
-};

@@ -41,10 +41,16 @@ div.innexus-chatbot {
       font-weight: 600;
       line-height: 26px;
       margin-bottom: 55px;
+      margin-top: 21px;
       
       &:nth-child(1) {
         min-height: 50px;
       }
+    }
+    
+    .main_buttons-container {
+      position: absolute;
+      bottom: 0;
     }
     
     //link buttons
@@ -132,6 +138,41 @@ div.innexus-chatbot {
         background-color: whitesmoke;
         z-index: 1;
         text-align: left;
+        
+        //Hours Snippet
+      	#hours.hours {
+      		display: block;
+      		margin: 10px 0;
+      		width: 100%;
+      		
+      		//Basic Hours Styles
+      		ul.day {
+      			list-style-type: none;
+      			margin: 0;
+      			padding: 2px 0;
+      			background-color: rgba(0,0,0,0);
+      			width: 100%;
+      			float: left;
+      			display: block;
+      			border-bottom: thin solid rgba(0,0,0,.1);
+      			
+      			.day,
+      			.hour {
+      				display: inline-block;
+      			}
+      			
+      			.day {
+      				min-width: 90px;
+      				font-weight: bold;
+      				float: left;
+      			}
+      			
+      			.hour {
+      				min-width: 100px;
+      				float: right;
+      			}
+      		}
+      	}
         
         p.chatbot-response {
           margin-top: 10px;
