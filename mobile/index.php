@@ -19,7 +19,7 @@ function XMOB_scripts() {
 	
 	//If the layout FA enqueues aren't present, add a CDN version of fontawesome for retroactive sites
 	if($layout_fa != 1 and $layout_fa2 != 1) {
-		wp_enqueue_style( 'innexus-fa', 'https://use.fontawesome.com/releases/v5.7.2/css/all.css', array('imc-style'), null );
+		wp_enqueue_style( 'innexus-fa', 'https://use.fontawesome.com/releases/v5.7.2/css/all.css', null );
 	}
 }
 

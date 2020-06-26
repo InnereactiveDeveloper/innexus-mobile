@@ -26,6 +26,11 @@ if( function_exists('acf_add_options_page') )
 //Plugin Fields
 if( function_exists('acf_add_local_field_group') ):
 
+$iconm1 = XMOB_URL . '/mobile/img/m1.png';
+$iconf1 = XMOB_URL . '/mobile/img/f1.png';
+$iconf2 = XMOB_URL . '/mobile/img/f2.png';
+$iconRandom = XMOB_URL . '/mobile/img/random.png';
+
 acf_add_local_field_group(array(
 	'key' => 'group_5c6d9982b2c6a',
 	'title' => 'Innexus Mobile',
@@ -384,11 +389,11 @@ acf_add_local_field_group(array(
 				'class' => '',
 				'id' => '',
 			),
-			'choices' => array(
-				'random' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/random.png" style="width: 72px;height: auto;" />',
-				'female1' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/f1.png" style="width: 72px;height: auto;" />',
-				'female2' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/f2.png" style="width: 72px;height: auto;" />',
-				'male' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/m1.png" style="width: 72px;height: auto;" />',
+			'choices' => array(  			
+				'random' => "<img src='$iconRandom' width='80px' height='80px' />",
+				'female1' => "<img src='$iconf1' width='80px' height='80px' />",
+				'female2' => "<img src='$iconf2' width='80px' height='80px' />",
+				'male' => "<img src='$iconm1' width='80px' height='80px' />",
 			),
 			'allow_null' => 0,
 			'default_value' => 'random',

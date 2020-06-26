@@ -59,6 +59,8 @@ div.innexus-chatbot .chatbot-container a.chatbot-button {
   text-decoration: none;
   transition: all 0.2s ease;
   margin: 0 0 5px 0;
+  min-height: 40px;
+  max-height: 40px;
 }
 div.innexus-chatbot .chatbot-container a.chatbot-button i {
   font-size: 0.8em;
@@ -74,6 +76,8 @@ div.innexus-chatbot .chatbot-container div.chatbot-button {
   transition: all 0.2s ease;
   margin: 0 0 5px 0;
   cursor: pointer;
+  min-height: 40px;
+  max-height: 40px;
 }
 div.innexus-chatbot .chatbot-container div.chatbot-button i {
   font-size: 0.8em;
@@ -445,7 +449,7 @@ div.innexus-mobile {
 div.innexus-mobile i,
 div.innexus-mobile * i {
   font-weight: 900;
-  font-family: 'FontAwesome';
+  font-family: 'Font Awesome 5 Free';
   font-style: normal;
 }
 div.innexus-mobile .location-container {
