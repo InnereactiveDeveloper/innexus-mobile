@@ -336,7 +336,7 @@ function XMOB_injection()
                         echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$name&nbsp;$linkIcon</a>";
                         $buttonNumber++;
                       }
-                    } else {
+                    } elseif (!empty($apptLink)) {
                       //otherwise, add the button
                       echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$name&nbsp;$linkIcon</a>";
                       $buttonNumber++;
