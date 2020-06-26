@@ -19,7 +19,7 @@ div.innexus-chatbot {
 div.innexus-chatbot i,
 div.innexus-chatbot * i {
   font-weight: 900;
-  font-family: 'FontAwesome';
+  font-family: 'Font Awesome 5 Free';
   font-style: normal;
 }
 div.innexus-chatbot .chatbot-container {
@@ -607,6 +607,12 @@ div.innexus-mobile.place_left.active.shadow:after {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   z-index: 99999;
+}
+.location-toggle i,
+.location-toggle * i {
+  font-weight: 900;
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
 }
 .location-toggle i {
   font-size: 2.1em;
