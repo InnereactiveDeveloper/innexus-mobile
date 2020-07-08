@@ -56,82 +56,87 @@ function XMOB_injection()
     	//grab the location fields
     	$location_repeater = get_field('mobile_location', 'option');
     	
-    	//Loop through each location
-			foreach($location_repeater as $location) {
-				//create variables
-				$name = $location['location_name'];
-        $phone = $location['phone_number'];
-        $phonei = $location['phone_icon'];
-        $text = $location['text_number'];
-        $texti = $location['text_icon'];
-        $email = $location['email_address'];
-        $emaili = $location['email_icon'];
-        $appt = $location['appt_req'];
-        $appti = $location['appt_icon'];
-        $phonetoggle = $location['toggle_phone_number'];
-        $texttoggle = $location['toggle_text_number'];
-        $emailtoggle = $location['toggle_email'];
-        $appttoggle = $location['toggle_appt'];
-        $count = 0;
-        $classes = '';
-        
-        //check if phone toggle is on, count if it is
-        if( $phonetoggle == 'phone_number_on' ) {
-          $count++;
-				}
-				
-				//check if texting toggle is on, count if it is
-				if( $texttoggle == 'text_number_on') {
-          $count++;
-				}
-				
-				//check if email toggle is on, count if it is
-				if( $emailtoggle == 'email_on') {
-          $count++;
-				}
-				
-				//check if appt toggle is on, count if it is and apply classes based on count
-				if($appttoggle == 'appt_on') {
-          $count++;
+    	//if a row (location) exists…
+  		if( !empty($location_repeater)) {
+  		
+  			//add a toggle button
+  			echo "<div class='location-toggle $display $leftRight'><i class='fas fa-mobile-alt'></i><i class='fas fa-times'></i></div>";
+  			
+  			//outer container
+  			echo "<div class='innexus-mobile $display $leftRight'>";
+    	
+      	//Loop through each location
+  			foreach($location_repeater as $location) {
+  				//create variables
+  				$name = $location['location_name'];
+          $phone = $location['phone_number'];
+          $phonei = $location['phone_icon'];
+          $text = $location['text_number'];
+          $texti = $location['text_icon'];
+          $email = $location['email_address'];
+          $emaili = $location['email_icon'];
+          $appt = $location['appt_req'];
+          $appti = $location['appt_icon'];
+          $phonetoggle = $location['toggle_phone_number'];
+          $texttoggle = $location['toggle_text_number'];
+          $emailtoggle = $location['toggle_email'];
+          $appttoggle = $location['toggle_appt'];
+          $count = 0;
+          $classes = '';
           
-          if ( $count == 1 ) {
-  					$classes = 'appt_one';
-					}
-					
-					if ( $count == 2 ) {
-  					$classes = 'appt_two';
-					}
-					
-					if ( $count == 3 ) {
-  					$classes = 'appt_three';
-					}
-					
-					if ( $count == 4 ) {
-  					$classes = 'appt_four';
-					}
-				} else {
-  				//apply classes based on count
-					if ( $count == 1 ) {
-  					$classes = 'one';
-					}
-					
-					if ( $count == 2 ) {
-  					$classes = 'two';
-					}
-					
-					if ( $count == 3 ) {
-  					$classes = 'three';
-					}
-				}
-				
-				//clean the numbers
-				$phone_clean = preg_replace('~[-._#,]~', '', $phone);
-				$text_clean = preg_replace('~[-._#,]~', '', $text);
-				
-				//inner containers and location name
-				echo "<div class='location-toggle $display $leftRight'><i class='fas fa-mobile-alt'></i><i class='fas fa-times'></i></div>";
-				
-				echo "<div class='innexus-mobile $display $leftRight'>";
+          //check if phone toggle is on, count if it is
+          if( $phonetoggle == 'phone_number_on' ) {
+            $count++;
+  				}
+  				
+  				//check if texting toggle is on, count if it is
+  				if( $texttoggle == 'text_number_on') {
+            $count++;
+  				}
+  				
+  				//check if email toggle is on, count if it is
+  				if( $emailtoggle == 'email_on') {
+            $count++;
+  				}
+  				
+  				//check if appt toggle is on, count if it is and apply classes based on count
+  				if($appttoggle == 'appt_on') {
+            $count++;
+            
+            if ( $count == 1 ) {
+    					$classes = 'appt_one';
+  					}
+  					
+  					if ( $count == 2 ) {
+    					$classes = 'appt_two';
+  					}
+  					
+  					if ( $count == 3 ) {
+    					$classes = 'appt_three';
+  					}
+  					
+  					if ( $count == 4 ) {
+    					$classes = 'appt_four';
+  					}
+  				} else {
+    				//apply classes based on count
+  					if ( $count == 1 ) {
+    					$classes = 'one';
+  					}
+  					
+  					if ( $count == 2 ) {
+    					$classes = 'two';
+  					}
+  					
+  					if ( $count == 3 ) {
+    					$classes = 'three';
+  					}
+  				}
+  				
+  				//clean the numbers
+  				$phone_clean = preg_replace('~[-._#,]~', '', $phone);
+  				$text_clean = preg_replace('~[-._#,]~', '', $text);
+  				
   				echo "<div class='location-container " . $classes . "'>";
   					echo "<p class='location-name'><strong>" . $name . "</strong></p>";
   					echo "<ul class='location-info'>";
@@ -167,11 +172,15 @@ function XMOB_injection()
   								echo "<p>Appointments</p>";
   							echo "</a></li>";
   						}
-  					  
-  					echo "</ul>";
-  				echo "</div>";
-        echo "</div>";			  
-			}
+    					  
+              echo "</ul>";
+            echo "</div>";
+				  
+				  }    
+			    
+        echo "</div>";
+		
+		  }
   	}
   	
   	//but if the chatbot version is selected
