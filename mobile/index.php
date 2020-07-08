@@ -46,7 +46,6 @@ function XMOB_injection()
 	$level = get_field('free_or_premium', 'option');
 	$sync = get_field('sync_or_static', 'option');
 	$homeData = get_field('main_page_elements', 'option');
-	$items = count($homeData);
 				
 	//if display option is set to mobile or all…
 	if( $display == 'display_mobile' || $display == 'display_all' ) {
