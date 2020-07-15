@@ -106,13 +106,13 @@ jQuery(document).ready(function($)
       $('.chatbot-page.multi_hours .chatbot-button.moreOptions').click(function() {
         //toggle the showMore class
         $('.chatbot-page.multi_hours .buttonsContainer').toggleClass('showMore');
-      })
-      
-      //when toggled, change the text of the button
-      $('.chatbot-page.multi_hours .chatbot-button.moreOptions').toggle(function() {
-        $(this).text('Previous Options');
-      }, function() {
-        $(this).text('More Options');
+        
+        //when toggled, change the text of the button
+        if($(this).text() == 'More Options') {
+          $(this).text('Previous Options');
+        } else {
+          $(this).text('More Options');
+        }
       })
     }
     /* HOURS END */
@@ -163,13 +163,13 @@ jQuery(document).ready(function($)
       $('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').click(function() {
         //toggle the showMore class
         $('.chatbot-page.multi_contact_us .buttonsContainer').toggleClass('showMore');
-      })
-      
-      //and toggle the text of the button
-      $('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').toggle(function() {
-        $(this).text('Previous Options');
-      }, function() {
-        $(this).text('More Options');
+        
+        //when toggled, change the text of the button
+        if($(this).text() == 'More Options') {
+          $(this).text('Previous Options');
+        } else {
+          $(this).text('More Options');
+        }
       })
     }
     /* CONTACT END */
@@ -188,13 +188,13 @@ jQuery(document).ready(function($)
       $('.chatbot-page.request_appointment .chatbot-button.moreOptions').click(function() {
         //toggle the showMore class
         $('.chatbot-page.request_appointment .buttonsContainer').toggleClass('showMore');
-      })
-      
-      //and toggle the button text
-      $('.chatbot-page.request_appointment .chatbot-button.moreOptions').toggle(function() {
-        $(this).text('Previous Options');
-      }, function() {
-        $(this).text('More Options');
+        
+        //when toggled, change the text of the button
+        if($(this).text() == 'More Options') {
+          $(this).text('Previous Options');
+        } else {
+          $(this).text('More Options');
+        }
       })
     }
     
@@ -227,13 +227,13 @@ jQuery(document).ready(function($)
       $('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').click(function() {
         //toggle the showMore class
         $('.chatbot-page.online_patient_forms .buttonsContainer').toggleClass('showMore');
-      })
-      
-      //and toggle the button text
-      $('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').toggle(function() {
-        $(this).text('Previous Options');
-      }, function() {
-        $(this).text('More Options');
+        
+        //when toggled, change the text of the button
+        if($(this).text() == 'More Options') {
+          $(this).text('Previous Options');
+        } else {
+          $(this).text('More Options');
+        }
       })
     }
     /* PATIENT FORMS END */

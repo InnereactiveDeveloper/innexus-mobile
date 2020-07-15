@@ -343,11 +343,16 @@ function XMOB_injection()
                         //add the button
                         echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$name&nbsp;$linkIcon</a>";
                         $buttonNumber++;
+                      } elseif($sync === 'static' && !empty($apptLink)) {
+                        echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$name&nbsp;$linkIcon</a>";
+                        $buttonNumber++;
                       }
-                    } elseif (!empty($apptLink)) {
-                      //otherwise, add the button
-                      echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$name&nbsp;$linkIcon</a>";
-                      $buttonNumber++;
+                    } else {
+                      if(!empty($apptLink)) {
+                        //otherwise, add the button
+                        echo "<a href='$apptLink' class='chatbot-button chatbot-button-background'>$name&nbsp;$linkIcon</a>";
+                        $buttonNumber++;
+                      }
                     }
         			    }
         			    
@@ -396,7 +401,6 @@ function XMOB_injection()
           			    }
           			    
           			    $output .= "<div class='chatbot-button chatbot-button-background contact_us' id='contact_us' data-location='location-".$locationNumber."'>$name</div>";
-          			    $buttonCount++;
           			    
           			    //when clicked, show the contact_us info for that location
                     $output .= "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
@@ -408,7 +412,7 @@ function XMOB_injection()
                   			  $output .= "<br>";
                           $output .= "<br>";
                 			  }
-              			  } else {
+              			  } elseif($locationNumber <= $globalLocationNumber && !empty($name)) {
                 			  $output .= do_shortcode('[address location='.$locationNumber.']');
               			  }
               			  if($sync == 'static') {
@@ -416,14 +420,14 @@ function XMOB_injection()
                   			  $output .= "<a href='tel:+1" . $phone_clean . "'><i class='fas fa-phone'></i>&nbsp;$phone</a>";
                           $output .= "<br>";
                 			  }
-              			  } else {
+              			  } elseif($locationNumber <= $globalLocationNumber && !empty($name)) {
                 			  $output .= do_shortcode('[phone location='.$locationNumber.']');
                       }
                       if($sync == 'static') {
                         if(!empty($email)) {
                           $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
                         }
-              			  } else {
+              			  } elseif($locationNumber <= $globalLocationNumber && !empty($name)) {
                 			  $output .= "<br>";
                         $output .= do_shortcode('[email location='.$locationNumber.']');
               			  }
@@ -449,10 +453,17 @@ function XMOB_injection()
                     if($global_location_repeater) {              			  
             			    if($locationNumber <= $globalLocationNumber && !empty($name)) {
                 			  echo $output;
-            			    }
+                			  $buttonCount++;
+            			    } elseif($sync === 'static' && !empty($name)) {
+                        echo $output;
+                        $buttonCount++;
+                      }
             			    //or if not on a new layout
                     } else {
-                      echo $output;
+                      if(!empty($name)) {
+                        echo $output;
+                        $buttonCount++;
+                      }
                     }
         			    }
         			    
@@ -496,7 +507,6 @@ function XMOB_injection()
           			    
           			    //show the button for each location
           			    $output .= "<div class='chatbot-button chatbot-button-background hours' id='hours' data-location='location-".$locationNumber."'>$name</div>";
-          			    $buttonCount++;
                     
                     //when clicked, show the hours for that location
                     $output .= "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
@@ -557,7 +567,7 @@ function XMOB_injection()
                       			$output .= $additionalInfo;	
                       		$output .= "</div>";	
                       	}
-              			  } else {
+              			  } elseif($locationNumber <= $globalLocationNumber && !empty($name)) {
                 			  $output .= do_shortcode('[hours location='.$locationNumber.']');
               			  }
                 			                			                			  
@@ -577,10 +587,17 @@ function XMOB_injection()
                       //show the button for each location
                       if($locationNumber <= $globalLocationNumber && !empty($name)) {
                         echo $output;
+                        $buttonCount++;
+                      } elseif($sync === 'static' && !empty($name)) {
+                        echo $output;
+                        $buttonCount++;
                       }
                       //if not on a new layout
                     } else {
-                      echo $output;
+                      if(!empty($name)) {
+                        echo $output;
+                        $buttonCount++;
+                      }
                     }
         			    }
         			    
