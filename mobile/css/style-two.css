@@ -17,6 +17,12 @@ div.innexus-mobile {
   overflow-x: visible;
   overflow-y: scroll;
 }
+div.innexus-mobile i,
+div.innexus-mobile * i {
+  font-weight: 900;
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+}
 div.innexus-mobile .location-container {
   padding: 0 20px 20px 20px;
 }
@@ -176,6 +182,12 @@ div.innexus-mobile.place_left.active.shadow:after {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   z-index: 99999;
+}
+.location-toggle i,
+.location-toggle * i {
+  font-weight: 900;
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
 }
 .location-toggle i {
   font-size: 2.1em;

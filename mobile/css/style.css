@@ -217,6 +217,16 @@ div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active
   background-color: whitesmoke;
   z-index: 1;
 }
+div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active .buttonsContainer {
+  max-height: 220px;
+  overflow: scroll;
+  border-radius: 5px;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active .buttonsContainer a.chatbot-button,
+div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active .buttonsContainer div.chatbot-button {
+  max-height: none;
+  white-space: normal;
+}
 div.innexus-chatbot .chatbot-container .chatbot-page.multi_contact_us.active {
   transform: translateX(0);
   background-color: whitesmoke;

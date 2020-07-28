@@ -263,6 +263,18 @@ div.innexus-chatbot {
         transform: translateX(0);
         background-color: whitesmoke;
         z-index: 1;
+        
+        .buttonsContainer {
+          max-height: 220px;
+          overflow: scroll;
+          border-radius: 5px;
+          
+          a.chatbot-button,
+          div.chatbot-button {
+            max-height: none;
+            white-space: normal;
+          }
+        }
       }
       
       &.multi_contact_us.active {
