@@ -10,7 +10,7 @@
  * Description: Innexus Mobile
  * Author: Innexus by Innereactive
  * Author URI: https://www.getinnexus.com
- * Version: 2.0.3
+ * Version: 2.0.4
  */
 
 // Exit if accessed directly.

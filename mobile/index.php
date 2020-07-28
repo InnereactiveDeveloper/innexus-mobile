@@ -680,7 +680,7 @@ function XMOB_injection()
               			  if(!empty($formLink)) {
                 			  //check the url and add the button
                 			  $linkIcon = innexus_link_compare($formLink);
-                			  echo "<a href='$formLink' class='chatbot-button chatbot-button-background'>$formCopy&nbsp;(PDF)</a>";
+                			  echo "<a href='$formLink' target='_blank' class='chatbot-button chatbot-button-background'>$formCopy&nbsp;(PDF)</a>";
                 			  $formsCount++;
               			  }
               			                			  
@@ -939,7 +939,7 @@ function XMOB_injection()
               			  if(!empty($formLink)) {
                 			  //check the url and add the button
                 			  $linkIcon = innexus_link_compare($formLink);
-                			  echo "<a href='$formLink' class='chatbot-button chatbot-button-background'>$formCopy&nbsp;(PDF)</a>";
+                			  echo "<a href='$formLink' target='_blank' class='chatbot-button chatbot-button-background'>$formCopy&nbsp;(PDF)</a>";
                 			  $formsCount++;
               			  }
             			  }
