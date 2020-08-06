@@ -266,13 +266,18 @@ div.innexus-chatbot {
         
         .buttonsContainer {
           max-height: 220px;
-          overflow: scroll;
+          overflow-y: scroll;
           border-radius: 5px;
           
           a.chatbot-button,
           div.chatbot-button {
             max-height: none;
             white-space: normal;
+            line-height: 1.3em;
+            
+            &:last-of-type {
+              margin-bottom: 0;
+            }
           }
         }
       }
