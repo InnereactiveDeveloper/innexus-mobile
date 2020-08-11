@@ -281,7 +281,7 @@ function XMOB_injection()
   			//card container
   			echo "<div class='innexus-chatbot $display $leftRight " .'locationCount'."$globalLocationNumber'>";
   			  //add a close button
-  			  echo "<div class='chatbot-close $display $leftRight innexus-chatbot-tracky' data-chatbotContext='Close Chat Bot'><i class='fas fa-times'></i></div>";
+  			  echo "<div class='chatbot-close $display $leftRight innexus-chatbot-tracky' data-chatbotContext='Close Chat Bot'><i class='fas fa-times innexus-chatbot-tracky' data-chatbotContext='Close Chat Bot'></i></div>";
   			  //add the image/icon
   			  echo "<div class='chatbot-icon $display $leftRight'><img src='$icon' alt='chatbot icon'></div>";
   			  
@@ -328,7 +328,7 @@ function XMOB_injection()
         			  //when clicked, show the request_appointment page
         			  echo "<div class='chatbot-page request_appointment'>";
         			    //add a back button
-        			    echo "<div class='chatbot-page-back innexus-chatbot-tracky request_appointment' data-chatbotContext='Multi Appointment -> Back -> Main'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+        			    echo "<div class='chatbot-page-back innexus-chatbot-tracky request_appointment' data-chatbotContext='Multi Appointment -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Multi Appointment -> Back -> Main'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
           			  //set a location counter
@@ -360,7 +360,7 @@ function XMOB_injection()
                     } else {
                       if(!empty($apptLink)) {
                         //otherwise, add the button
-                        echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext=''>$name&nbsp;$linkIcon</a>";
+                        echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Multi Appointment -> $name'>$name&nbsp;$linkIcon</a>";
                         $buttonNumber++;
                       }
                     }
@@ -384,7 +384,7 @@ function XMOB_injection()
         			  
         			  //when clicked, show the contact_us page
         			  echo "<div class='chatbot-page multi_contact_us'>";
-        			    echo "<div class='chatbot-page-back innexus-chatbot-tracky multi_contact_us' data-chatbotContext='Multi Contact -> Back -> Main'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+        			    echo "<div class='chatbot-page-back innexus-chatbot-tracky multi_contact_us' data-chatbotContext='Multi Contact -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Multi Contact -> Back -> Main'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
           			  echo "<div class='buttonsContainer'>";
@@ -414,7 +414,7 @@ function XMOB_injection()
           			    
           			    //when clicked, show the contact_us info for that location
                     $output .= "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
-            			    $output .= "<div class='chatbot-page-back innexus-chatbot-tracky contact_us' data-chatbotContext='$name Contact -> Back -> Multi Contact'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+            			    $output .= "<div class='chatbot-page-back innexus-chatbot-tracky contact_us' data-chatbotContext='$name Contact -> Back -> Multi Contact'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='$name Contact -> Back -> Multi Contact'></i>&nbsp;Back</div>";
               			  $output .= "<p class='chatbot-response'>$name</p>";
               			  if($sync == 'static') {
                 			  if(!empty($address)) {
@@ -446,7 +446,7 @@ function XMOB_injection()
               			  if(!empty($contactLink)) {
                 			  $linkIcon = innexus_link_compare($contactLink);
                 			  //show the contact us button
-                			  $output .= "<a href='$contactLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background'>$contactCopy&nbsp;$linkIcon</a>";
+                			  $output .= "<a href='$contactLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='$name Contact -> Contact Button'>$contactCopy&nbsp;$linkIcon</a>";
               			  }
               			  
               			  //if showing appointment requests…
@@ -454,7 +454,7 @@ function XMOB_injection()
                 			  $linkIcon = innexus_link_compare($apptLink);
                 			  //show the appointment button
                 			  if(!empty($apptLink)) {
-                  			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two'>$apptCopy&nbsp;$linkIcon</a>";
+                  			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two' data-chatbotContext='$name Contact -> Appointment Button'>$apptCopy&nbsp;$linkIcon</a>";
                 			  }
               			  }
               			  $output .= "</div>";
@@ -480,7 +480,7 @@ function XMOB_injection()
         			    echo "</div>";
         			    
         			    if($buttonCount > 5) {
-          			    echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background'>More Options</div>";
+          			    echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Multi Contact -> More Options/Previous Options'>More Options</div>";
         			    }
         			    
         			  echo "</div>";
@@ -493,7 +493,7 @@ function XMOB_injection()
         			  
         			  //when clicked, show the multi_hours page
         			  echo "<div class='chatbot-page multi_hours'>";
-        			    echo "<div class='chatbot-page-back innexus-chatbot-tracky multi_hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+        			    echo "<div class='chatbot-page-back innexus-chatbot-tracky multi_hours' data-chatbotContext='Multi Hours -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Multi Hours -> Back -> Main'></i>&nbsp;Back</div>";
           			  echo "<p class='chatbot-response'>Choose a Location</p>";
           			  
           			  echo "<div class='buttonsContainer'>";
@@ -516,11 +516,11 @@ function XMOB_injection()
           			    $output = '';
           			    
           			    //show the button for each location
-          			    $output .= "<div class='chatbot-button innexus-chatbot-tracky chatbot-button-background hours' id='hours' data-location='location-".$locationNumber."'>$name</div>";
+          			    $output .= "<div class='chatbot-button innexus-chatbot-tracky chatbot-button-background hours' id='hours' data-chatbotContext='Multi Hours -> $name' data-location='location-".$locationNumber."'>$name</div>";
                     
                     //when clicked, show the hours for that location
                     $output .= "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
-            			    $output .= "<div class='chatbot-page-back innexus-chatbot-tracky hours'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+            			    $output .= "<div class='chatbot-page-back innexus-chatbot-tracky hours' data-chatbotContext='$name Hours -> Back -> Multi Hours'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='$name -> Back -> Multi Hours'></i>&nbsp;Back</div>";
               			  $output .= "<p class='chatbot-response'>$name Hours</p>";
               			  
               			  if($sync == 'static') {
@@ -586,7 +586,7 @@ function XMOB_injection()
                 			  $linkIcon = innexus_link_compare($apptLink);
                 			  //show the appointment button
                         if(!empty($apptLink)) {
-                  			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two'>$apptCopy&nbsp;$linkIcon</a>";
+                  			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two' data-chatbotContext='$name Hours -> Appointment Button'>$apptCopy&nbsp;$linkIcon</a>";
                 			  }
               			  }
               			  
@@ -614,7 +614,7 @@ function XMOB_injection()
         			    echo "</div>";
         			    
         			    if($buttonCount > 5) {
-          			    echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background'>More Options</div>";
+          			    echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Multi Hours -> More Options/Previous Options'>More Options</div>";
         			    }
         			    
         			  echo "</div>";
@@ -626,7 +626,7 @@ function XMOB_injection()
         			  
         			  //when clicked, show the multi_forms page
                 echo "<div class='chatbot-page online_patient_forms'>";
-                  echo "<div class='chatbot-page-back innexus-chatbot-tracky online_patient_forms'><i class='fas fa-chevron-circle-left'></i>&nbsp;Back</div>";
+                  echo "<div class='chatbot-page-back innexus-chatbot-tracky online_patient_forms' data-chatbotContext='Patient Forms -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Patient Forms -> Back -> Main'></i>&nbsp;Back</div>";
                   echo "<p class='chatbot-response'>Patient Forms</p>";
                   
                   echo "<div class='buttonsContainer outer'>";
@@ -645,13 +645,13 @@ function XMOB_injection()
                 			  $linkIcon = innexus_link_compare($formLink);
                 			  
                 			  //show the patient form button
-                        echo "<a href='$formLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background'>$formCopy&nbsp;$linkIcon</a>";
-                        $formsCount++;
+                			  $formsCount++;
+                        echo "<a href='$formLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount'>$formCopy&nbsp;$linkIcon</a>";
                         
                         //if more than 5 forms exist…
                 			  if($formsCount > 5) {
                   			  //show the more options button
-                  			  echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background'>More Options</div>";
+                  			  echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Patient Forms -> More Options/Previous Options'>More Options</div>";
                 			  }
               			  }
               			  //if pulling forms from site settings…
@@ -683,22 +683,22 @@ function XMOB_injection()
                         if(!empty($onlineFormLink)) {
                           //check the url and add the button
                           $linkIcon = innexus_link_compare($onlineFormLink);
-                          echo "<a href='$onlineFormLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background'>$formCopy&nbsp;(Online)</a>";
                           $formsCount++;
+                          echo "<a href='$onlineFormLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount'>$formCopy&nbsp;(Online)</a>";
                         }
                 			  
                 			  //if a pdf form link exists…
                 			  if(!empty($formLink)) {
                   			  //check the url and add the button
                   			  $linkIcon = innexus_link_compare($formLink);
-                  			  echo "<a href='$formLink' target='_blank' class='chatbot-button innexus-chatbot-tracky chatbot-button-background'>$formCopy&nbsp;(PDF)</a>";
                   			  $formsCount++;
+                  			  echo "<a href='$formLink' target='_blank' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount'>$formCopy&nbsp;(PDF)</a>";
                 			  }
                 			                			  
                 			  //if more than 5 forms exist…
                 			  if($formsCount > 5) {
                   			  //show the more options button
-                  			  echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background'>More Options</div>";
+                  			  echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Patient Forms -> More Options/Previous Options'>More Options</div>";
                 			  }
               			  }
                 		}
