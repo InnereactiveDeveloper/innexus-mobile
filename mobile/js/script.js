@@ -221,6 +221,32 @@ jQuery(document).ready(function($)
       removeActive('.chatbot-page.online_patient_forms');
     })
     
+    //if the inner container is taller than 220px…
+    if($('.chatbot-page.online_patient_forms .buttonsContainer.inner').length) {
+      $height = $('.chatbot-page.online_patient_forms .buttonsContainer.inner').outerHeight();
+      
+      if($height > 220) {
+        //add the scroll class and text
+        $('.chatbot-page.online_patient_forms .chatbot-response').addClass('scroll');
+        $('.chatbot-page.online_patient_forms .buttonsContainer.outer').addClass('scroll');
+        $('.chatbot-page.online_patient_forms .buttonsContainer.inner').addClass('scroll');
+        $('.chatbot-page.online_patient_forms .chatbot-response').append('<br><sub>Scroll for More</sub>');
+        
+        //once scrolled…
+/*
+        $('.chatbot-page.online_patient_forms .buttonsContainer.inner').scroll(function() {
+          $scroll = $('.chatbot-page.online_patient_forms .buttonsContainer.inner').scrollTop();
+          console.log($scroll);
+          
+          if($scroll >= 10) {
+            //remove the scroll class
+            $('.chatbot-page.online_patient_forms .buttonsContainer.outer').removeClass('scroll');
+          }
+        })
+*/
+      }
+    }
+    
     //if the online_patient_forms more options button is present
     if($('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').length) {
       //and is clicked
@@ -236,6 +262,8 @@ jQuery(document).ready(function($)
         }
       })
     }
+    
+    
     /* PATIENT FORMS END */
   }
   

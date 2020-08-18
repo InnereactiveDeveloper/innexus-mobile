@@ -344,6 +344,7 @@ function XMOB_injection()
             			  $name = $location['location_name_chatbot'];
           			    $apptLink = $location['appt_req_chatbot'];
           			    $linkIcon = innexus_link_compare($apptLink);
+          			    $internalExternal = innexus_link_compare_string($apptLink);
           			    $locationNumber++;
                     
                     //if on the new layouts
@@ -351,16 +352,16 @@ function XMOB_injection()
                       //and there are locations left
                       if($locationNumber <= $globalLocationNumber && !empty($apptLink)) {
                         //add the button
-                        echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Multi Appointment -> $name'>$name&nbsp;$linkIcon</a>";
+                        echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Multi Appointment -> $name Appointment Button $internalExternal'>$name&nbsp;$linkIcon</a>";
                         $buttonNumber++;
                       } elseif($sync === 'static' && !empty($apptLink)) {
-                        echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Multi Appointment -> $name'>$name&nbsp;$linkIcon</a>";
+                        echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Multi Appointment -> $name Appointment Button $internalExternal'>$name&nbsp;$linkIcon</a>";
                         $buttonNumber++;
                       }
                     } else {
                       if(!empty($apptLink)) {
                         //otherwise, add the button
-                        echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Multi Appointment -> $name'>$name&nbsp;$linkIcon</a>";
+                        echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Multi Appointment -> $name Appointment Button $internalExternal'>$name&nbsp;$linkIcon</a>";
                         $buttonNumber++;
                       }
                     }
@@ -452,9 +453,10 @@ function XMOB_injection()
               			  //if showing appointment requests…
               			  if(in_array('request_appointment', $homeData)) {
                 			  $linkIcon = innexus_link_compare($apptLink);
+                			  $internalExternal = innexus_link_compare_string($apptLink);
                 			  //show the appointment button
                 			  if(!empty($apptLink)) {
-                  			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two' data-chatbotContext='$name Contact -> Appointment Button'>$apptCopy&nbsp;$linkIcon</a>";
+                  			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two' data-chatbotContext='$name Contact -> Appointment Button $internalExternal'>$apptCopy&nbsp;$linkIcon</a>";
                 			  }
               			  }
               			  $output .= "</div>";
@@ -584,9 +586,10 @@ function XMOB_injection()
               			  //if showing appointment requests…
               			  if(in_array('request_appointment', $homeData)) {
                 			  $linkIcon = innexus_link_compare($apptLink);
+                			  $internalExternal = innexus_link_compare_string($apptLink);
                 			  //show the appointment button
                         if(!empty($apptLink)) {
-                  			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two' data-chatbotContext='$name Hours -> Appointment Button'>$apptCopy&nbsp;$linkIcon</a>";
+                  			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two' data-chatbotContext='$name Hours -> Appointment Button $internalExternal'>$apptCopy&nbsp;$linkIcon</a>";
                 			  }
               			  }
               			  
@@ -640,19 +643,27 @@ function XMOB_injection()
                   		
                   		//show patient forms
               			  foreach($forms as $form) {
-                			  $formLink = $form['override_link']['url'];
+                			  if(!empty($form['override_link']['url'])) {
+                          $formLink = $form['override_link']['url'];
+                        } else {
+                          $formLink = '';
+                        }
                 			  $formCopy = $form['link_title'];          			  
                 			  $linkIcon = innexus_link_compare($formLink);
                 			  
                 			  //show the patient form button
-                			  $formsCount++;
-                        echo "<a href='$formLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount'>$formCopy&nbsp;$linkIcon</a>";
+                        if(!empty($formLink)) {
+                          $formsCount++;
+                          echo "<a href='$formLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount'>$formCopy&nbsp;$linkIcon</a>";
+                        }
                         
                         //if more than 5 forms exist…
-                			  if($formsCount > 5) {
+                			  /*
+if($formsCount > 5) {
                   			  //show the more options button
                   			  echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Patient Forms -> More Options/Previous Options'>More Options</div>";
                 			  }
+*/
               			  }
               			  //if pulling forms from site settings…
                 		} elseif(empty($formsOverride) && !empty(get_field('upload_patient_forms', 'option'))) {
@@ -683,23 +694,27 @@ function XMOB_injection()
                         if(!empty($onlineFormLink)) {
                           //check the url and add the button
                           $linkIcon = innexus_link_compare($onlineFormLink);
+                          $internalExternal = innexus_link_compare_string($onlineFormLink);
                           $formsCount++;
-                          echo "<a href='$onlineFormLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount'>$formCopy&nbsp;(Online)</a>";
+                          echo "<a href='$onlineFormLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount $internalExternal'>$formCopy&nbsp;(Online)</a>";
                         }
                 			  
                 			  //if a pdf form link exists…
                 			  if(!empty($formLink)) {
                   			  //check the url and add the button
                   			  $linkIcon = innexus_link_compare($formLink);
+                  			  $internalExternal = innexus_link_compare_string($formLink);
                   			  $formsCount++;
-                  			  echo "<a href='$formLink' target='_blank' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount'>$formCopy&nbsp;(PDF)</a>";
+                  			  echo "<a href='$formLink' target='_blank' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount $internalExternal'>$formCopy&nbsp;(PDF)</a>";
                 			  }
                 			                			  
                 			  //if more than 5 forms exist…
-                			  if($formsCount > 5) {
+                			  /*
+if($formsCount > 5) {
                   			  //show the more options button
                   			  echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Patient Forms -> More Options/Previous Options'>More Options</div>";
                 			  }
+*/
               			  }
                 		}
                 		echo "</div>";
@@ -886,7 +901,7 @@ function XMOB_injection()
             			  $internalExternal = innexus_link_compare_string($apptLink);
             			  
             			  //show the appointment button
-                    echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Single Hours -> Appointment Button'>$apptCopy&nbsp;$linkIcon</a>";
+                    echo "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Single Hours -> Appointment Button $internalExternal'>$apptCopy&nbsp;$linkIcon</a>";
           			  }
         			  echo "</div>";
       			  }
@@ -901,65 +916,73 @@ function XMOB_injection()
                   echo "<div class='chatbot-page-back innexus-chatbot-tracky online_patient_forms' data-chatbotContext='Single Patient Forms -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Single Patient Forms -> Back -> Main'></i>&nbsp;Back</div>";
                   echo "<p class='chatbot-response'>Patient Forms</p>";
                   
-                  echo "<div class='buttonsContainer'>";
+                  echo "<div class='buttonsContainer outer'>";
+                    echo "<div class='buttonsContainer inner'>";
                   
-                  if(!empty($formsOverride)) {
-                		$forms = get_field('override_links', 'options');
-                		
-                		//show patient forms
-            			  foreach($forms as $form) {
-              			  $formLink = $form['override_link']['url'];
-              			  $formCopy = $form['link_title'];          			  
-              			  $linkIcon = innexus_link_compare($formLink);
-              			  $internalExternal = innexus_link_compare_string($formLink);
-              			  
-              			  if(!empty($formLink)) {
-                			  //show the patient form button
-                        echo "<a href='$formLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Single Patient Forms -> Form $internalExternal'>$formCopy&nbsp;$linkIcon</a>";
-                        $formsCount++;
-              			  }
-            			  }
-              		} elseif(empty($formsOverride) && !empty(get_field('upload_patient_forms', 'option'))) {
-                		//grab the categories
-                		$categories = get_field('upload_patient_forms', 'option');
-                		$formsCount = 0;
-                		
-                		//create an empty array for all forms
-                		$formsAll = array();
-                		
-                		//in each category…
-                		foreach($categories as $category) {
-                  		//add any forms to the array
-                  		$formsAll[] = $category['forms'];
-                		}
-                		
-                		//merge the forms arrays into one
-                		$forms = call_user_func_array('array_merge', $formsAll);
-                		                		
-                		//show patient forms
-                		//for each form…
-            			  foreach($forms as $form) {
-              			  $formLink = $form['form_upload'];
-                      $onlineFormLink = $form['online_form_link'];
-                      $formCopy = $form['form_title'];
-                      
-                      //if an online form link exists…
-                      if(!empty($onlineFormLink)) {
-                        //check the url and add the button
-                        $linkIcon = innexus_link_compare($onlineFormLink);
-                        echo "<a href='$onlineFormLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Single Patient Forms -> Form $internalExternal'>$formCopy&nbsp;(Online)</a>";
-                        $formsCount++;
-                      }
-              			  
-              			  //if a pdf form link exists…
-              			  if(!empty($formLink)) {
-                			  //check the url and add the button
+                    if(!empty($formsOverride)) {
+                  		$forms = get_field('override_links', 'options');
+                  		
+                  		//show patient forms
+              			  foreach($forms as $form) {
+                			  if(!empty($form['override_link']['url'])) {
+                          $formLink = $form['override_link']['url'];
+                        } else {
+                          $formLink = '';
+                        }
+                			  $formCopy = $form['link_title'];          			  
                 			  $linkIcon = innexus_link_compare($formLink);
-                			  echo "<a href='$formLink' target='_blank' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Single Patient Forms -> Form $internalExternal'>$formCopy&nbsp;(PDF)</a>";
-                			  $formsCount++;
+                			  $internalExternal = innexus_link_compare_string($formLink);
+                			  
+                			  if(!empty($formLink)) {
+                  			  //show the patient form button
+                  			  $formsCount++;
+                          echo "<a href='$formLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Single Patient Forms -> Form $internalExternal'>$formCopy&nbsp;$linkIcon</a>";
+                			  }
               			  }
-            			  }
-              		}
+                		} elseif(empty($formsOverride) && !empty(get_field('upload_patient_forms', 'option'))) {
+                  		//grab the categories
+                  		$categories = get_field('upload_patient_forms', 'option');
+                  		$formsCount = 0;
+                  		
+                  		//create an empty array for all forms
+                  		$formsAll = array();
+                  		
+                  		//in each category…
+                  		foreach($categories as $category) {
+                    		//add any forms to the array
+                    		$formsAll[] = $category['forms'];
+                  		}
+                  		
+                  		//merge the forms arrays into one
+                  		$forms = call_user_func_array('array_merge', $formsAll);
+                  		                		
+                  		//show patient forms
+                  		//for each form…
+              			  foreach($forms as $form) {
+                			  $formLink = $form['form_upload'];
+                        $onlineFormLink = $form['online_form_link'];
+                        $formCopy = $form['form_title'];
+                        
+                        //if an online form link exists…
+                        if(!empty($onlineFormLink)) {
+                          //check the url and add the button
+                          $linkIcon = innexus_link_compare($onlineFormLink);
+                          $internalExternal = innexus_link_compare_string($onlineFormLink);
+                          $formsCount++;
+                          echo "<a href='$onlineFormLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Single Patient Forms -> $formCopy $formsCount $internalExternal'>$formCopy&nbsp;(Online)</a>";
+                        }
+                			  
+                			  //if a pdf form link exists…
+                			  if(!empty($formLink)) {
+                  			  //check the url and add the button
+                  			  $linkIcon = innexus_link_compare($formLink);
+                  			  $internalExternal = innexus_link_compare_string($formLink);
+                  			  $formsCount++;
+                  			  echo "<a href='$formLink' target='_blank' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Single Patient Forms -> $formCopy $formsCount $internalExternal'>$formCopy&nbsp;(PDF)</a>";
+                			  }
+              			  }
+                		}
+                  echo "</div>";
               		
               		//if more than 5 forms exist…
           			  /*
