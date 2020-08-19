@@ -17,7 +17,8 @@ div.innexus-chatbot {
   transition: all 0.3s ease;
   max-height: 90vh;
   min-height: 55px;
-  box-shadow: 0 0 32px rgba(55,55,55,0.3);
+  -webkit-box-shadow: 0 0 32px rgba(55,55,55,0.3);
+          box-shadow: 0 0 32px rgba(55,55,55,0.3);
   
   i,
   * i {
@@ -33,6 +34,8 @@ div.innexus-chatbot {
     position: relative;
     overflow: hidden;
     background-color: inherit;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
     min-height: 308px;
     
@@ -73,6 +76,8 @@ div.innexus-chatbot {
       display: inline-block;
       border-radius: 5px;
       text-decoration: none;
+      -webkit-transition: all 0.2s ease;
+      -o-transition: all 0.2s ease;
       transition: all 0.2s ease;
       margin: 0 0 5px 0;
       min-height: 40px;
@@ -92,6 +97,8 @@ div.innexus-chatbot {
       display: inline-block;
       border-radius: 5px;
       text-decoration: none;
+      -webkit-transition: all 0.2s ease;
+      -o-transition: all 0.2s ease;
       transition: all 0.2s ease;
       margin: 0 0 5px 0;
       cursor: pointer;
@@ -107,7 +114,11 @@ div.innexus-chatbot {
     
     //inner pages
     .chatbot-page {
-      transform: translateX(110%);
+      -webkit-transform: translateX(110%);
+          -ms-transform: translateX(110%);
+              transform: translateX(110%);
+      -webkit-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
       transition: all 0.3s ease;
       position: absolute;
       top: 0;
@@ -123,9 +134,13 @@ div.innexus-chatbot {
         
         > div.chatbot-button,
         > a.chatbot-button {
+          -webkit-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
           transition: all 0.3s ease;
           position: relative;
-          transform: translateY(0px);
+          -webkit-transform: translateY(0px);
+              -ms-transform: translateY(0px);
+                  transform: translateY(0px);
           white-space: nowrap;
         }
         
@@ -133,13 +148,17 @@ div.innexus-chatbot {
           > div.chatbot-button,
           > a.chatbot-button {
             position: relative;
-            transform: translateY(-180px);
+            -webkit-transform: translateY(-180px);
+                -ms-transform: translateY(-180px);
+                    transform: translateY(-180px);
           }
           
           div.chatbot-button.moreOptions,
           div.chatbot-button.moreOptions {
             position: absolute;
-            transform: translate(0,0);
+            -webkit-transform: translate(0,0);
+                -ms-transform: translate(0,0);
+                    transform: translate(0,0);
           }
         }
       }
@@ -246,19 +265,25 @@ div.innexus-chatbot {
       }
       
       &.request_appointment.active {
-        transform: translateX(0);
+        -webkit-transform: translateX(0);
+            -ms-transform: translateX(0);
+                transform: translateX(0);
         background-color: whitesmoke;
         z-index: 1;
       }
       
       &.multi_hours.active {
-        transform: translateX(0);
+        -webkit-transform: translateX(0);
+            -ms-transform: translateX(0);
+                transform: translateX(0);
         background-color: whitesmoke;
         z-index: 1;
       }
       
       &.contact_us.active {
-        transform: translateX(0);
+        -webkit-transform: translateX(0);
+            -ms-transform: translateX(0);
+                transform: translateX(0);
         background-color: whitesmoke;
         z-index: 1;
       }
@@ -276,11 +301,14 @@ div.innexus-chatbot {
               bottom: 4px;
               height: 20px;
               border-radius: 5px;
-              background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), color-stop(rgba(0,0,0,0.2)), to(rgba(0,0,0,0.6)));
-              background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0.6));
               background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+              background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), color-stop(rgba(0,0,0,0.2)), to(rgba(0,0,0,0.6)));
               background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0.6));
-              transform: translate(-50%,0);
+              -webkit-transform: translate(-50%,0);
+                  -ms-transform: translate(-50%,0);
+                      transform: translate(-50%,0);
+              -webkit-transition: all 0.2s ease;
+              -o-transition: all 0.2s ease;
               transition: all 0.2s ease;
               opacity: 0;
             }
@@ -293,7 +321,9 @@ div.innexus-chatbot {
       }
       
       &.online_patient_forms.active {
-        transform: translateX(0);
+        -webkit-transform: translateX(0);
+            -ms-transform: translateX(0);
+                transform: translateX(0);
         background-color: whitesmoke;
         z-index: 1;
         
@@ -329,13 +359,17 @@ div.innexus-chatbot {
       }
       
       &.multi_contact_us.active {
-        transform: translateX(0);
+        -webkit-transform: translateX(0);
+            -ms-transform: translateX(0);
+                transform: translateX(0);
         background-color: whitesmoke;
         z-index: 1;
       }
       
       &.hours.active {
-        transform: translateX(0);
+        -webkit-transform: translateX(0);
+            -ms-transform: translateX(0);
+                transform: translateX(0);
         background-color: whitesmoke;
         z-index: 1;
       }
@@ -362,10 +396,15 @@ div.innexus-chatbot {
     background-color: #eee;
     width: 30px;
     height: 30px;
-    transform: scale(0,0);
+    -webkit-transform: scale(0,0);
+        -ms-transform: scale(0,0);
+            transform: scale(0,0);
     border-radius: 999px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(55,55,55,0.6);
+    -webkit-box-shadow: 0 0 10px rgba(55,55,55,0.6);
+            box-shadow: 0 0 10px rgba(55,55,55,0.6);
     z-index: 999;
     
     i.fa-times {
@@ -377,7 +416,9 @@ div.innexus-chatbot {
     }
     
     &.active {
-      transform: scale(1,1);
+      -webkit-transform: scale(1,1);
+          -ms-transform: scale(1,1);
+              transform: scale(1,1);
     }
     
     &.place_left {
@@ -391,19 +432,25 @@ div.innexus-chatbot {
     position: absolute;
     top: -46px;
     left: 50%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
     width: 80px;
     height: 80px;
     background-color: #eee;
     padding: 12px;
     border-radius: 999px;
-    box-sizing: border-box;
-    box-shadow: 0 0 10px rgba(55,55,55,0.6);
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-box-shadow: 0 0 10px rgba(55,55,55,0.6);
+            box-shadow: 0 0 10px rgba(55,55,55,0.6);
     z-index: 999;
     
     img {
       border-radius: 999px;
-      transform: scale(1.15);
+      -webkit-transform: scale(1.15);
+          -ms-transform: scale(1.15);
+              transform: scale(1.15);
     }
   }
   
@@ -449,12 +496,17 @@ div.innexus-chatbot {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   z-index: 99999;
-  box-shadow: 0 0 48px rgba(0,0,0,0.66);
-  transform: scale(1,1);
+  -webkit-box-shadow: 0 0 48px rgba(0,0,0,0.66);
+          box-shadow: 0 0 48px rgba(0,0,0,0.66);
+  -webkit-transform: scale(1,1);
+      -ms-transform: scale(1,1);
+          transform: scale(1,1);
   
   img {
     border-radius: 999px;
-    transform: scale(1.15);
+    -webkit-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+            transform: scale(1.15);
   }
   
   i {
@@ -475,12 +527,15 @@ div.innexus-chatbot {
   
   &:hover {
     background-color: #f2f2f2;
-    box-shadow: 0 0 64px rgba(0,0,0,1);
+    -webkit-box-shadow: 0 0 64px rgba(0,0,0,1);
+            box-shadow: 0 0 64px rgba(0,0,0,1);
   }
   
   &.active {
     opacity: 0;
-    transform: scale(0,0);
+    -webkit-transform: scale(0,0);
+        -ms-transform: scale(0,0);
+            transform: scale(0,0);
   }
   
   &.display_off {
@@ -509,7 +564,9 @@ div.innexus-chatbot {
     left: 20px;
     
     &.bounce {
-      animation: wait-left 3.33s forwards,
+      -webkit-animation: wait-left 3.33s forwards,
+    bounce 15s infinite;
+              animation: wait-left 3.33s forwards,
     bounce 15s infinite;
     }
   }
@@ -520,7 +577,9 @@ div.innexus-chatbot {
     right: 20px;
     
     &.bounce {
-      animation: wait-right 3.33s forwards,
+      -webkit-animation: wait-right 3.33s forwards,
+      bounce 15s infinite;
+              animation: wait-right 3.33s forwards,
       bounce 15s infinite;
     }
   }
@@ -530,34 +589,90 @@ div.innexus-chatbot {
 @keyframes wait-left {
   0% {
     left: -100%;
-    transform: scale(0,0);
+    -webkit-transform: scale(0,0);
+        -ms-transform: scale(0,0);
+            transform: scale(0,0);
   }
   
   80% {
     left: -100%;
-    transform: scale(0,0);
+    -webkit-transform: scale(0,0);
+        -ms-transform: scale(0,0);
+            transform: scale(0,0);
   }
   
   99% {
     left: 20px;
-    transform: scale(1,1);
+    -webkit-transform: scale(1,1);
+        -ms-transform: scale(1,1);
+            transform: scale(1,1);
+  }
+}
+
+@-webkit-keyframes wait-right {
+  0% {
+    right: -100%;
+    -webkit-transform: scale(0,0);
+            transform: scale(0,0);
+  }
+  
+  80% {
+    right: -100%;
+    -webkit-transform: scale(0,0);
+            transform: scale(0,0);
+  }
+  
+  99% {
+    right: 20px;
+    -webkit-transform: scale(1,1);
+            transform: scale(1,1);
   }
 }
 
 @keyframes wait-right {
   0% {
     right: -100%;
-    transform: scale(0,0);
+    -webkit-transform: scale(0,0);
+            transform: scale(0,0);
   }
   
   80% {
     right: -100%;
-    transform: scale(0,0);
+    -webkit-transform: scale(0,0);
+            transform: scale(0,0);
   }
   
   99% {
     right: 20px;
-    transform: scale(1,1);
+    -webkit-transform: scale(1,1);
+            transform: scale(1,1);
+  }
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  2% {
+    bottom: 30px;
+    right: 20px;
+  }
+  
+  3% {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  5% {
+    bottom: 23px;
+    right: 20px;
+  }
+  
+  6% {
+    bottom: 20px;
+    right: 20px;
   }
 }
 

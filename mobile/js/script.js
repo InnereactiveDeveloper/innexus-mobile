@@ -231,19 +231,6 @@ jQuery(document).ready(function($)
         $('.chatbot-page.online_patient_forms .buttonsContainer.outer').addClass('scroll');
         $('.chatbot-page.online_patient_forms .buttonsContainer.inner').addClass('scroll');
         $('.chatbot-page.online_patient_forms .chatbot-response').append('<br><sub>Scroll for More</sub>');
-        
-        //once scrolled…
-/*
-        $('.chatbot-page.online_patient_forms .buttonsContainer.inner').scroll(function() {
-          $scroll = $('.chatbot-page.online_patient_forms .buttonsContainer.inner').scrollTop();
-          console.log($scroll);
-          
-          if($scroll >= 10) {
-            //remove the scroll class
-            $('.chatbot-page.online_patient_forms .buttonsContainer.outer').removeClass('scroll');
-          }
-        })
-*/
       }
     }
     
