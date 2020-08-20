@@ -24,6 +24,7 @@ if( function_exists('acf_add_options_page') )
 }
 
 //Plugin Fields
+/*
 if( function_exists('acf_add_local_field_group') ):
 
 $iconm1 = XMOB_URL . '/mobile/img/m1.png';
@@ -1586,3 +1587,4 @@ acf_add_local_field_group(array(
 ));
 
 endif;
+*/

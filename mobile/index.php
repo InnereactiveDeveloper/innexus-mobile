@@ -396,6 +396,8 @@ function XMOB_injection()
             			  $name = $location['location_name_chatbot'];
           			    $contactLink = $location['contact_us_chatbot'];
           			    $contactCopy = $location['contact_us_button_copy'];
+          			    $emailHide = $location['hide_email'];
+          			    $emailCopy = $location['hide_email_text'];
           			    $apptLink = $location['appt_req_chatbot'];
           			    $apptCopy = $location['appointment_request_button_copy'];
           			    $locationNumber++;
@@ -436,11 +438,19 @@ function XMOB_injection()
                       }
                       if($sync == 'static') {
                         if(!empty($email)) {
-                          $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                          if($emailHide == 'noHide') {
+                            $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                          } elseif($emailHide == 'hide') {
+                            $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$emailCopy</a>";
+                          }
                         }
               			  } elseif($locationNumber <= $globalLocationNumber && !empty($name)) {
                 			  $output .= "<br>";
-                        $output .= do_shortcode('[email location='.$locationNumber.']');
+                			  if($emailHide == 'noHide') {
+                  			  $output .= do_shortcode('[email location='.$locationNumber.']');
+                			  } elseif($emailHide == 'hide') {
+                  			  $output .= do_shortcode('[email location='.$locationNumber.' hide="'.$emailCopy.'"]');
+                			  }
               			  }
               			  
               			  //if showing contact us link
@@ -730,6 +740,8 @@ if($formsCount > 5) {
               $apptCopy = $location['appointment_request_button_copy'];
               $contactLink = $location['contact_us_chatbot'];
       			  $contactCopy = $location['contact_us_button_copy'];
+      			  $emailHide = $location['hide_email'];
+          		$emailCopy = $location['hide_email_text'];
       			  $formsCopy = $location['patient_forms_button_copy'];
       			  $hoursCopy = $location['office_hours_button_copy'];
       			  
@@ -796,11 +808,19 @@ if($formsCount > 5) {
                   }
                   if($sync == 'static') {
                     if(!empty($email)) {
-                      echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                      if($emailHide == 'noHide') {
+                        echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                      } elseif($emailHide == 'hide') {
+                        echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$emailCopy</a>";
+                      }
                     }
           			  } else {
             			  echo "<br>";
-                    echo do_shortcode('[email]');
+            			  if($emailHide == 'noHide') {
+              			  echo do_shortcode('[email]');
+            			  } elseif($emailHide == 'hide') {
+              			  echo do_shortcode('[email hide="'.$emailCopy.'"]');
+            			  }
           			  }
           			  
           			  //show the contact us button            			  
