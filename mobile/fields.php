@@ -26,11 +26,6 @@ if( function_exists('acf_add_options_page') )
 //Plugin Fields
 if( function_exists('acf_add_local_field_group') ):
 
-$iconm1 = XMOB_URL . '/mobile/img/m1.png';
-$iconf1 = XMOB_URL . '/mobile/img/f1.png';
-$iconf2 = XMOB_URL . '/mobile/img/f2.png';
-$iconRandom = XMOB_URL . '/mobile/img/random.png';
-
 acf_add_local_field_group(array(
 	'key' => 'group_5c6d9982b2c6a',
 	'title' => 'Innexus Mobile',
@@ -389,11 +384,11 @@ acf_add_local_field_group(array(
 				'class' => '',
 				'id' => '',
 			),
-			'choices' => array(  			
-				'random' => "<img src='$iconRandom' width='80px' height='80px' />",
-				'female1' => "<img src='$iconf1' width='80px' height='80px' />",
-				'female2' => "<img src='$iconf2' width='80px' height='80px' />",
-				'male' => "<img src='$iconm1' width='80px' height='80px' />",
+			'choices' => array(
+				'random' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/random.png" style="width: 72px;height: auto;" />',
+				'female1' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/f1.png" style="width: 72px;height: auto;" />',
+				'female2' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/f2.png" style="width: 72px;height: auto;" />',
+				'male' => '<img src="/wp-content/plugins/innexus-mobile/mobile/img/m1.png" style="width: 72px;height: auto;" />',
 			),
 			'allow_null' => 0,
 			'default_value' => 'random',
@@ -502,6 +497,38 @@ acf_add_local_field_group(array(
 			),
 			'placement' => 'top',
 			'endpoint' => 0,
+		),
+		array(
+			'key' => 'field_5f3ede28d09fb',
+			'label' => 'Scroll Text',
+			'name' => 'pf_scroll_text',
+			'type' => 'text',
+			'instructions' => 'Controls the copy that shows when scrolling is needed. A character limit is set to ensure consistent styling.',
+			'required' => 0,
+			'conditional_logic' => array(
+				array(
+					array(
+						'field' => 'field_5e160546f8fde',
+						'operator' => '==',
+						'value' => 'innexus_chatbot',
+					),
+					array(
+						'field' => 'field_5e1605abf8fe0',
+						'operator' => '==',
+						'value' => 'online_patient_forms',
+					),
+				),
+			),
+			'wrapper' => array(
+				'width' => '100',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => 'Scroll for More',
+			'placeholder' => 'Scroll for More',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => 30,
 		),
 		array(
 			'key' => 'field_5e6260c54ba6c',
@@ -1266,6 +1293,63 @@ acf_add_local_field_group(array(
 					'placeholder' => 'example@email.com',
 					'prepend' => '',
 					'append' => '',
+				),
+				array(
+					'key' => 'field_5f3ed45ec28e7',
+					'label' => 'Hide Email',
+					'name' => 'hide_email',
+					'type' => 'button_group',
+					'instructions' => 'If you would prefer to hide the email address check this box.',
+					'required' => 0,
+					'conditional_logic' => array(
+						array(
+							array(
+								'field' => 'field_5e160546f8fde',
+								'operator' => '==',
+								'value' => 'innexus_chatbot',
+							),
+						),
+					),
+					'wrapper' => array(
+						'width' => '50',
+						'class' => '',
+						'id' => '',
+					),
+					'choices' => array(
+						'noHide' => 'Don\'t Hide',
+						'hide' => 'Hide',
+					),
+					'allow_null' => 0,
+					'default_value' => 'noHide',
+					'layout' => 'horizontal',
+					'return_format' => 'value',
+				),
+				array(
+					'key' => 'field_5f3ed4e0c28e8',
+					'label' => 'Hide Email Text',
+					'name' => 'hide_email_text',
+					'type' => 'text',
+					'instructions' => 'Text to replace email',
+					'required' => 0,
+					'conditional_logic' => array(
+						array(
+							array(
+								'field' => 'field_5e160546f8fde',
+								'operator' => '==',
+								'value' => 'innexus_chatbot',
+							),
+						),
+					),
+					'wrapper' => array(
+						'width' => '50',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => 'Email Us',
+					'placeholder' => 'Email Us',
+					'prepend' => '',
+					'append' => '',
+					'maxlength' => '',
 				),
 				array(
 					'key' => 'field_5e5584bfa4655',

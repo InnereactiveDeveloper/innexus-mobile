@@ -396,6 +396,8 @@ function XMOB_injection()
             			  $name = $location['location_name_chatbot'];
           			    $contactLink = $location['contact_us_chatbot'];
           			    $contactCopy = $location['contact_us_button_copy'];
+          			    $emailHide = $location['hide_email'];
+          			    $emailCopy = $location['hide_email_text'];
           			    $apptLink = $location['appt_req_chatbot'];
           			    $apptCopy = $location['appointment_request_button_copy'];
           			    $locationNumber++;
@@ -436,11 +438,19 @@ function XMOB_injection()
                       }
                       if($sync == 'static') {
                         if(!empty($email)) {
-                          $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                          if($emailHide == 'noHide') {
+                            $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                          } elseif($emailHide == 'hide') {
+                            $output .= "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$emailCopy</a>";
+                          }
                         }
               			  } elseif($locationNumber <= $globalLocationNumber && !empty($name)) {
                 			  $output .= "<br>";
-                        $output .= do_shortcode('[email location='.$locationNumber.']');
+                			  if($emailHide == 'noHide') {
+                  			  $output .= do_shortcode('[email location='.$locationNumber.']');
+                			  } elseif($emailHide == 'hide') {
+                  			  $output .= do_shortcode('[email location='.$locationNumber.' hide="'.$emailCopy.'"]');
+                			  }
               			  }
               			  
               			  //if showing contact us link
@@ -625,12 +635,13 @@ function XMOB_injection()
       			  
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
-        			  $formsCopy = $location['patient_forms_button_copy'];        			  
+        			  $formsCopy = $location['patient_forms_button_copy'];
+        			  $scrollText = get_field('pf_scroll_text', 'options'); 			  
         			  
         			  //when clicked, show the multi_forms page
                 echo "<div class='chatbot-page online_patient_forms'>";
                   echo "<div class='chatbot-page-back innexus-chatbot-tracky online_patient_forms' data-chatbotContext='Patient Forms -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Patient Forms -> Back -> Main'></i>&nbsp;Back</div>";
-                  echo "<p class='chatbot-response'>Patient Forms</p>";
+                  echo "<p class='chatbot-response'>Patient Forms<span id='scroll-text'><sub>$scrollText</sub></span></p>";
                   
                   echo "<div class='buttonsContainer outer'>";
                     echo "<div class='buttonsContainer inner'>";
@@ -730,6 +741,8 @@ if($formsCount > 5) {
               $apptCopy = $location['appointment_request_button_copy'];
               $contactLink = $location['contact_us_chatbot'];
       			  $contactCopy = $location['contact_us_button_copy'];
+      			  $emailHide = $location['hide_email'];
+          		$emailCopy = $location['hide_email_text'];
       			  $formsCopy = $location['patient_forms_button_copy'];
       			  $hoursCopy = $location['office_hours_button_copy'];
       			  
@@ -796,11 +809,19 @@ if($formsCount > 5) {
                   }
                   if($sync == 'static') {
                     if(!empty($email)) {
-                      echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                      if($emailHide == 'noHide') {
+                        echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$email</a>";
+                      } elseif($emailHide == 'hide') {
+                        echo "<a href='mailto:" . $email . "'><i class='fas fa-envelope'></i>&nbsp;$emailCopy</a>";
+                      }
                     }
           			  } else {
             			  echo "<br>";
-                    echo do_shortcode('[email]');
+            			  if($emailHide == 'noHide') {
+              			  echo do_shortcode('[email]');
+            			  } elseif($emailHide == 'hide') {
+              			  echo do_shortcode('[email hide="'.$emailCopy.'"]');
+            			  }
           			  }
           			  
           			  //show the contact us button            			  
@@ -909,12 +930,13 @@ if($formsCount > 5) {
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
         			  $formsCopy = $location['patient_forms_button_copy'];
+        			  $scrollText = get_field('pf_scroll_text', 'options');
         			  $formsCount = 0;
 
         			  //when clicked, show the multi_forms page
                 echo "<div class='chatbot-page online_patient_forms'>";
                   echo "<div class='chatbot-page-back innexus-chatbot-tracky online_patient_forms' data-chatbotContext='Single Patient Forms -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Single Patient Forms -> Back -> Main'></i>&nbsp;Back</div>";
-                  echo "<p class='chatbot-response'>Patient Forms</p>";
+                  echo "<p class='chatbot-response'>Patient Forms<span id='scroll-text'><sub>$scrollText</sub></span></p>";
                   
                   echo "<div class='buttonsContainer outer'>";
                     echo "<div class='buttonsContainer inner'>";
