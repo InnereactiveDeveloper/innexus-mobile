@@ -226,11 +226,11 @@ jQuery(document).ready(function($)
       $height = $('.chatbot-page.online_patient_forms .buttonsContainer.inner').outerHeight();
       
       if($height > 220) {
-        //add the scroll class and text
+        //add the scroll class and text        
         $('.chatbot-page.online_patient_forms .chatbot-response').addClass('scroll');
         $('.chatbot-page.online_patient_forms .buttonsContainer.outer').addClass('scroll');
         $('.chatbot-page.online_patient_forms .buttonsContainer.inner').addClass('scroll');
-        $('.chatbot-page.online_patient_forms .chatbot-response').append('<br><sub>Scroll for More</sub>');
+        $('.chatbot-page.online_patient_forms .chatbot-response #scroll-text').addClass('active');
       }
     }
     

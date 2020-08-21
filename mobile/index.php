@@ -635,12 +635,13 @@ function XMOB_injection()
       			  
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
-        			  $formsCopy = $location['patient_forms_button_copy'];        			  
+        			  $formsCopy = $location['patient_forms_button_copy'];
+        			  $scrollText = get_field('pf_scroll_text', 'options'); 			  
         			  
         			  //when clicked, show the multi_forms page
                 echo "<div class='chatbot-page online_patient_forms'>";
                   echo "<div class='chatbot-page-back innexus-chatbot-tracky online_patient_forms' data-chatbotContext='Patient Forms -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Patient Forms -> Back -> Main'></i>&nbsp;Back</div>";
-                  echo "<p class='chatbot-response'>Patient Forms</p>";
+                  echo "<p class='chatbot-response'>Patient Forms<span id='scroll-text'><sub>$scrollText</sub></span></p>";
                   
                   echo "<div class='buttonsContainer outer'>";
                     echo "<div class='buttonsContainer inner'>";
@@ -929,12 +930,13 @@ if($formsCount > 5) {
       			  //if showing online patient forms…
       			  if(in_array('online_patient_forms', $homeData)) {
         			  $formsCopy = $location['patient_forms_button_copy'];
+        			  $scrollText = get_field('pf_scroll_text', 'options');
         			  $formsCount = 0;
 
         			  //when clicked, show the multi_forms page
                 echo "<div class='chatbot-page online_patient_forms'>";
                   echo "<div class='chatbot-page-back innexus-chatbot-tracky online_patient_forms' data-chatbotContext='Single Patient Forms -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Single Patient Forms -> Back -> Main'></i>&nbsp;Back</div>";
-                  echo "<p class='chatbot-response'>Patient Forms</p>";
+                  echo "<p class='chatbot-response'>Patient Forms<span id='scroll-text'><sub>$scrollText</sub></span></p>";
                   
                   echo "<div class='buttonsContainer outer'>";
                     echo "<div class='buttonsContainer inner'>";
