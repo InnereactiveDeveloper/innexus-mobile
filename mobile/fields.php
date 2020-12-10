@@ -504,38 +504,6 @@ acf_add_local_field_group(array(
 			'endpoint' => 0,
 		),
 		array(
-			'key' => 'field_5f3ede28d09fb',
-			'label' => 'Scroll Text',
-			'name' => 'pf_scroll_text',
-			'type' => 'text',
-			'instructions' => 'Controls the copy that shows when scrolling is needed. A character limit is set to ensure consistent styling.',
-			'required' => 0,
-			'conditional_logic' => array(
-				array(
-					array(
-						'field' => 'field_5e160546f8fde',
-						'operator' => '==',
-						'value' => 'innexus_chatbot',
-					),
-					array(
-						'field' => 'field_5e1605abf8fe0',
-						'operator' => '==',
-						'value' => 'online_patient_forms',
-					),
-				),
-			),
-			'wrapper' => array(
-				'width' => '100',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => 'Scroll for More',
-			'placeholder' => 'Scroll for More',
-			'prepend' => '',
-			'append' => '',
-			'maxlength' => 30,
-		),
-		array(
 			'key' => 'field_5e6260c54ba6c',
 			'label' => 'Patient Forms Override',
 			'name' => 'patient_forms_override',
@@ -693,6 +661,38 @@ acf_add_local_field_group(array(
 			'prepend' => '',
 			'append' => '',
 			'maxlength' => '',
+		),
+		array(
+			'key' => 'field_5f3ede28d09fb',
+			'label' => 'Scroll Text',
+			'name' => 'pf_scroll_text',
+			'type' => 'text',
+			'instructions' => 'Controls the copy that shows when scrolling is needed. A character limit is set to ensure consistent styling.',
+			'required' => 0,
+			'conditional_logic' => array(
+				array(
+					array(
+						'field' => 'field_5e160546f8fde',
+						'operator' => '==',
+						'value' => 'innexus_chatbot',
+					),
+					array(
+						'field' => 'field_5e1605abf8fe0',
+						'operator' => '==',
+						'value' => 'online_patient_forms',
+					),
+				),
+			),
+			'wrapper' => array(
+				'width' => '100',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => 'Scroll for more options.',
+			'placeholder' => 'Scroll for more options.',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => 30,
 		),
 		array(
 			'key' => 'field_5ef3ad4a2d81c',

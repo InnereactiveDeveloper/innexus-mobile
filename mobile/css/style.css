@@ -35,7 +35,7 @@ div.innexus-chatbot .chatbot-container {
   min-height: 308px;
 }
 div.innexus-chatbot .chatbot-container.grow {
-  min-height: 375px;
+  min-height: 395px;
 }
 div.innexus-chatbot .chatbot-container p.chatbot-response {
   text-align: center;
@@ -56,6 +56,9 @@ div.innexus-chatbot .chatbot-container p.chatbot-response span#scroll-text {
 }
 div.innexus-chatbot .chatbot-container p.chatbot-response span#scroll-text.active {
   display: block;
+}
+div.innexus-chatbot .chatbot-container p.chatbot-response.active {
+  line-height: 26px;
 }
 div.innexus-chatbot .chatbot-container .main_buttons-container {
   position: absolute;
@@ -118,6 +121,31 @@ div.innexus-chatbot .chatbot-container .chatbot-page {
 div.innexus-chatbot .chatbot-container .chatbot-page .buttonsContainer {
   overflow: hidden;
   max-height: 176px;
+  /*
+        &.outer {
+          &:after {
+            content: '';
+            visibility: visible;
+            overflow: visible;
+            position: absolute;
+            width: 100%;
+            left: 50%;
+            bottom: 4px;
+            height: 20px;
+            border-radius: 5px;
+            background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), color-stop(rgba(0,0,0,0.2)), to(rgba(0,0,0,0.6)));
+            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            -webkit-transform: translate(-50%,0);
+                -ms-transform: translate(-50%,0);
+                    transform: translate(-50%,0);
+            -webkit-transition: all 0.2s ease;
+            -o-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+            opacity: 0;
+          }
+        }
+*/
 }
 div.innexus-chatbot .chatbot-container .chatbot-page .buttonsContainer > div.chatbot-button,
 div.innexus-chatbot .chatbot-container .chatbot-page .buttonsContainer > a.chatbot-button {
@@ -143,6 +171,9 @@ div.innexus-chatbot .chatbot-container .chatbot-page .buttonsContainer.showMore 
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
   transform: translate(0, 0);
+}
+div.innexus-chatbot .chatbot-container .chatbot-page .buttonsContainer .inner {
+  max-height: none;
 }
 div.innexus-chatbot .chatbot-container .chatbot-page .chatbot-response {
   margin-top: 14px;
@@ -232,6 +263,27 @@ div.innexus-chatbot .chatbot-container .chatbot-page.request_appointment.active 
   background-color: whitesmoke;
   z-index: 1;
 }
+div.innexus-chatbot .chatbot-container .chatbot-page.request_appointment.active .buttonsContainer {
+  max-height: 220px;
+  overflow-y: scroll;
+  border-radius: 5px;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.request_appointment.active .buttonsContainer.outer.scroll:after {
+  opacity: 1;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.request_appointment.active .buttonsContainer .inner {
+  max-height: none;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.request_appointment.active .buttonsContainer a.chatbot-button,
+div.innexus-chatbot .chatbot-container .chatbot-page.request_appointment.active .buttonsContainer div.chatbot-button {
+  max-height: none;
+  white-space: normal;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.request_appointment.active .buttonsContainer a.chatbot-button:last-of-type,
+div.innexus-chatbot .chatbot-container .chatbot-page.request_appointment.active .buttonsContainer div.chatbot-button:last-of-type {
+  margin-bottom: 0;
+  z-index: 1;
+}
 div.innexus-chatbot .chatbot-container .chatbot-page.multi_hours.active {
   -webkit-transform: translateX(0);
   -ms-transform: translateX(0);
@@ -239,36 +291,21 @@ div.innexus-chatbot .chatbot-container .chatbot-page.multi_hours.active {
   background-color: whitesmoke;
   z-index: 1;
 }
-div.innexus-chatbot .chatbot-container .chatbot-page.contact_us.active {
-  -webkit-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  background-color: whitesmoke;
-  z-index: 1;
-}
-div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms .buttonsContainer.outer:after {
-  content: '';
-  visibility: visible;
-  overflow: visible;
-  position: absolute;
-  width: 100%;
-  left: 50%;
-  bottom: 4px;
-  height: 20px;
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_hours.active .buttonsContainer {
+  max-height: 220px;
+  overflow-y: scroll;
   border-radius: 5px;
-  background: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.6)));
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
-  -webkit-transform: translate(-50%, 0);
-  -ms-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  -webkit-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  opacity: 0;
 }
-div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms .buttonsContainer .inner {
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_hours.active .buttonsContainer.outer.scroll:after {
+  opacity: 1;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_hours.active .buttonsContainer .inner {
   max-height: none;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_hours.active .buttonsContainer a.chatbot-button,
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_hours.active .buttonsContainer div.chatbot-button {
+  max-height: none;
+  white-space: normal;
 }
 div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active {
   -webkit-transform: translateX(0);
@@ -292,7 +329,6 @@ div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active
 div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active .buttonsContainer div.chatbot-button {
   max-height: none;
   white-space: normal;
-  line-height: 1.3em;
 }
 div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active .buttonsContainer a.chatbot-button:last-of-type,
 div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active .buttonsContainer div.chatbot-button:last-of-type {
@@ -300,6 +336,29 @@ div.innexus-chatbot .chatbot-container .chatbot-page.online_patient_forms.active
   z-index: 1;
 }
 div.innexus-chatbot .chatbot-container .chatbot-page.multi_contact_us.active {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+  background-color: whitesmoke;
+  z-index: 1;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_contact_us.active .buttonsContainer {
+  max-height: 220px;
+  overflow-y: scroll;
+  border-radius: 5px;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_contact_us.active .buttonsContainer.outer.scroll:after {
+  opacity: 1;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_contact_us.active .buttonsContainer .inner {
+  max-height: none;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_contact_us.active .buttonsContainer a.chatbot-button,
+div.innexus-chatbot .chatbot-container .chatbot-page.multi_contact_us.active .buttonsContainer div.chatbot-button {
+  max-height: none;
+  white-space: normal;
+}
+div.innexus-chatbot .chatbot-container .chatbot-page.contact_us.active {
   -webkit-transform: translateX(0);
   -ms-transform: translateX(0);
   transform: translateX(0);

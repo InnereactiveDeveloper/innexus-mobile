@@ -58,6 +58,7 @@ jQuery(document).ready(function($)
     })
     /* OPEN CLOSE END */
     
+    
     /* HOURS START */
     //when the hours button is clicked…
     $('.chatbot-button.hours').click(function() {
@@ -100,22 +101,20 @@ jQuery(document).ready(function($)
       removeActive('.chatbot-page.multi_hours');
     });
     
-    //if the multi_hours more options button is present
-    if($('.chatbot-page.multi_hours .chatbot-button.moreOptions').length) {
-      //and it is clicked
-      $('.chatbot-page.multi_hours .chatbot-button.moreOptions').click(function() {
-        //toggle the showMore class
-        $('.chatbot-page.multi_hours .buttonsContainer').toggleClass('showMore');
-        
-        //when toggled, change the text of the button
-        if($(this).text() == 'More Options') {
-          $(this).text('Previous Options');
-        } else {
-          $(this).text('More Options');
-        }
-      })
+    //if the inner container is taller than 220px…
+    if($('.chatbot-page.multi_hours .buttonsContainer.inner').length) {
+      $height = $('.chatbot-page.multi_hours .buttonsContainer.inner').outerHeight();
+      
+      if($height > 220) {
+        //add the scroll class and text        
+        $('.chatbot-page.multi_hours .chatbot-response').addClass('scroll');
+        $('.chatbot-page.multi_hours .buttonsContainer.outer').addClass('scroll');
+        $('.chatbot-page.multi_hours .buttonsContainer.inner').addClass('scroll');
+        $('.chatbot-page.multi_hours .chatbot-response #scroll-text').addClass('active');
+      }
     }
     /* HOURS END */
+    
     
     /* CONTACT START */
     //when the contact_us button is clicked…
@@ -157,22 +156,20 @@ jQuery(document).ready(function($)
       removeActive('.chatbot-page.multi_contact_us');
     });
     
-    //if the multi_contact_us more options button is present
-    if($('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').length) {
-      //and it is clicked
-      $('.chatbot-page.multi_contact_us .chatbot-button.moreOptions').click(function() {
-        //toggle the showMore class
-        $('.chatbot-page.multi_contact_us .buttonsContainer').toggleClass('showMore');
-        
-        //when toggled, change the text of the button
-        if($(this).text() == 'More Options') {
-          $(this).text('Previous Options');
-        } else {
-          $(this).text('More Options');
-        }
-      })
+    //if the inner container is taller than 220px…
+    if($('.chatbot-page.multi_contact_us .buttonsContainer.inner').length) {
+      $height = $('.chatbot-page.multi_contact_us .buttonsContainer.inner').outerHeight();
+      
+      if($height > 220) {
+        //add the scroll class and text        
+        $('.chatbot-page.multi_contact_us .chatbot-response').addClass('scroll');
+        $('.chatbot-page.multi_contact_us .buttonsContainer.outer').addClass('scroll');
+        $('.chatbot-page.multi_contact_us .buttonsContainer.inner').addClass('scroll');
+        $('.chatbot-page.multi_contact_us .chatbot-response #scroll-text').addClass('active');
+      }
     }
     /* CONTACT END */
+    
     
     /* APPOINTMENTS START */
     //when the request_appointment button is clicked…
@@ -182,29 +179,27 @@ jQuery(document).ready(function($)
       addActive('.chatbot-page.request_appointment');
     })
     
-    //if the request_appointment more options button is present
-    if($('.chatbot-page.request_appointment .chatbot-button.moreOptions').length) {
-      //and it is clicked
-      $('.chatbot-page.request_appointment .chatbot-button.moreOptions').click(function() {
-        //toggle the showMore class
-        $('.chatbot-page.request_appointment .buttonsContainer').toggleClass('showMore');
-        
-        //when toggled, change the text of the button
-        if($(this).text() == 'More Options') {
-          $(this).text('Previous Options');
-        } else {
-          $(this).text('More Options');
-        }
-      })
-    }
-    
     //when the request_appointment back button is clicked…
     $('.chatbot-page-back.request_appointment').click(function() {
       
       //remove the active class on the request_appointment container
       removeActive('.chatbot-page.request_appointment');
     })
+    
+    //if the inner container is taller than 220px…
+    if($('.chatbot-page.request_appointment .buttonsContainer.inner').length) {
+      $height = $('.chatbot-page.request_appointment .buttonsContainer.inner').outerHeight();
+      
+      if($height > 220) {
+        //add the scroll class and text        
+        $('.chatbot-page.request_appointment .chatbot-response').addClass('scroll');
+        $('.chatbot-page.request_appointment .buttonsContainer.outer').addClass('scroll');
+        $('.chatbot-page.request_appointment .buttonsContainer.inner').addClass('scroll');
+        $('.chatbot-page.request_appointment .chatbot-response #scroll-text').addClass('active');
+      }
+    }
     /* APPOINTMENTS END */
+    
     
     /* PATIENT FORMS START */
     //when the online_patient_forms button is clicked…
@@ -232,25 +227,7 @@ jQuery(document).ready(function($)
         $('.chatbot-page.online_patient_forms .buttonsContainer.inner').addClass('scroll');
         $('.chatbot-page.online_patient_forms .chatbot-response #scroll-text').addClass('active');
       }
-    }
-    
-    //if the online_patient_forms more options button is present
-    if($('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').length) {
-      //and is clicked
-      $('.chatbot-page.online_patient_forms .chatbot-button.moreOptions').click(function() {
-        //toggle the showMore class
-        $('.chatbot-page.online_patient_forms .buttonsContainer').toggleClass('showMore');
-        
-        //when toggled, change the text of the button
-        if($(this).text() == 'More Options') {
-          $(this).text('Previous Options');
-        } else {
-          $(this).text('More Options');
-        }
-      })
-    }
-    
-    
+    }    
     /* PATIENT FORMS END */
   }
   

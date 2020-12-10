@@ -324,17 +324,19 @@ function XMOB_injection()
     			    
     			    //if showing appointment requests…
       			  if(in_array('request_appointment', $homeData)) {
+        			  $scrollText = get_field('pf_scroll_text', 'options');
                 
         			  //when clicked, show the request_appointment page
         			  echo "<div class='chatbot-page request_appointment'>";
         			    //add a back button
         			    echo "<div class='chatbot-page-back innexus-chatbot-tracky request_appointment' data-chatbotContext='Multi Appointment -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Multi Appointment -> Back -> Main'></i>&nbsp;Back</div>";
-          			  echo "<p class='chatbot-response'>Choose a Location</p>";
+          			  echo "<p class='chatbot-response'>Choose a Location<span id='scroll-text'><sub>$scrollText</sub></span></p>";
           			  
           			  //set a location counter
           			  $locationNumber = 0;
           			  
-          			  echo "<div class='buttonsContainer'>";
+          			  echo "<div class='buttonsContainer outer'>";
+          			  echo "<div class='buttonsContainer inner'>";
           			  
           			  //set a button counter
           			  $buttonNumber = 0;
@@ -368,12 +370,7 @@ function XMOB_injection()
         			    }
         			    
         			    echo "</div>";
-        			    
-        			    //if more than five buttons have been added
-        			    if($buttonNumber > 5) {
-          			    //add the more options button
-          			    echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Multi Appointment -> More Options/Previous Options'>More Options</div>";
-        			    }
+        			    echo "</div>";
         			    
         			  echo "</div>";
       			  }
@@ -382,13 +379,15 @@ function XMOB_injection()
       			  if(in_array('contact_us', $homeData)) {
         			  $buttonCount = 0;
         			  $locationNumber = 0;
+        			  $scrollText = get_field('pf_scroll_text', 'options');
         			  
         			  //when clicked, show the contact_us page
         			  echo "<div class='chatbot-page multi_contact_us'>";
         			    echo "<div class='chatbot-page-back innexus-chatbot-tracky multi_contact_us' data-chatbotContext='Multi Contact -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Multi Contact -> Back -> Main'></i>&nbsp;Back</div>";
-          			  echo "<p class='chatbot-response'>Choose a Location</p>";
+          			  echo "<p class='chatbot-response'>Choose a Location<span id='scroll-text'><sub>$scrollText</sub></span></p>";
           			  
-          			  echo "<div class='buttonsContainer'>";
+          			  echo "<div class='buttonsContainer outer'>";
+          			  echo "<div class='buttonsContainer inner'>";
           			  
           			  //loop through each location
           			  foreach($location_repeater_chatbot as $location) {
@@ -418,7 +417,7 @@ function XMOB_injection()
           			    //when clicked, show the contact_us info for that location
                     $output .= "<div class='chatbot-page contact_us' data-location='location-".$locationNumber."'>";
             			    $output .= "<div class='chatbot-page-back innexus-chatbot-tracky contact_us' data-chatbotContext='$name Contact -> Back -> Multi Contact'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='$name Contact -> Back -> Multi Contact'></i>&nbsp;Back</div>";
-              			  $output .= "<p class='chatbot-response'>$name</p>";
+              			  $output .= "<p class='chatbot-response active'>$name</p>";
               			  if($sync == 'static') {
                 			  if(!empty($address)) {
                   			  $output .= $address;
@@ -490,10 +489,7 @@ function XMOB_injection()
         			    }
         			    
         			    echo "</div>";
-        			    
-        			    if($buttonCount > 5) {
-          			    echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Multi Contact -> More Options/Previous Options'>More Options</div>";
-        			    }
+        			    echo "</div>";
         			    
         			  echo "</div>";
       			  }
@@ -502,133 +498,132 @@ function XMOB_injection()
       			  if(in_array('hours', $homeData)) {
         			  $buttonCount = 0;
         			  $locationNumber = 0;
+        			  $scrollText = get_field('pf_scroll_text', 'options');
         			  
         			  //when clicked, show the multi_hours page
         			  echo "<div class='chatbot-page multi_hours'>";
         			    echo "<div class='chatbot-page-back innexus-chatbot-tracky multi_hours' data-chatbotContext='Multi Hours -> Back -> Main'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='Multi Hours -> Back -> Main'></i>&nbsp;Back</div>";
-          			  echo "<p class='chatbot-response'>Choose a Location</p>";
+          			  echo "<p class='chatbot-response'>Choose a Location<span id='scroll-text'><sub>$scrollText</sub></span></p>";
           			  
-          			  echo "<div class='buttonsContainer'>";
+          			  echo "<div class='buttonsContainer outer'>";
+          			    echo "<div class='buttonsContainer inner'>";
           			  
-          			  //loop through each location
-          			  foreach($location_repeater_chatbot as $location) {
-            			  $name = $location['location_name_chatbot'];
-            			  $apptLink = $location['appt_req_chatbot'];
-            			  $hours = $location['location_hours'];
-          			    $monday = $hours['monday'];
-          			    $tuesday = $hours['tuesday'];
-          			    $wednesday = $hours['wednesday'];
-          			    $thursday = $hours['thursday'];
-          			    $friday = $hours['friday'];
-          			    $saturday = $hours['saturday'];
-          			    $sunday = $hours['sunday'];
-          			    $additionalInfo = $hours['additional_info'];
-          			    
-          			    $locationNumber++;
-          			    $output = '';
-          			    
-          			    //show the button for each location
-          			    $output .= "<div class='chatbot-button innexus-chatbot-tracky chatbot-button-background hours' id='hours' data-chatbotContext='Multi Hours -> $name' data-location='location-".$locationNumber."'>$name</div>";
-                    
-                    //when clicked, show the hours for that location
-                    $output .= "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
-            			    $output .= "<div class='chatbot-page-back innexus-chatbot-tracky hours' data-chatbotContext='$name Hours -> Back -> Multi Hours'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='$name -> Back -> Multi Hours'></i>&nbsp;Back</div>";
-              			  $output .= "<p class='chatbot-response'>$name Hours</p>";
+            			  //loop through each location
+            			  foreach($location_repeater_chatbot as $location) {
+              			  $name = $location['location_name_chatbot'];
+              			  $apptLink = $location['appt_req_chatbot'];
+              			  $hours = $location['location_hours'];
+            			    $monday = $hours['monday'];
+            			    $tuesday = $hours['tuesday'];
+            			    $wednesday = $hours['wednesday'];
+            			    $thursday = $hours['thursday'];
+            			    $friday = $hours['friday'];
+            			    $saturday = $hours['saturday'];
+            			    $sunday = $hours['sunday'];
+            			    $additionalInfo = $hours['additional_info'];
+            			    
+            			    $locationNumber++;
+            			    $output = '';
+            			    
+            			    //show the button for each location
+            			    $output .= "<div class='chatbot-button innexus-chatbot-tracky chatbot-button-background hours' id='hours' data-chatbotContext='Multi Hours -> $name' data-location='location-".$locationNumber."'>$name</div>";
+                      
+                      //when clicked, show the hours for that location
+                      $output .= "<div class='chatbot-page hours' data-location='location-".$locationNumber."'>";
+              			    $output .= "<div class='chatbot-page-back innexus-chatbot-tracky hours' data-chatbotContext='$name Hours -> Back -> Multi Hours'><i class='fas fa-chevron-circle-left innexus-chatbot-tracky' data-chatbotContext='$name -> Back -> Multi Hours'></i>&nbsp;Back</div>";
+                			  $output .= "<p class='chatbot-response active'>$name Hours</p>";
+                			  
+                			  if($sync == 'static') {
+                  			  $output .= "<div id='hours' class='hours snippet'>";
               			  
-              			  if($sync == 'static') {
-                			  $output .= "<div id='hours' class='hours snippet'>";
-            			  
-                  			  //Monday
-                      		$output .= "<ul class='day'>";
-                      			$output .= "<li class='day'>Monday</li>";
-                      			$output .= "<li class='hour'>". $monday ."</li>";
-                      		$output .= "</ul>";
+                    			  //Monday
+                        		$output .= "<ul class='day'>";
+                        			$output .= "<li class='day'>Monday</li>";
+                        			$output .= "<li class='hour'>". $monday ."</li>";
+                        		$output .= "</ul>";
+                        		
+                        		//tuesday
+                        		$output .= "<ul class='day'>";
+                        			$output .= "<li class='day'>Tuesday</li>";
+                        			$output .= "<li class='hour'>". $tuesday ."</li>";
+                        		$output .= "</ul>";
+                        		
+                        		//wednesday
+                        		$output .= "<ul class='day'>";
+                        			$output .= "<li class='day'>Wednesday</li>";
+                        			$output .= "<li class='hour'>". $wednesday ."</li>";
+                        		$output .= "</ul>";
+                        		
+                        		//thursday
+                        		$output .= "<ul class='day'>";
+                        			$output .= "<li class='day'>Thursday</li>";
+                        			$output .= "<li class='hour'>". $thursday ."</li>";
+                        		$output .= "</ul>";
+                        		
+                        		//Friday
+                        		$output .= "<ul class='day'>";
+                        			$output .= "<li class='day'>Friday</li>";
+                        			$output .= "<li class='hour'>". $friday ."</li>";
+                        		$output .= "</ul>";
+                        		
+                        		//Saturday
+                        		$output .= "<ul class='day'>";
+                        			$output .= "<li class='day'>Saturday</li>";
+                        			$output .= "<li class='hour'>". $saturday ."</li>";
+                        		$output .= "</ul>";
+                        		
+                        		//Sunday
+                        		$output .= "<ul class='day'>";
+                        			$output .= "<li class='day'>Monday</li>";
+                        			$output .= "<li class='hour'>". $sunday ."</li>";
+                        		$output .= "</ul>";
                       		
-                      		//tuesday
-                      		$output .= "<ul class='day'>";
-                      			$output .= "<li class='day'>Tuesday</li>";
-                      			$output .= "<li class='hour'>". $tuesday ."</li>";
-                      		$output .= "</ul>";
+                      		$output .= "</div>";
                       		
-                      		//wednesday
-                      		$output .= "<ul class='day'>";
-                      			$output .= "<li class='day'>Wednesday</li>";
-                      			$output .= "<li class='hour'>". $wednesday ."</li>";
-                      		$output .= "</ul>";
-                      		
-                      		//thursday
-                      		$output .= "<ul class='day'>";
-                      			$output .= "<li class='day'>Thursday</li>";
-                      			$output .= "<li class='hour'>". $thursday ."</li>";
-                      		$output .= "</ul>";
-                      		
-                      		//Friday
-                      		$output .= "<ul class='day'>";
-                      			$output .= "<li class='day'>Friday</li>";
-                      			$output .= "<li class='hour'>". $friday ."</li>";
-                      		$output .= "</ul>";
-                      		
-                      		//Saturday
-                      		$output .= "<ul class='day'>";
-                      			$output .= "<li class='day'>Saturday</li>";
-                      			$output .= "<li class='hour'>". $saturday ."</li>";
-                      		$output .= "</ul>";
-                      		
-                      		//Sunday
-                      		$output .= "<ul class='day'>";
-                      			$output .= "<li class='day'>Monday</li>";
-                      			$output .= "<li class='hour'>". $sunday ."</li>";
-                      		$output .= "</ul>";
-                    		
-                    		$output .= "</div>";
-                    		
-                    		//Additional Notes below wrapper
-                      	if(!empty($additionalInfo))
-                      	{
-                      		$output .= "<div class='hours-additional-notes'>";
-                      			$output .= $additionalInfo;	
-                      		$output .= "</div>";	
-                      	}
-              			  } elseif($locationNumber <= $globalLocationNumber && !empty($name)) {
-                			  $output .= do_shortcode('[hours location='.$locationNumber.']');
-              			  }
-                			                			                			  
-              			  //if showing appointment requests…
-              			  if(in_array('request_appointment', $homeData)) {
-                			  $linkIcon = innexus_link_compare($apptLink);
-                			  $internalExternal = innexus_link_compare_string($apptLink);
-                			  //show the appointment button
-                        if(!empty($apptLink)) {
-                  			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two' data-chatbotContext='$name Hours -> Appointment Button $internalExternal'>$apptCopy&nbsp;$linkIcon</a>";
+                      		//Additional Notes below wrapper
+                        	if(!empty($additionalInfo))
+                        	{
+                        		$output .= "<div class='hours-additional-notes'>";
+                        			$output .= $additionalInfo;	
+                        		$output .= "</div>";	
+                        	}
+                			  } elseif($locationNumber <= $globalLocationNumber && !empty($name)) {
+                  			  $output .= do_shortcode('[hours location='.$locationNumber.']');
                 			  }
-              			  }
-              			  
-            			  $output .= "</div>";
-                    
-                    //if on a new layout
-                    if($global_location_repeater) {
-                      //show the button for each location
-                      if($locationNumber <= $globalLocationNumber && !empty($name)) {
-                        echo $output;
-                        $buttonCount++;
-                      } elseif($sync === 'static' && !empty($name)) {
-                        echo $output;
-                        $buttonCount++;
+                  			                			                			  
+                			  //if showing appointment requests…
+                			  if(in_array('request_appointment', $homeData)) {
+                  			  $linkIcon = innexus_link_compare($apptLink);
+                  			  $internalExternal = innexus_link_compare_string($apptLink);
+                  			  //show the appointment button
+                          if(!empty($apptLink)) {
+                    			  $output .= "<a href='$apptLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background two' data-chatbotContext='$name Hours -> Appointment Button $internalExternal'>$apptCopy&nbsp;$linkIcon</a>";
+                  			  }
+                			  }
+                			  
+              			  $output .= "</div>";
+                      
+                      //if on a new layout
+                      if($global_location_repeater) {
+                        //show the button for each location
+                        if($locationNumber <= $globalLocationNumber && !empty($name)) {
+                          echo $output;
+                          $buttonCount++;
+                        } elseif($sync === 'static' && !empty($name)) {
+                          echo $output;
+                          $buttonCount++;
+                        }
+                        //if not on a new layout
+                      } else {
+                        if(!empty($name)) {
+                          echo $output;
+                          $buttonCount++;
+                        }
                       }
-                      //if not on a new layout
-                    } else {
-                      if(!empty($name)) {
-                        echo $output;
-                        $buttonCount++;
-                      }
-                    }
-        			    }
+          			    }
         			    
-        			    echo "</div>";
-        			    
-        			    if($buttonCount > 5) {
-          			    echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Multi Hours -> More Options/Previous Options'>More Options</div>";
-        			    }
+        			      echo "</div>";
+                  echo "</div>";
         			    
         			  echo "</div>";
       			  }
@@ -667,15 +662,8 @@ function XMOB_injection()
                           $formsCount++;
                           echo "<a href='$formLink' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount'>$formCopy&nbsp;$linkIcon</a>";
                         }
-                        
-                        //if more than 5 forms exist…
-                			  /*
-if($formsCount > 5) {
-                  			  //show the more options button
-                  			  echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Patient Forms -> More Options/Previous Options'>More Options</div>";
-                			  }
-*/
               			  }
+              			  
               			  //if pulling forms from site settings…
                 		} elseif(empty($formsOverride) && !empty(get_field('upload_patient_forms', 'option'))) {
                   		//grab the categories
@@ -718,14 +706,6 @@ if($formsCount > 5) {
                   			  $formsCount++;
                   			  echo "<a href='$formLink' target='_blank' class='chatbot-button innexus-chatbot-tracky chatbot-button-background' data-chatbotContext='Patient Forms -> $formCopy $formsCount $internalExternal'>$formCopy&nbsp;(PDF)</a>";
                 			  }
-                			                			  
-                			  //if more than 5 forms exist…
-                			  /*
-if($formsCount > 5) {
-                  			  //show the more options button
-                  			  echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background' data-chatbotContext='Patient Forms -> More Options/Previous Options'>More Options</div>";
-                			  }
-*/
               			  }
                 		}
                 		echo "</div>";
@@ -1005,14 +985,6 @@ if($formsCount > 5) {
               			  }
                 		}
                   echo "</div>";
-              		
-              		//if more than 5 forms exist…
-          			  /*
-if($formsCount > 5) {
-            			  //show the more options button
-            			  echo "<div class='chatbot-button innexus-chatbot-tracky moreOptions chatbot-button-background'>More Options</div>";
-          			  }
-*/
               		echo "</div>";
                 echo "</div>";
       			  }
